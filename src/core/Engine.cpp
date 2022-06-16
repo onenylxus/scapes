@@ -7,18 +7,20 @@
 // Include
 #include "Engine.h"
 
-// Constructor
-Engine::Engine(const char* title, const int &width, const int &height)
+// Set default values
+GLFWwindow* Engine::window;
+std::string Engine::title;
+int Engine::width;
+int Engine::height;
+
+// Create engine
+bool Engine::Create(const char* title, const int &width, const int &height)
 {
-  this->window = nullptr;
+  // Set values
   this->title = title;
   this->width = width;
   this->height = height;
-}
 
-// Create engine
-bool Engine::Create()
-{
   // Initialize GLFW
   if (!glfwInit())
   {
@@ -35,7 +37,7 @@ bool Engine::Create()
   #endif
 
   // Create window
-  this->window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+  this->window = glfwCreateWindow(this->width, this->height, this->title.c_str(), NULL, NULL);
   if (!this->window)
   {
     std::cout << "Failed to create window or context" << std::endl;
@@ -53,6 +55,7 @@ bool Engine::Create()
   }
 
   // Set event callbacks
+  glViewport(0, 0, width, height);
   this->SetEventCallbacks();
   return true;
 }
@@ -71,11 +74,14 @@ void Engine::Start()
     Clock::Update();
     std::string fps = std::to_string(1.0f / Clock::GetDelta());
     std::string ms = std::to_string(Clock::GetDelta());
-    std::string sTitle = title + " | fps: " + fps + " ms: " + ms;
+    std::string sTitle = this->title + " | fps: " + fps + " ms: " + ms;
     glfwSetWindowTitle(this->window, sTitle.c_str());
 
     // Update event callback
     this->OnUpdate();
+
+    // Update input
+    Input::Update();
 
     // Clear window
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -106,6 +112,7 @@ void Engine::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 // Set event callbacks
 void Engine::SetEventCallbacks()
 {
+  Input::SetCallbacks(this->window);
   glfwSetFramebufferSizeCallback(this->window, Engine::FramebufferSizeCallback);
 }
 
@@ -114,7 +121,7 @@ void Engine::DisplayStartLog()
 {
   std::cout << "\n====== Starting debug window ======\n" << std::endl;
 
-  std::cout << "Application name: " << title << std::endl;
+  std::cout << "Application name: " << this->title << std::endl;
   std::cout << "Application version: " << "v0.1.0" << std::endl;
   std::cout << std::endl;
 
@@ -139,14 +146,14 @@ void Engine::DisplayEndLog()
 // Get window
 GLFWwindow &Engine::GetWindow()
 {
-  return *this->window;
+  return *Engine::window;
 }
 
 // Get window size
 glm::ivec2 Engine::GetWindowSize()
 {
   glm::ivec2 size;
-  glfwGetWindowSize(this->window, &size.x, &size.y);
+  glfwGetWindowSize(Engine::window, &size.x, &size.y);
   return size;
 }
 

@@ -13,25 +13,21 @@
 #include <iostream>
 #include <string>
 #include "Clock.h"
+#include "Input.h"
 
 // Engine class
 class Engine
 {
-  // Constructor and destructor
-  protected:
-    Engine(const char* title, const int &width, const int &height);
-    virtual ~Engine() = default;
-
   // Properties
   protected:
-    GLFWwindow* window;
-    std::string title;
-    int width;
-    int height;
+    static GLFWwindow* window;
+    static std::string title;
+    static int width;
+    static int height;
 
   // Methods: initialization
   public:
-    bool Create();
+    bool Create(const char* title, const int &width, const int &height);
     void Start();
 
   // Methods: events
@@ -53,8 +49,9 @@ class Engine
 
   // Getters
   public:
-    GLFWwindow &GetWindow();
-    glm::ivec2 GetWindowSize();
+    static GLFWwindow &GetWindow();
+    static std::string GetTitle();
+    static glm::ivec2 GetWindowSize();
 };
 
 ////////////////////////////////////////////////////////////////

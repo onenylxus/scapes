@@ -7,15 +7,22 @@
 // Include
 #include "./core/Application.h"
 
+// Application values
+const char* title = "Scapes";
+const int width = 1280;
+const int height = 720;
+
 // Main function
 int main(int argc, char* argv[])
 {
-  Application* app = new Application("Scapes", 1280, 720);
-  if (app->Create())
+  // Create application
+  Application* app = new Application();
+  if (app->Create(title, width, height))
   {
     app->Start();
   }
 
+  // Return
   return 0;
 }
 

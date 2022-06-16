@@ -11,10 +11,9 @@
 // Application class
 class Application : public Engine
 {
-  // Constructor and destructor
-  public:
-    Application(const char* title, const int &width, const int &height);
-    virtual ~Application() = default;
+  // Properties
+  private:
+    static Application* app;
 
   // Methods: events
   private:
@@ -22,6 +21,10 @@ class Application : public Engine
     virtual void OnUpdate() override;
     virtual void OnRender() override;
     virtual void OnEnd() override;
+
+  // Getters
+  public:
+    static Application &GetApp();
 };
 
 ////////////////////////////////////////////////////////////////
