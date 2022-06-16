@@ -12,6 +12,7 @@
 #include <glm/glm.hpp>
 #include <iostream>
 #include <string>
+#include "Clock.h"
 
 // Engine class
 class Engine

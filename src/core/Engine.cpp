@@ -67,6 +67,13 @@ void Engine::Start()
   // Run engine loop
   while (!glfwWindowShouldClose(this->window))
   {
+    // Update clock
+    Clock::Update();
+    std::string fps = std::to_string(1.0f / Clock::GetDelta());
+    std::string ms = std::to_string(Clock::GetDelta());
+    std::string sTitle = title + " | fps: " + fps + " ms: " + ms;
+    glfwSetWindowTitle(this->window, sTitle.c_str());
+
     // Update event callback
     this->OnUpdate();
 

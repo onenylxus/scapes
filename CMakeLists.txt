@@ -11,6 +11,7 @@ add_subdirectory(${LIB_DIR}/glm/)
 add_executable(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Application.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Clock.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Engine.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/main.cpp)
 
