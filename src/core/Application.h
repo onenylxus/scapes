@@ -15,7 +15,7 @@ class Application : public Engine
   private:
     static Application* app;
 
-  // Methods: events
+  // Methods
   private:
     virtual void OnStart() override;
     virtual void OnUpdate() override;

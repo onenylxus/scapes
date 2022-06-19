@@ -25,21 +25,20 @@ class Shader
 
   // Properties
   private:
-    int program;
+    GLint program;
 
-  // Method: setup
+  // Methods
   public:
     bool Load(const char* vsPath, const char* fsPath);
     void Use();
 
-  // Method: status
   private:
     std::string ReadCode(const char* filename);
     bool CheckShaderStatus(GLuint id);
     bool CheckProgramStatus(GLuint id);
     bool CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERINFOLOGPROC ilFunc, GLenum type);
 
-    // Setters
+  // Setters
   public:
     void SetFloat(const char* name, float value);
     void SetInt(const char* name, int value);

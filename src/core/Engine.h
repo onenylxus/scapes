@@ -25,24 +25,21 @@ class Engine
     static int width;
     static int height;
 
-  // Methods: initialization
+  // Methods
   public:
     bool Create(const char* title, const int &width, const int &height);
     void Start();
 
-  // Methods: events
   protected:
     virtual void OnStart() = 0;
     virtual void OnUpdate() = 0;
     virtual void OnRender() = 0;
     virtual void OnEnd() = 0;
 
-  // Methods: callbacks
   private:
     static void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
     void SetEventCallbacks();
 
-  // Methods: logs
   private:
     void DisplayStartLog();
     void DisplayEndLog();

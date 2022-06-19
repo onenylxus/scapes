@@ -15,6 +15,7 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Clock.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Engine.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Input.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Shader.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Texture.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${LIB_DIR}/glad ${LIB_DIR}/glfw ${LIB_DIR}/glm ${LIB_DIR}/imgui ${LIB_DIR}/stb)

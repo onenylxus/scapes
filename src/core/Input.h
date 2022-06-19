@@ -36,12 +36,11 @@ class Input
     static unsigned int keyCurrentStates[GLFW_KEY_LAST];
     static unsigned int keyPreviousStates[GLFW_KEY_LAST];
 
-  // Methods: cursor
+  // Methods
   public:
     static void SetCursorVisibility(const bool &visible);
     static bool IsCursorVisible();
 
-  // Methods: callbacks
   protected:
     static void SetCallbacks(GLFWwindow* window);
     static void MousePositionCallback(GLFWwindow* window, double xpos, double ypos);
@@ -49,7 +48,6 @@ class Input
     static void MouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
     static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-  // Methods: update
   protected:
     static void Update();
 

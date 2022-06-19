@@ -18,7 +18,7 @@ class Clock
     static float delta;
     static float total;
 
-  // Methods: update
+  // Methods
   public:
     static void Update();
 
