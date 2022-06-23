@@ -1,15 +1,15 @@
-[submodule "lib/glad"]
-	path = lib/glad
+[submodule "glad"]
+	path = vendor/glad
 	url = https://github.com/Dav1dde/glad
-[submodule "lib/glfw"]
-	path = lib/glfw
+[submodule "glfw"]
+	path = vendor/glfw
 	url = https://github.com/glfw/glfw
-[submodule "lib/glm"]
-	path = lib/glm
+[submodule "glm"]
+	path = vendor/glm
 	url = https://github.com/g-truc/glm
-[submodule "lib/stb"]
-	path = lib/stb
-	url = https://github.com/nothings/stb
-[submodule "lib/imgui"]
-	path = lib/imgui
+[submodule "imgui"]
+	path = vendor/imgui
 	url = https://github.com/ocornut/imgui
+[submodule "stb"]
+	path = vendor/stb
+	url = https://github.com/nothings/stb
