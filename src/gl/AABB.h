@@ -37,16 +37,16 @@ class AABB
     AABB(const glm::vec3 &position, const glm::vec3 &size);
     virtual ~AABB() = default;
 
-  // Methods:
+  // Methods
   public:
     void Update(const glm::vec3 &position, const glm::vec3 &size);
 
   // Getters
   public:
     static bool IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, const glm::vec3 &positionB, const glm::vec3 &sizeB);
-    bool IsOverlapping(const glm::vec3 &position, glm::vec3 &size);
-    bool IsOverlapping(const AABB &aabb);
-    glm::vec3 GetVertex(const unsigned int &index);
+    bool IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const;
+    bool IsOverlapping(const AABB &aabb) const;
+    glm::vec3 GetVertex(const unsigned int &index) const;
 };
 
 ////////////////////////////////////////////////////////////////

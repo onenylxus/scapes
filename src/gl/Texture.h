@@ -44,7 +44,7 @@ class Texture
 
   // Getters
   public:
-    int GetTexture();
+    int GetTexture() const;
 };
 
 ////////////////////////////////////////////////////////////////

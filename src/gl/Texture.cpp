@@ -68,7 +68,7 @@ void Texture::Destroy(Texture::Data* data)
 }
 
 // Get texture
-int Texture::GetTexture()
+int Texture::GetTexture() const
 {
   return this->texture;
 }

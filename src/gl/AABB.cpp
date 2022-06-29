@@ -46,7 +46,7 @@ bool AABB::IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, con
 }
 
 // Overlapping check with position and size
-bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size)
+bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const
 {
   glm::vec3 half = size / 2.0f;
   glm::vec3 min = position - half;
@@ -55,13 +55,13 @@ bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size)
 }
 
 // Overlapping check with AABB
-bool AABB::IsOverlapping(const AABB &aabb)
+bool AABB::IsOverlapping(const AABB &aabb) const
 {
   return this->max.x >= aabb.min.x && this->min.x <= aabb.max.x && this->max.y >= aabb.min.y && this->min.y <= aabb.max.y && this->max.z >= aabb.min.z && this->min.z <= aabb.max.z;
 }
 
 // Get vertex position
-glm::vec3 AABB::GetVertex(const unsigned int &index)
+glm::vec3 AABB::GetVertex(const unsigned int &index) const
 {
   return this->vertices[index];
 }
