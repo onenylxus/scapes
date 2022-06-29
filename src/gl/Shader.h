@@ -33,7 +33,7 @@ class Shader
     void Use();
 
   private:
-    std::string ReadCode(const char* filename);
+    std::string ReadCode(const char* path);
     bool CheckShaderStatus(GLuint id);
     bool CheckProgramStatus(GLuint id);
     bool CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERINFOLOGPROC ilFunc, GLenum type);

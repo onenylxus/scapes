@@ -11,18 +11,18 @@
 #include <GLFW/glfw3.h>
 #include <stb_image.h>
 
+// Texture data struct
+struct TextureData
+{
+  int width;
+  int height;
+  int format;
+  unsigned char *data;
+};
+
 // Texture class
 class Texture
 {
-  // Texture data struct
-  struct Data
-  {
-    int width;
-    int height;
-    int format;
-    unsigned char* data;
-  };
-
   // Constructor and destructor
   public:
     Texture();
@@ -37,9 +37,9 @@ class Texture
     virtual void Bind(const unsigned int &index = 0);
 
   protected:
-    Texture::Data* Load(const char* path);
-    virtual void Create(const Texture::Data &data);
-    void Destroy(Texture::Data* data);
+    TextureData* Load(const char* path);
+    virtual void Create(const TextureData &data);
+    void Destroy(TextureData* data);
 
   // Getters
   public:

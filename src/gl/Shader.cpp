@@ -71,15 +71,14 @@ void Shader::Use()
 }
 
 // Read shader code
-std::string Shader::ReadCode(const char* filename)
+std::string Shader::ReadCode(const char* path)
 {
-  std::ifstream input(filename);
+  std::ifstream input(path);
   if (!input.good())
   {
-    std::cout << "File failed to open: " << filename << std::endl;
+    std::cout << "File failed to open: " << path << std::endl;
     exit(1);
   }
-
   return std::string(std::istreambuf_iterator<char>(input), std::istreambuf_iterator<char>());
 }
 
