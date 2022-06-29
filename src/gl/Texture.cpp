@@ -33,10 +33,10 @@ void Texture::Bind(const unsigned int &index)
 }
 
 // Load texture
-TextureData* Texture::Load(const char* path)
+Texture::Data* Texture::Load(const char* path)
 {
   // Load data
-  TextureData* data = new TextureData();
+  Texture::Data* data = new Texture::Data();
   stbi_set_flip_vertically_on_load(true);
   stbi_load(path, &data->width, &data->height, &data->format, 0);
 
@@ -50,7 +50,7 @@ TextureData* Texture::Load(const char* path)
 }
 
 // Create texture
-void Texture::Create(const TextureData &data)
+void Texture::Create(const Texture::Data &data)
 {
   int format = data.format == 3 ? GL_RGB : GL_RGBA;
   glGenTextures(1, &this->texture);
@@ -59,7 +59,7 @@ void Texture::Create(const TextureData &data)
 }
 
 // Destroy texture
-void Texture::Destroy(TextureData* data)
+void Texture::Destroy(Texture::Data* data)
 {
   if (data)
   {

@@ -17,7 +17,7 @@ Sprite::Sprite(const char* path)
 bool Sprite::Load(const char* path)
 {
   // Load data
-  TextureData* data = Texture::Load(path);
+  Texture::Data* data = Texture::Load(path);
   if (data == nullptr)
   {
     std::cout << "Texture failed to load: " << path << std::endl;
