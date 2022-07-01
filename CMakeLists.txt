@@ -19,6 +19,7 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Camera.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Shader.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Texture.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Sprite.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Tilemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${VENDOR_DIR}/glad ${VENDOR_DIR}/glfw ${VENDOR_DIR}/glm ${VENDOR_DIR}/imgui ${VENDOR_DIR}/stb)
