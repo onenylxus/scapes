@@ -8,10 +8,10 @@
 #include "Camera.h"
 
 // Constructor
-Camera::Camera(const glm::vec3 &position, const glm::vec3 &up, const float &fov, const float &near, const float &far)
+Camera::Camera(const glm::vec3 &position, const float &fov, const float &near, const float &far)
 {
   this->position = position;
-  this->up = up;
+  this->up = glm::vec3(0, 1, 0);
   this->front = glm::vec3(0);
   this->right = glm::vec3(0);
   this->top = glm::vec3(0);

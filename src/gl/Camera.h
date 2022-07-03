@@ -27,11 +27,11 @@ class Camera
 
   // Constructor and destructor
   public:
-    Camera(const glm::vec3 &position, const glm::vec3 &up, const float &fov, const float &near, const float &far);
+    Camera(const glm::vec3 &position, const float &fov, const float &near, const float &far);
     virtual ~Camera() = default;
 
   // Properties
-  private:
+  protected:
     glm::vec3 position;
     glm::vec3 up;
     glm::vec3 front;
