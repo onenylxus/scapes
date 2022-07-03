@@ -29,7 +29,7 @@ class Tilemap
 
   // Methods
   public:
-    void Bind(const unsigned int &index) const;
+    void Bind(const unsigned int &index = 0) const;
 
   // Getters
   public:

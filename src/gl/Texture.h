@@ -30,15 +30,15 @@ class Texture
     virtual ~Texture();
 
   // Properties
-  private:
+  protected:
     GLuint texture;
 
   // Methods
   public:
-    virtual void Bind(const unsigned int &index = 0);
+    virtual void Bind(const unsigned int &index = 0) const;
 
   protected:
-    Texture::Data* Load(const char* path);
+    Texture::Data* Load(const char* path, const bool &flip = true);
     virtual void Create(const Texture::Data &data);
     void Destroy(Texture::Data* data);
 
