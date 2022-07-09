@@ -8,6 +8,7 @@ project(scapes)
 add_subdirectory(${VENDOR_DIR}/glad/)
 add_subdirectory(${VENDOR_DIR}/glfw/)
 add_subdirectory(${VENDOR_DIR}/glm/)
+add_subdirectory(${VENDOR_DIR}/imgui/)
 add_executable(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Application.cpp)
@@ -28,4 +29,4 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Tilemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${VENDOR_DIR}/glad ${VENDOR_DIR}/glfw ${VENDOR_DIR}/glm ${VENDOR_DIR}/imgui ${VENDOR_DIR}/stb)
-target_link_libraries(${PROJECT_NAME} PUBLIC glad glfw glm ${CMAKE_DL_LIBS})
+target_link_libraries(${PROJECT_NAME} PUBLIC glad glfw glm imgui imgui-glfw imgui-opengl3 ${CMAKE_DL_LIBS})

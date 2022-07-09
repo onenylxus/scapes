@@ -1,3 +1,5 @@
+#!/bin/bash
+sh ./res/vendor/modify.sh
 cmake . -G "MinGW Makefiles"
 mingw32-make
 printf "\n"

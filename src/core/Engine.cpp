@@ -54,6 +54,12 @@ bool Engine::Create(const char* title, const int &width, const int &height)
     return false;
   }
 
+  // Initialize ImGui
+  ImGui::CreateContext();
+  ImGui_ImplGlfw_InitForOpenGL(this->window, true);
+  ImGui_ImplOpenGL3_Init("#version 450");
+  ImGui::StyleColorsDark();
+
   // Set event callbacks
   glViewport(0, 0, width, height);
   this->SetEventCallbacks();
@@ -77,6 +83,11 @@ void Engine::Start()
     std::string sTitle = this->title + " | fps: " + fps + " ms: " + ms;
     glfwSetWindowTitle(this->window, sTitle.c_str());
 
+    // Create new ImGui frames
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
     // Update event callback
     this->OnUpdate();
 
@@ -90,6 +101,10 @@ void Engine::Start()
     // Render event callback
     this->OnRender();
 
+    // Render ImGui frames
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
     // Swap buffers and poll events
     glfwSwapBuffers(this->window);
     glfwPollEvents();
@@ -98,6 +113,11 @@ void Engine::Start()
   // End event callback
   this->OnEnd();
   this->DisplayEndLog();
+
+  // Terminate ImGui
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
 
   // Terminate GLFW
   glfwTerminate();
