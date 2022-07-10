@@ -18,6 +18,15 @@
 // Shader class
 class Shader
 {
+  // Shader types
+  public:
+    enum class Type
+    {
+      GRAPHICS,
+      GEOMETRY,
+      COMPUTE
+    };
+
   // Constructor and destructor
   public:
     Shader();
@@ -29,11 +38,13 @@ class Shader
 
   // Methods
   public:
-    bool Load(const char* vsPath, const char* fsPath);
+    bool LoadGraphics(std::string vsPath, std::string fsPath);
+    bool LoadGeometry(std::string path);
+    bool LoadCompute(std::string path);
     void Use();
 
   private:
-    std::string ReadCode(const char* path);
+    std::string ReadCode(std::string path);
     bool CheckShaderStatus(GLuint id);
     bool CheckProgramStatus(GLuint id);
     bool CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERINFOLOGPROC ilFunc, GLenum type);

@@ -57,7 +57,7 @@ class Block
         }
       }
 
-      unsigned int operator [](unsigned int i) const
+      unsigned int operator [] (unsigned int i) const
       {
         return i >= 0 && i < 6 ? this->indices[i] : 0;
       }

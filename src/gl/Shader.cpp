@@ -22,45 +22,110 @@ Shader::~Shader()
   }
 }
 
-// Load shader
-bool Shader::Load(const char* vsPath, const char* fsPath)
+// Load graphics shader
+bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
 {
   // Create vertex shader
-  GLuint vsID = glCreateShader(GL_VERTEX_SHADER);
+  GLuint vs = glCreateShader(GL_VERTEX_SHADER);
   const GLchar* vCode = this->ReadCode(vsPath).c_str();
-  glShaderSource(vsID, 1, &vCode, NULL);
-  glCompileShader(vsID);
+  glShaderSource(vs, 1, &vCode, NULL);
+  glCompileShader(vs);
 
-  if (!this->CheckShaderStatus(vsID))
+  // Check vertex shader status
+  if (!this->CheckShaderStatus(vs))
   {
     return false;
   }
 
   // Create fragment shader
-  GLuint fsID = glCreateShader(GL_FRAGMENT_SHADER);
+  GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
   const GLchar* fCode = this->ReadCode(fsPath).c_str();
-  glShaderSource(fsID, 1, &fCode, NULL);
-  glCompileShader(fsID);
+  glShaderSource(fs, 1, &fCode, NULL);
+  glCompileShader(fs);
 
-  if (!this->CheckShaderStatus(fsID))
+  // Check fragment shader status
+  if (!this->CheckShaderStatus(fs))
   {
     return false;
   }
 
   // Compile shaders into program
   this->program = glCreateProgram();
-  glAttachShader(this->program, vsID);
-  glAttachShader(this->program, fsID);
+  glAttachShader(this->program, vs);
+  glAttachShader(this->program, fs);
   glLinkProgram(this->program);
 
+  // Check program status
   if (!this->CheckProgramStatus(this->program))
   {
     return false;
   }
 
   // Finalize
-  glDeleteShader(vsID);
-  glDeleteShader(fsID);
+  glDeleteShader(vs);
+  glDeleteShader(fs);
+  return true;
+}
+
+// Load geometry shader
+bool Shader::LoadGeometry(std::string path)
+{
+  // Create geometry shader
+  GLuint gs = glCreateShader(GL_GEOMETRY_SHADER);
+  const GLchar* gCode = this->ReadCode(path).c_str();
+  glShaderSource(gs, 1, &gCode, NULL);
+  glCompileShader(gs);
+
+  // Check geometry shader status
+  if (!this->CheckShaderStatus(gs))
+  {
+    return false;
+  }
+
+  // Compile shader into program
+  this->program = glCreateProgram();
+  glAttachShader(this->program, gs);
+  glLinkProgram(this->program);
+
+  // Check program status
+  if (!this->CheckProgramStatus(this->program))
+  {
+    return false;
+  }
+
+  // Finalize
+  glDeleteShader(gs);
+  return true;
+}
+
+// Load compute shader
+bool Shader::LoadCompute(std::string path)
+{
+  // Create compute shader
+  GLuint cs = glCreateShader(GL_COMPUTE_SHADER);
+  const GLchar* cCode = this->ReadCode(path).c_str();
+  glShaderSource(cs, 1, &cCode, NULL);
+  glCompileShader(cs);
+
+  // Check compute shader status
+  if (!this->CheckProgramStatus(cs))
+  {
+    return false;
+  }
+
+  // Compile shader into program
+  this->program = glCreateProgram();
+  glAttachShader(this->program, cs);
+  glLinkProgram(this->program);
+
+  // Check program status
+  if (!this->CheckProgramStatus(this->program))
+  {
+    return false;
+  }
+
+  // Finalize
+  glDeleteShader(cs);
   return true;
 }
 
@@ -71,9 +136,9 @@ void Shader::Use()
 }
 
 // Read shader code
-std::string Shader::ReadCode(const char* path)
+std::string Shader::ReadCode(std::string path)
 {
-  std::ifstream input(path);
+  std::ifstream input(path.c_str());
   if (!input.good())
   {
     std::cout << "File failed to open: " << path << std::endl;
