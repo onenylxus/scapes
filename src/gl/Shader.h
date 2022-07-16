@@ -53,12 +53,12 @@ class Shader
   public:
     void SetFloat(const char* name, float value);
     void SetInt(const char* name, int value);
-    void SetMatrix2(const char* name, glm::mat2& value);
-    void SetMatrix3(const char* name, glm::mat3& value);
-    void SetMatrix4(const char* name, glm::mat4& value);
-    void SetVector2(const char* name, glm::vec2& value);
-    void SetVector3(const char* name, glm::vec3& value);
-    void SetVector4(const char* name, glm::vec4& value);
+    void SetMatrix2(const char* name, const glm::mat2& value);
+    void SetMatrix3(const char* name, const glm::mat3& value);
+    void SetMatrix4(const char* name, const glm::mat4& value);
+    void SetVector2(const char* name, const glm::vec2& value);
+    void SetVector3(const char* name, const glm::vec3& value);
+    void SetVector4(const char* name, const glm::vec4& value);
 };
 
 ////////////////////////////////////////////////////////////////

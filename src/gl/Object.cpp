@@ -76,8 +76,8 @@ void Object::BindVBO() const
   glBindBuffer(GL_ARRAY_BUFFER, this->data.vbo);
 }
 
-// Render object
-void Object::Render(Camera &camera)
+// Render object without camera
+void Object::Render()
 {
   // Check shader exists
   if (!this->shader)

@@ -40,7 +40,7 @@ class Object
   public:
     void BindVAO() const;
     void BindVBO() const;
-    void Render(Camera &camera);
+    void Render();
 
   // Setters
   public:

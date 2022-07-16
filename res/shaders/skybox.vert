@@ -7,20 +7,18 @@
 #version 450 core
 
 layout (location = 0) in vec3 vPosition;
-layout (location = 1) in vec3 vNormal;
-layout (location = 2) in vec2 vTexCoord;
 
-uniform mat4 uProjectionView;
-uniform mat4 uModel;
-  
-out vec2 fTexCoord;
-out vec2 fNormal;
+uniform mat4 uProjection;
+uniform mat4 uView;
+
+out vec3 fTexCoord;
+out vec3 fPosition;
 
 void main()
 {
-  gl_Position = uProjectionView * uModel * vec4(vPosition, 1.0);
-  fTexCoord = vTexCoord;
-  fNormal = vNormal;
+  gl_Position = uProjection * uView * vec4(vPosition, 1.0);
+  fTexCoord = vec3(vPosition.x, vPosition.y, vPosition.z * -1);
+  fPosition = vPosition;
 }
 
 ////////////////////////////////////////////////////////////////

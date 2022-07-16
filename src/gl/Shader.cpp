@@ -213,7 +213,7 @@ void Shader::SetInt(const char* name, int value)
 }
 
 // Set uniform matrix2 value
-void Shader::SetMatrix2(const char* name, glm::mat2& value)
+void Shader::SetMatrix2(const char* name, const glm::mat2& value)
 {
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -226,7 +226,7 @@ void Shader::SetMatrix2(const char* name, glm::mat2& value)
 }
 
 // Set uniform matrix3 value
-void Shader::SetMatrix3(const char* name, glm::mat3& value)
+void Shader::SetMatrix3(const char* name, const glm::mat3& value)
 {
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -239,7 +239,7 @@ void Shader::SetMatrix3(const char* name, glm::mat3& value)
 }
 
 // Set uniform matrix4 value
-void Shader::SetMatrix4(const char* name, glm::mat4& value)
+void Shader::SetMatrix4(const char* name, const glm::mat4& value)
 {
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -252,7 +252,7 @@ void Shader::SetMatrix4(const char* name, glm::mat4& value)
 }
 
 // Set uniform vector2 value
-void Shader::SetVector2(const char* name, glm::vec2& value)
+void Shader::SetVector2(const char* name, const glm::vec2& value)
 {
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -265,7 +265,7 @@ void Shader::SetVector2(const char* name, glm::vec2& value)
 }
 
 // Set uniform vector3 value
-void Shader::SetVector3(const char* name, glm::vec3& value)
+void Shader::SetVector3(const char* name, const glm::vec3& value)
 {
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -278,7 +278,7 @@ void Shader::SetVector3(const char* name, glm::vec3& value)
 }
 
 // Set uniform vector4 value
-void Shader::SetVector4(const char* name, glm::vec4& value)
+void Shader::SetVector4(const char* name, const glm::vec4& value)
 {
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);

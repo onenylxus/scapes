@@ -11,7 +11,8 @@ in vec3 fNormal;
 
 out vec4 rColor;
 
-void main() {
+void main()
+{
   rColor = vec4((fNormal + 1.0) / 2, 1.0);
 }
 
