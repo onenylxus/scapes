@@ -10,6 +10,10 @@
 // Constructor
 Object::Object(const glm::vec3 &position, const std::vector<float> &data, const std::vector<int> &attr, const std::vector<unsigned int> &indices)
 {
+  // Set transform
+  this->transform = new Transform();
+  this->transform->SetPosition(position);
+
   // Create array buffers
   glGenVertexArrays(1, &this->data.vao);
   glGenBuffers(1, &this->data.vbo);
@@ -76,6 +80,31 @@ void Object::BindVBO() const
   glBindBuffer(GL_ARRAY_BUFFER, this->data.vbo);
 }
 
+// Render object with camera
+void Object::Render(Camera& camera)
+{
+  // Check shader exists
+  if (!this->shader)
+  {
+    return;
+  }
+
+  // Set shader values
+  this->BindVAO();
+  this->shader->SetMatrix4("uModel", this->transform->GetMatrix());
+  this->shader->SetMatrix4("uProjectionView", camera.GetProjectionView());
+
+  // Draw object
+  if (this->data.ebo <= 0)
+  {
+    glDrawArrays(GL_TRIANGLES, 0, this->data.size);
+  }
+  else
+  {
+    glDrawElements(GL_TRIANGLES, this->data.size, GL_UNSIGNED_INT, 0);
+  }
+}
+
 // Render object without camera
 void Object::Render()
 {
@@ -107,6 +136,18 @@ void Object::SetShader(Shader* shader)
 Shader* Object::GetShader() const
 {
   return this->shader;
+}
+
+// Get position
+glm::vec3 Object::GetPosition()
+{
+  return this->transform->GetPosition();
+}
+
+// Get transform
+Transform* Object::GetTransform()
+{
+  return this->transform;
 }
 
 

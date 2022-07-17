@@ -12,6 +12,7 @@
 #include <glm/glm.hpp>
 #include "Camera.h"
 #include "Shader.h"
+#include "Transform.h"
 
 // Object class
 class Object
@@ -34,12 +35,14 @@ class Object
   // Properties
   private:
     Object::Data data;
+    Transform* transform;
     Shader* shader;
 
   // Methods
   public:
     void BindVAO() const;
     void BindVBO() const;
+    void Render(Camera& camera);
     void Render();
 
   // Setters
@@ -49,6 +52,8 @@ class Object
   // Getters
   public:
     Shader* GetShader() const;
+    glm::vec3 GetPosition();
+    Transform* GetTransform();
 };
 
 ////////////////////////////////////////////////////////////////
