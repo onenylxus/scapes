@@ -10,14 +10,16 @@
 // Set default values
 GLFWwindow* Engine::window;
 std::string Engine::title;
+std::string Engine::version;
 int Engine::width;
 int Engine::height;
 
 // Create engine
-bool Engine::Create(const char* title, const int &width, const int &height)
+bool Engine::Create(const char* title, const char* version, const int &width, const int &height)
 {
   // Set values
   this->title = title;
+  this->version = version;
   this->width = width;
   this->height = height;
 
@@ -139,28 +141,25 @@ void Engine::SetEventCallbacks()
 // Display start log
 void Engine::DisplayStartLog()
 {
-  std::cout << "\n====== Starting debug window ======\n" << std::endl;
+  std::cout << "\n\033[7m" << "====== Starting debug window ======" << "\033[0m\n" << std::endl;
 
   std::cout << "Application name: " << this->title << std::endl;
-  std::cout << "Application version: " << "v0.1.0" << std::endl;
+  std::cout << "Application version: " << this->version << std::endl;
   std::cout << std::endl;
 
-  const GLubyte *vendor = glGetString(GL_VENDOR);
-  const GLubyte *renderer = glGetString(GL_RENDERER);
-  const GLubyte *version = glGetString(GL_VERSION);
-  std::cout << "OpenGL company: " << vendor << std::endl;
-  std::cout << "OpenGL renderer: " << renderer << std::endl;
-  std::cout << "OpenGL version: " << version << std::endl;
+  std::cout << "OpenGL company: " << this->GetGLVendor() << std::endl;
+  std::cout << "OpenGL renderer: " << this->GetGLRenderer() << std::endl;
+  std::cout << "OpenGL version: " << this->GetGLVersion() << std::endl;
 
-  std::cout << "\n====== Rendering display window ======\n" << std::endl;
+  std::cout << "\n\033[7m" << "====== Rendering display window ======" << "\033[0m\n" << std::endl;
 }
 
 // Display end log
 void Engine::DisplayEndLog()
 {
-  std::cout << "\n====== Closing display window ======\n" << std::endl;
+  std::cout << "\n\033[7m" << "====== Closing display window ======" << "\033[0m\n" << std::endl;
   std::cout << "Application ended" << std::endl;
-  std::cout << "\n====== Ending debug window ======\n" << std::endl;
+  std::cout << "\n\033[7m" << "====== Ending debug window ======" << "\033[0m\n" << std::endl;
 }
 
 // Get window
@@ -175,6 +174,24 @@ glm::ivec2 Engine::GetWindowSize()
   glm::ivec2 size;
   glfwGetWindowSize(Engine::window, &size.x, &size.y);
   return size;
+}
+
+// Get OpenGL vendor string
+std::string Engine::GetGLVendor()
+{
+  return std::string(reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
+}
+
+// Get OpenGL renderer string
+std::string Engine::GetGLRenderer()
+{
+  return std::string(reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
+}
+
+// Get OpenGL version string
+std::string Engine::GetGLVersion()
+{
+  return std::string(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
 }
 
 ////////////////////////////////////////////////////////////////

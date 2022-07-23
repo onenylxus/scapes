@@ -9,6 +9,7 @@
 
 // Application values
 const char* title = "Scapes";
+const char* version = "v0.1.0";
 const int width = 1280;
 const int height = 720;
 
@@ -17,7 +18,7 @@ int main(int argc, char* argv[])
 {
   // Create application
   Application* app = new Application();
-  if (app->Create(title, width, height))
+  if (app->Create(title, version, width, height))
   {
     app->Start();
   }

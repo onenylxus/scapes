@@ -25,12 +25,13 @@ class Engine
   protected:
     static GLFWwindow* window;
     static std::string title;
+    static std::string version;
     static int width;
     static int height;
 
   // Methods
   public:
-    bool Create(const char* title, const int &width, const int &height);
+    bool Create(const char* title, const char* version, const int &width, const int &height);
     void Start();
 
   protected:
@@ -50,8 +51,10 @@ class Engine
   // Getters
   public:
     static GLFWwindow &GetWindow();
-    static std::string GetTitle();
     static glm::ivec2 GetWindowSize();
+    static std::string GetGLVendor();
+    static std::string GetGLRenderer();
+    static std::string GetGLVersion();
 };
 
 ////////////////////////////////////////////////////////////////
