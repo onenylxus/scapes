@@ -72,7 +72,7 @@ Skybox::Skybox(const char* path)
   this->texture = new Cubemap(path);
   this->cube = new Object(glm::vec3(0), vertices, attributes);
   this->cube->SetShader(ShaderManager::SetShader("skybox"));
-  this->GetShader()->SetInt("uCubemap", 0);
+  this->GetShader()->SetTextureUnit("uCubemap", 0);
 }
 
 // Destructor

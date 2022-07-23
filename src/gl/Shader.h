@@ -59,6 +59,7 @@ class Shader
     void SetVector2(const char* name, const glm::vec2& value);
     void SetVector3(const char* name, const glm::vec3& value);
     void SetVector4(const char* name, const glm::vec4& value);
+    void SetTextureUnit(const char* name, const unsigned int& value);
 };
 
 ////////////////////////////////////////////////////////////////

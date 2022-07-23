@@ -6,6 +6,7 @@
 
 // Include
 #pragma once
+#include "../world/World.h"
 #include "Engine.h"
 
 // Application class
@@ -14,6 +15,7 @@ class Application : public Engine
   // Properties
   private:
     static Application* app;
+    World* world;
 
   // Methods
   private:
@@ -21,6 +23,10 @@ class Application : public Engine
     virtual void OnUpdate() override;
     virtual void OnRender() override;
     virtual void OnEnd() override;
+
+  private:
+    void DisplayWorldStartLog();
+    void DisplayWorldEndLog();
 
   // Getters
   public:

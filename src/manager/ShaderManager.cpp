@@ -46,7 +46,7 @@ void ShaderManager::Destroy()
 // Set shader
 Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
 {
-  std::string dir = "../../res/shaders/";
+  std::string dir = "res/shaders/";
   std::ifstream file;
 
   switch (type)
@@ -54,38 +54,10 @@ Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
     // Graphics shader
     case Shader::Type::GRAPHICS:
     {
-      // Open vertex shader file
-      file.open(dir + path + ".vert");
-
-      // Check vertex shader file
-      if (!file.is_open())
-      {
-        std::cout << "File failed to open: " << path << std::endl;
-        file.close();
-        return nullptr;
-      }
-
-      // Set vertex shader path
-      std::string vsPath = std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-      file.close();
-
-      // Open fragment shader file
-      file.open(dir + path + ".frag");
-
-      // Check fragment shader file
-      if (!file.is_open())
-      {
-        std::cout << "File failed to open: " << path << std::endl;
-        file.close();
-        return nullptr;
-      }
-
-      // Set fragment shader path
-      std::string fsPath = std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-      file.close();
-
-      // Finalize shader
+      std::string vsPath = dir + path + ".vert";
+      std::string fsPath = dir + path + ".frag";
       Shader* shader = new Shader();
+
       if (shader->LoadGraphics(vsPath, fsPath))
       {
         ShaderManager::graphicsShaders.insert(std::pair<const char*, Shader*>(path, shader));
@@ -97,23 +69,9 @@ Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
     // Geometry shader
     case Shader::Type::GEOMETRY:
     {
-      // Open geometry shader file
-      file.open(dir + path + ".geom");
-
-      // Check geometry shader file
-      if (!file.is_open())
-      {
-        std::cout << "File failed to open: " << path << std::endl;
-        file.close();
-        return nullptr;
-      }
-
-      // Set geometry shader path
-      std::string gsPath = std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-      file.close();
-
-      // Finalize shader
+      std::string gsPath = dir + path + ".geom";
       Shader* shader = new Shader();
+
       if (shader->LoadGeometry(gsPath))
       {
         ShaderManager::geometryShaders.insert(std::pair<const char*, Shader*>(path, shader));
@@ -125,23 +83,9 @@ Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
     // Compute shader
     case Shader::Type::COMPUTE:
     {
-      // Open compute shader file
-      file.open(dir + path + ".comp");
-
-      // Check compute shader file
-      if (!file.is_open())
-      {
-        std::cout << "File failed to open: " << path << std::endl;
-        file.close();
-        return nullptr;
-      }
-
-      // Set compute shader path
-      std::string csPath = std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-      file.close();
-
-      // Finalize shader
+      std::string csPath = dir + path + ".comp";
       Shader* shader = new Shader();
+
       if (shader->LoadCompute(csPath))
       {
         ShaderManager::computeShaders.insert(std::pair<const char*, Shader*>(path, shader));

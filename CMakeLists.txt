@@ -29,6 +29,7 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Cubemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Skybox.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Sprite.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Tilemap.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/World.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${VENDOR_DIR}/glad ${VENDOR_DIR}/glfw ${VENDOR_DIR}/glm ${VENDOR_DIR}/imgui ${VENDOR_DIR}/stb)

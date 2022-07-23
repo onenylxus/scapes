@@ -18,6 +18,10 @@ void Application::OnStart()
 
   // Remove default cursor
   Input::SetCursorVisibility(false);
+
+  // Create world
+  this->world = new World();
+  this->DisplayWorldStartLog();
 }
 
 // Update event callback
@@ -28,11 +32,17 @@ void Application::OnUpdate()
   {
     Input::SetCursorVisibility(!Input::IsCursorVisible());
   }
+
+  // Update world
+  this->world->Update();
 }
 
 // Render event callback
 void Application::OnRender()
 {
+  // Render world
+  this->world->Render();
+
   // Render OpenGL information through ImGui window
   ImGui::SetNextWindowPos(ImVec2(0, 0));
   ImGui::Begin("OpenGL Information", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoBackground);
@@ -50,7 +60,21 @@ void Application::OnRender()
 // End event callback
 void Application::OnEnd()
 {
+  // Delete world
+  delete this->world;
+  this->DisplayWorldEndLog();
+}
 
+// Display world start log
+void Application::DisplayWorldStartLog()
+{
+  std::cout << "\033[33m" << "World started" << "\033[0m" << std::endl;
+}
+
+// Display world end log
+void Application::DisplayWorldEndLog()
+{
+  std::cout << "\033[33m" << "World ended" << "\033[0m" << std::endl;
 }
 
 // Get application

@@ -38,7 +38,7 @@ Texture::Data* Texture::Load(const char* path, const bool &flip)
   // Load data
   Texture::Data* data = new Texture::Data();
   stbi_set_flip_vertically_on_load(flip);
-  stbi_load(path, &data->width, &data->height, &data->format, 0);
+  data->data = stbi_load(path, &data->width, &data->height, &data->format, 0);
 
   // Check data
   if (data->data == nullptr)

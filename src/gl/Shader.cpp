@@ -290,5 +290,18 @@ void Shader::SetVector4(const char* name, const glm::vec4& value)
   glUniform4fv(loc, 1, &value[0]);
 }
 
+// Set uniform texture unit value
+void Shader::SetTextureUnit(const char* name, const unsigned int& value)
+{
+  this->Use();
+  unsigned int loc = glGetUniformLocation(this->program, name);
+  if (loc == -1)
+  {
+    std::cout << "Failed to get uniform texture unit location: " << name << std::endl;
+    return;
+  }
+  glUniform1i(loc, value);
+}
+
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
