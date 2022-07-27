@@ -1,4 +1,4 @@
-;////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
 // Nicholas Ng, 2022 MIT License
@@ -26,10 +26,12 @@ class ShaderManager
     static void Destroy();
 
   // Setters
-  static Shader* SetShader(const char* path, Shader::Type type = Shader::Type::GRAPHICS);
+  public:
+    static Shader* SetShader(const char* path, Shader::Type type = Shader::Type::GRAPHICS);
 
   // Getters
-  static Shader* GetShader(const char* path, Shader::Type type = Shader::Type::GRAPHICS);
+  public:
+    static Shader* GetShader(const char* path, Shader::Type type = Shader::Type::GRAPHICS);
 };
 
 ////////////////////////////////////////////////////////////////

@@ -8,7 +8,7 @@
 #include "Engine.h"
 
 // Set default values
-GLFWwindow* Engine::window;
+GLFWwindow* Engine::window = nullptr;
 std::string Engine::title;
 std::string Engine::version;
 int Engine::width;

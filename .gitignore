@@ -1,6 +1,7 @@
 .vscode
 CMakeFiles
 res/skybox
+res/textures
 cmake_install.cmake
 CMakeCache.txt
 imgui.ini

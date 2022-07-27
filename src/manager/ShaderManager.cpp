@@ -12,13 +12,13 @@ std::map<const char*, Shader*> ShaderManager::graphicsShaders;
 std::map<const char*, Shader*> ShaderManager::geometryShaders;
 std::map<const char*, Shader*> ShaderManager::computeShaders;
 
-// Init shaders
+// Init shader manager
 void ShaderManager::Init()
 {
   ShaderManager::SetShader("base");
 }
 
-// Destroy shaders
+// Destroy shader manager
 void ShaderManager::Destroy()
 {
   // Destroy graphics shaders
