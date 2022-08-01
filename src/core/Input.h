@@ -21,8 +21,8 @@ class Input
   // Scroll enum
   enum class Scroll
   {
-    Horizontal,
-    Vertical
+    HORIZONTAL,
+    VERTICAL
   };
 
   // Properties
@@ -59,7 +59,7 @@ class Input
     static bool IsKeyPressed(const int &key);
     static glm::vec2 GetMousePosition();
     static glm::vec2 GetMouseDelta();
-    static double GetMouseScroll(Input::Scroll direction);
+    static double GetMouseScroll(Input::Scroll direction = Input::Scroll::HORIZONTAL);
 };
 
 ////////////////////////////////////////////////////////////////

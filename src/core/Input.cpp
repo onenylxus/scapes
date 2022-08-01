@@ -157,7 +157,7 @@ glm::vec2 Input::GetMouseDelta()
 }
 
 // Get mouse scroll
-double Input::GetMouseScroll(Input::Scroll direction = Scroll::Horizontal)
+double Input::GetMouseScroll(Input::Scroll direction)
 {
   return Input::scrollStates[(int)direction];
 }

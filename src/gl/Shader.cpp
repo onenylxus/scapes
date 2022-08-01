@@ -26,8 +26,9 @@ Shader::~Shader()
 bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
 {
   // Create vertex shader
+  std::string vStr = this->ReadCode(vsPath);
+  const GLchar* vCode = vStr.c_str();
   GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-  const GLchar* vCode = this->ReadCode(vsPath).c_str();
   glShaderSource(vs, 1, &vCode, NULL);
   glCompileShader(vs);
 
@@ -38,8 +39,9 @@ bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
   }
 
   // Create fragment shader
+  std::string fStr = this->ReadCode(fsPath);
+  const GLchar* fCode = fStr.c_str();
   GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-  const GLchar* fCode = this->ReadCode(fsPath).c_str();
   glShaderSource(fs, 1, &fCode, NULL);
   glCompileShader(fs);
 
@@ -71,8 +73,9 @@ bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
 bool Shader::LoadGeometry(std::string path)
 {
   // Create geometry shader
+  std::string gStr = this->ReadCode(path);
+  const GLchar* gCode = gStr.c_str();
   GLuint gs = glCreateShader(GL_GEOMETRY_SHADER);
-  const GLchar* gCode = this->ReadCode(path).c_str();
   glShaderSource(gs, 1, &gCode, NULL);
   glCompileShader(gs);
 
@@ -102,8 +105,9 @@ bool Shader::LoadGeometry(std::string path)
 bool Shader::LoadCompute(std::string path)
 {
   // Create compute shader
+  std::string cStr = this->ReadCode(path);
+  const GLchar* cCode = cStr.c_str();
   GLuint cs = glCreateShader(GL_COMPUTE_SHADER);
-  const GLchar* cCode = this->ReadCode(path).c_str();
   glShaderSource(cs, 1, &cCode, NULL);
   glCompileShader(cs);
 
