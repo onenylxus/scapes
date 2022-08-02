@@ -7,8 +7,6 @@
 // Include
 #pragma once
 #define GLFW_INCLUDE_NONE
-#include <iostream>
-#include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -17,6 +15,7 @@
 #include <backends/imgui_impl_opengl3.h>
 #include "Clock.h"
 #include "Input.h"
+#include "Logger.h"
 
 // Engine class
 class Engine

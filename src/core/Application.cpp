@@ -68,13 +68,13 @@ void Application::OnEnd()
 // Display world start log
 void Application::DisplayWorldStartLog()
 {
-  std::cout << "\033[33m" << "World started" << "\033[0m" << std::endl;
+  Logger::LogInfo("Application", "World started", Logger::Color::YELLOW);
 }
 
 // Display world end log
 void Application::DisplayWorldEndLog()
 {
-  std::cout << "\033[33m" << "World ended" << "\033[0m" << std::endl;
+  Logger::LogInfo("Application", "World ended", Logger::Color::YELLOW);
 }
 
 // Get application
