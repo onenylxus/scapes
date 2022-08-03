@@ -14,7 +14,7 @@ class Sprite : public Texture
   // Constructor and destructor
   public:
     Sprite(const char* path);
-    virtual ~Sprite() = default;
+    virtual ~Sprite();
 
   // Methods
   private:

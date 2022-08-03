@@ -6,6 +6,7 @@
 
 // Include
 #include "./core/Application.h"
+#include "./util/Logger.h"
 
 // Application values
 const char* title = "Scapes";
@@ -16,6 +17,9 @@ const int height = 720;
 // Main function
 int main(int argc, char* argv[])
 {
+  // Set logger priority level
+  Logger::SetPriority(Logger::Priority::DEBUG);
+
   // Create application
   Application* app = new Application();
   if (app->Create(title, version, width, height))

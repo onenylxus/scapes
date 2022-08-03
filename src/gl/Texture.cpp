@@ -13,12 +13,16 @@
 // Constructor
 Texture::Texture()
 {
+  Logger::LogTrace(Logger::Module::TEXTURE, "Texture::Texture()");
+
   this->texture = 0;
 }
 
 // Destructor
 Texture::~Texture()
 {
+  Logger::LogTrace(Logger::Module::TEXTURE, "Texture::~Texture()");
+
   if (this->texture != 0)
   {
     glDeleteTextures(1, &this->texture);
@@ -28,6 +32,8 @@ Texture::~Texture()
 // Bind texture
 void Texture::Bind(const unsigned int &index) const
 {
+  Logger::LogTrace(Logger::Module::TEXTURE, "void Texture::Bind(const unsigned int &index) const");
+
   glActiveTexture(GL_TEXTURE0 + index);
   glBindTexture(GL_TEXTURE_2D, this->texture);
 }
@@ -35,6 +41,8 @@ void Texture::Bind(const unsigned int &index) const
 // Load texture
 Texture::Data* Texture::Load(const char* path, const bool &flip)
 {
+  Logger::LogTrace(Logger::Module::TEXTURE, "Texture::Data* Texture::Load(const char* path, const bool &flip)");
+
   // Load data
   Texture::Data* data = new Texture::Data();
   stbi_set_flip_vertically_on_load(flip);
@@ -52,6 +60,8 @@ Texture::Data* Texture::Load(const char* path, const bool &flip)
 // Create texture
 void Texture::Create(const Texture::Data &data)
 {
+  Logger::LogTrace(Logger::Module::TEXTURE, "void Texture::Create(const Texture::Data &data)");
+
   int format = data.format == 3 ? GL_RGB : GL_RGBA;
   glGenTextures(1, &this->texture);
   glBindTexture(GL_TEXTURE_2D, this->texture);
@@ -61,6 +71,8 @@ void Texture::Create(const Texture::Data &data)
 // Destroy texture
 void Texture::Destroy(Texture::Data* data)
 {
+  Logger::LogTrace(Logger::Module::TEXTURE, "void Texture::Destroy(Texture::Data* data)");
+
   if (data)
   {
     stbi_image_free(data->data);
@@ -70,6 +82,8 @@ void Texture::Destroy(Texture::Data* data)
 // Get texture
 int Texture::GetTexture() const
 {
+  Logger::LogTrace(Logger::Module::TEXTURE, "int Texture::GetTexture() const");
+
   return this->texture;
 }
 

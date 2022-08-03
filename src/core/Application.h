@@ -24,10 +24,6 @@ class Application : public Engine
     virtual void OnRender() override;
     virtual void OnEnd() override;
 
-  private:
-    void DisplayWorldStartLog();
-    void DisplayWorldEndLog();
-
   // Getters
   public:
     static Application &GetApp();

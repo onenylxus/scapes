@@ -7,6 +7,7 @@
 // Include
 #pragma once
 #include <glm/glm.hpp>
+#include "../util/Logger.h"
 
 // Axis-aligned bounding box class
 class AABB
@@ -35,7 +36,7 @@ class AABB
   // Constructor and destructor
   public:
     AABB(const glm::vec3 &position, const glm::vec3 &size);
-    virtual ~AABB() = default;
+    virtual ~AABB();
 
   // Methods
   public:

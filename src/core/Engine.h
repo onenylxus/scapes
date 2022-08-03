@@ -13,9 +13,9 @@
 #include <imgui.h>
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
+#include "../util/Logger.h"
 #include "Clock.h"
 #include "Input.h"
-#include "Logger.h"
 
 // Engine class
 class Engine
@@ -42,10 +42,6 @@ class Engine
   private:
     static void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
     void SetEventCallbacks();
-
-  private:
-    void DisplayStartLog();
-    void DisplayEndLog();
 
   // Getters
   public:

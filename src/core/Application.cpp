@@ -13,6 +13,8 @@ Application* Application::app = nullptr;
 // Start event callback
 void Application::OnStart()
 {
+  Logger::LogTrace(Logger::Module::APPLICATION, "void Application::OnStart()");
+
   // Link static pointer
   Application::app = this;
 
@@ -21,12 +23,13 @@ void Application::OnStart()
 
   // Create world
   this->world = new World();
-  this->DisplayWorldStartLog();
 }
 
 // Update event callback
 void Application::OnUpdate()
 {
+  Logger::LogTrace(Logger::Module::APPLICATION, "void Application::OnUpdate()");
+
   // Debug
   if (Input::IsKeyPressed(GLFW_KEY_ESCAPE))
   {
@@ -40,6 +43,8 @@ void Application::OnUpdate()
 // Render event callback
 void Application::OnRender()
 {
+  Logger::LogTrace(Logger::Module::APPLICATION, "void Application::OnRender()");
+
   // Render world
   this->world->Render();
 
@@ -60,26 +65,17 @@ void Application::OnRender()
 // End event callback
 void Application::OnEnd()
 {
+  Logger::LogTrace(Logger::Module::APPLICATION, "void Application::OnEnd()");
+
   // Delete world
   delete this->world;
-  this->DisplayWorldEndLog();
-}
-
-// Display world start log
-void Application::DisplayWorldStartLog()
-{
-  Logger::LogInfo("Application", "World started", Logger::Color::YELLOW);
-}
-
-// Display world end log
-void Application::DisplayWorldEndLog()
-{
-  Logger::LogInfo("Application", "World ended", Logger::Color::YELLOW);
 }
 
 // Get application
 Application &Application::GetApp()
 {
+  Logger::LogTrace(Logger::Module::APPLICATION, "Application &Application::GetApp()");
+
   return *Application::app;
 }
 

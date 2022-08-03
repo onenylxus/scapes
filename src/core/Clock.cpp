@@ -15,6 +15,8 @@ float Clock::total = 0.0f;
 // Update clock
 void Clock::Update()
 {
+  Logger::LogTrace(Logger::Module::CLOCK, "void Clock::Update()");
+
   Clock::delta = glfwGetTime() - Clock::then;
   Clock::then = glfwGetTime();
   Clock::total += Clock::delta;
@@ -23,12 +25,16 @@ void Clock::Update()
 // Get delta time
 float Clock::GetDelta()
 {
+  Logger::LogTrace(Logger::Module::CLOCK, "float Clock::GetDelta()");
+
   return Clock::delta;
 }
 
 // Get total time
 float Clock::GetTotal()
 {
+  Logger::LogTrace(Logger::Module::CLOCK, "float Clock::GetTotal()");
+
   return Clock::total;
 }
 

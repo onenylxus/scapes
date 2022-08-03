@@ -8,6 +8,7 @@
 #pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "../util/Logger.h"
 
 // Clock class
 class Clock

@@ -14,7 +14,7 @@ class Camera2D : public Camera
   // Constructor and destructor
   public:
     Camera2D(const glm::vec3 &position, const glm::vec3 &front, const float &left, const float &right, const float &top, const float &bottom);
-    virtual ~Camera2D() = default;
+    virtual ~Camera2D();
 
   // Properties
   private:

@@ -10,18 +10,24 @@
 // Constructor
 Cubemap::Cubemap(const char* path)
 {
+  Logger::LogTrace(Logger::Module::CUBEMAP, "Cubemap::Cubemap(const char* path)");
+
   this->Load(path);
 }
 
 // Destructor
 Cubemap::~Cubemap()
 {
+  Logger::LogTrace(Logger::Module::CUBEMAP, "Cubemap::~Cubemap()");
+
   glDeleteTextures(1, &this->texture);
 }
 
 // Bind texture
 void Cubemap::Bind(const unsigned int &index) const
 {
+  Logger::LogTrace(Logger::Module::CUBEMAP, "void Cubemap::Bind(const unsigned int &index) const");
+
   glActiveTexture(GL_TEXTURE0 + index);
   glBindTexture(GL_TEXTURE_CUBE_MAP, this->texture);
 }
@@ -29,6 +35,8 @@ void Cubemap::Bind(const unsigned int &index) const
 // Load texture
 void Cubemap::Load(const char* path)
 {
+  Logger::LogTrace(Logger::Module::CUBEMAP, "void Cubemap::Load(const char* path)");
+
   // Load data
   std::string paths[6] = { "left.jpg", "right.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg" };
   Texture::Data* data = new Texture::Data();
@@ -41,7 +49,7 @@ void Cubemap::Load(const char* path)
     data = Texture::Load(finalPath.c_str(), false);
     if (data == nullptr)
     {
-      std::cout << "Texture failed to load: " << finalPath.c_str() << std::endl;
+      Logger::LogError(Logger::Module::CUBEMAP, "Texture failed to load: %s", finalPath.c_str());
       return;
     }
 

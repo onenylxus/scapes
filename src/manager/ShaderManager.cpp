@@ -15,12 +15,16 @@ std::map<const char*, Shader*> ShaderManager::computeShaders;
 // Init shader manager
 void ShaderManager::Init()
 {
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "void ShaderManager::Init()");
+
   ShaderManager::SetShader("base");
 }
 
 // Destroy shader manager
 void ShaderManager::Destroy()
 {
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "void ShaderManager::Destroy()");
+
   // Destroy graphics shaders
   for (std::map<const char*, Shader*>::iterator i = ShaderManager::graphicsShaders.begin(); i != ShaderManager::graphicsShaders.end(); i++)
   {
@@ -46,6 +50,8 @@ void ShaderManager::Destroy()
 // Set shader
 Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
 {
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "Shader* ShaderManager::SetShader(const char* path, Shader::Type type)");
+
   std::string dir = "res/shaders/";
   std::ifstream file;
 
@@ -96,7 +102,7 @@ Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
 
     // Default
     default:
-      std::cout << "Invalid shader type" << std::endl;
+      Logger::LogError(Logger::Module::SHADER_MANAGER, "Invalid shader type");
       return nullptr;
   }
 }
@@ -104,6 +110,8 @@ Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
 // Get shader
 Shader* ShaderManager::GetShader(const char* path, Shader::Type type)
 {
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "Shader* ShaderManager::GetShader(const char* path, Shader::Type type)");
+
   std::map<const char*, Shader*>::iterator it;
 
   switch (type)
@@ -117,7 +125,7 @@ Shader* ShaderManager::GetShader(const char* path, Shader::Type type)
         return (*it).second;
       }
 
-      std::cout << "Invalid shader path: " << path << std::endl;
+      Logger::LogError(Logger::Module::SHADER_MANAGER, "Invalid shader path: %s", path);
       return nullptr;
     }
 
@@ -130,7 +138,7 @@ Shader* ShaderManager::GetShader(const char* path, Shader::Type type)
         return (*it).second;
       }
 
-      std::cout << "Invalid shader path: " << path << std::endl;
+      Logger::LogError(Logger::Module::SHADER_MANAGER, "Invalid shader path: %s", path);
       return nullptr;
     }
 
@@ -143,13 +151,13 @@ Shader* ShaderManager::GetShader(const char* path, Shader::Type type)
         return (*it).second;
       }
 
-      std::cout << "Invalid shader path: " << path << std::endl;
+      Logger::LogError(Logger::Module::SHADER_MANAGER, "Invalid shader path: %s", path);
       return nullptr;
     }
 
     // Default
     default:
-      std::cout << "Invalid shader type" << std::endl;
+      Logger::LogError(Logger::Module::SHADER_MANAGER, "Invalid shader path: %s", path);
       return nullptr;
   }
 }

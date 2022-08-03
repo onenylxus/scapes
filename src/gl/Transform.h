@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "../util/Logger.h"
 
 // Transform class
 class Transform
@@ -16,7 +17,7 @@ class Transform
   // Constructor and destructor
   public:
     Transform();
-    virtual ~Transform() = default;
+    virtual ~Transform();
 
   // Properties
   private:

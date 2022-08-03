@@ -10,12 +10,22 @@
 // Constructor
 AABB::AABB(const glm::vec3 &position, const glm::vec3 &size)
 {
+  Logger::LogTrace(Logger::Module::AABB, "AABB::AABB(const glm::vec3 &position, const glm::vec3 &size)");
+
   this->Update(position, size);
+}
+
+// Destructor
+AABB::~AABB()
+{
+  Logger::LogTrace(Logger::Module::AABB, "AABB::~AABB()");
 }
 
 // Update bounding box
 void AABB::Update(const glm::vec3 &position, const glm::vec3 &size)
 {
+  Logger::LogTrace(Logger::Module::AABB, "void AABB::Update(const glm::vec3 &position, const glm::vec3 &size)");
+
   // Set properties
   glm::vec3 half = size / 2.0f;
   this->position = position;
@@ -36,6 +46,8 @@ void AABB::Update(const glm::vec3 &position, const glm::vec3 &size)
 // General overlapping check
 bool AABB::IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, const glm::vec3 &positionB, const glm::vec3 &sizeB)
 {
+  Logger::LogTrace(Logger::Module::AABB, "bool AABB::IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, const glm::vec3 &positionB, const glm::vec3 &sizeB)");
+
   glm::vec3 halfA = sizeA / 2.0f;
   glm::vec3 minA = positionA - halfA;
   glm::vec3 maxA = positionA + halfA;
@@ -48,6 +60,8 @@ bool AABB::IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, con
 // Overlapping check with position and size
 bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const
 {
+  Logger::LogTrace(Logger::Module::AABB, "bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const");
+
   glm::vec3 half = size / 2.0f;
   glm::vec3 min = position - half;
   glm::vec3 max = position + half;
@@ -57,12 +71,16 @@ bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const
 // Overlapping check with AABB
 bool AABB::IsOverlapping(const AABB &aabb) const
 {
+  Logger::LogTrace(Logger::Module::AABB, "bool AABB::IsOverlapping(const AABB &aabb) const");
+
   return this->max.x >= aabb.min.x && this->min.x <= aabb.max.x && this->max.y >= aabb.min.y && this->min.y <= aabb.max.y && this->max.z >= aabb.min.z && this->min.z <= aabb.max.z;
 }
 
 // Get vertex position
 glm::vec3 AABB::GetVertex(const unsigned int &index) const
 {
+  Logger::LogTrace(Logger::Module::AABB, "glm::vec3 AABB::GetVertex(const unsigned int &index) const");
+
   return this->vertices[index];
 }
 

@@ -10,6 +10,8 @@
 // Constructor
 Object::Object(const glm::vec3 &position, const std::vector<float> &data, const std::vector<int> &attr, const std::vector<unsigned int> &indices)
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "Object::Object(const glm::vec3 &position, const std::vector<float> &data, const std::vector<int> &attr, const std::vector<unsigned int> &indices)");
+
   // Set transform
   this->transform = new Transform();
   this->transform->SetPosition(position);
@@ -56,6 +58,8 @@ Object::Object(const glm::vec3 &position, const std::vector<float> &data, const 
 // Destructor
 Object::~Object()
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "Object::~Object()");
+
   // Delete array buffers
   if (this->data.vao != 0)
   {
@@ -71,18 +75,24 @@ Object::~Object()
 // Bind vertex array
 void Object::BindVAO() const
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "void Object::BindVAO() const");
+
   glBindVertexArray(this->data.vao);
 }
 
 // Bind vertex buffer
 void Object::BindVBO() const
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "void Object::BindVBO() const");
+
   glBindBuffer(GL_ARRAY_BUFFER, this->data.vbo);
 }
 
 // Render object with camera
 void Object::Render(Camera& camera)
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "void Object::Render(Camera& camera)");
+
   // Check shader exists
   if (!this->shader)
   {
@@ -108,6 +118,8 @@ void Object::Render(Camera& camera)
 // Render object without camera
 void Object::Render()
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "void Object::Render()");
+
   // Check shader exists
   if (!this->shader)
   {
@@ -129,24 +141,32 @@ void Object::Render()
 // Set shader
 void Object::SetShader(Shader* shader)
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "void Object::SetShader(Shader* shader)");
+
   this->shader = shader;
 }
 
 // Get shader
 Shader* Object::GetShader() const
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "Shader* Object::GetShader() const");
+
   return this->shader;
 }
 
 // Get position
 glm::vec3 Object::GetPosition()
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "glm::vec3 Object::GetPosition()");
+
   return this->transform->GetPosition();
 }
 
 // Get transform
 Transform* Object::GetTransform()
 {
+  Logger::LogTrace(Logger::Module::OBJECT, "Transform* Object::GetTransform()");
+
   return this->transform;
 }
 

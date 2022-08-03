@@ -10,17 +10,27 @@
 // Constructor
 Sprite::Sprite(const char* path)
 {
+  Logger::LogTrace(Logger::Module::SPRITE, "Sprite::Sprite(const char* path)");
+
   this->Load(path);
+}
+
+// Destructor
+Sprite::~Sprite()
+{
+  Logger::LogTrace(Logger::Module::SPRITE, "Sprite::~Sprite()");
 }
 
 // Load texture
 bool Sprite::Load(const char* path)
 {
+  Logger::LogTrace(Logger::Module::SPRITE, "bool Sprite::Load(const char* path)");
+
   // Load data
   Texture::Data* data = Texture::Load(path);
   if (data == nullptr)
   {
-    std::cout << "Texture failed to load: " << path << std::endl;
+    Logger::LogError(Logger::Module::SPRITE, "Texture failed to load: %s", path);
     return false;
   }
 

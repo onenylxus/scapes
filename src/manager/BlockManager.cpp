@@ -19,6 +19,8 @@ std::vector<Block::Data> BlockManager::blocks;
 // Init block manager
 void BlockManager::Init()
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "void BlockManager::Init()");
+
   // Set vertex data
   BlockManager::solidVertexData = std::vector<float>({
 		// Left
@@ -144,6 +146,8 @@ void BlockManager::Init()
 // Destroy block manager
 void BlockManager::Destroy()
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "void BlockManager::Destroy()");
+
   delete BlockManager::solidTexture;
   BlockManager::solidTexture = nullptr;
   delete BlockManager::liquidTexture;
@@ -155,6 +159,8 @@ void BlockManager::Destroy()
 // Load block database
 void BlockManager::LoadDatabase()
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "void BlockManager::LoadDatabase()");
+
   BlockManager::blocks.reserve(1);
   BlockManager::blocks.push_back(Block::Data((int)BlockManager::Value::AIR, "Air", Block::TextureIndex()));
 }
@@ -162,6 +168,8 @@ void BlockManager::LoadDatabase()
 // Get tilemap
 const Tilemap* BlockManager::GetTilemap(const Block::Type type)
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "const Tilemap* BlockManager::GetTilemap(const Block::Type type)");
+
   switch (type)
   {
     case Block::Type::SOLID:
@@ -172,18 +180,25 @@ const Tilemap* BlockManager::GetTilemap(const Block::Type type)
 
     case Block::Type::GASEOUS:
       return BlockManager::gaseousTexture;
+
+    default:
+      return nullptr;
   }
 }
 
 // Get block data
 const Block::Data* BlockManager::GetBlockData(const BlockManager::Value &value)
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "const Block::Data* BlockManager::GetBlockData(const BlockManager::Value &value)");
+
   return &BlockManager::blocks[(int)value];
 }
 
 // Get texture coordinates
 void BlockManager::GetTextureCoords(const BlockManager::Value &value, const Block::Face &face, std::array<glm::vec2, 4> &coords)
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "void BlockManager::GetTextureCoords(const BlockManager::Value &value, const Block::Face &face, std::array<glm::vec2, 4> &coords)");
+
   const Block::Data* data = BlockManager::GetBlockData(value);
   switch (data->textureType)
   {
@@ -203,6 +218,8 @@ void BlockManager::GetTextureCoords(const BlockManager::Value &value, const Bloc
 // Get mesh face
 void BlockManager::GetMeshFace(const Block::Type &type, const Block::Face &face, const unsigned int &corner, const glm::vec3 &position, std::vector<float> &vertices)
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "void BlockManager::GetMeshFace(const Block::Type &type, const Block::Face &face, const unsigned int &corner, const glm::vec3 &position, std::vector<float> &vertices)");
+
   int i = (int)face * 24 + corner * 6;
   switch (type)
   {
@@ -237,13 +254,17 @@ void BlockManager::GetMeshFace(const Block::Type &type, const Block::Face &face,
 // Get mesh face size
 int BlockManager::GetMeshFaceSize(const Block::Type &type)
 {
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "int BlockManager::GetMeshFaceSize(const Block::Type &type)");
+
   return type == Block::Type::GASEOUS ? 4 : 6;
 }
 
 // Get block value size
 int BlockManager::GetValueSize()
 {
-  return BlockManager::blocks.size();
+  Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "int BlockManager::GetValueSize()");
+
+  return (int)BlockManager::Value::_VALUE_SIZE;
 }
 
 ////////////////////////////////////////////////////////////////

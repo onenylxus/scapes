@@ -18,6 +18,7 @@ class BlockManager
   public:
     enum class Value {
       AIR,
+      _VALUE_SIZE,
     };
 
   // Properties
