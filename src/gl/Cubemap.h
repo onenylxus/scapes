@@ -7,7 +7,7 @@
 // Include
 #pragma once
 #include <string>
-#include "../gl/Texture.h"
+#include "Texture.h"
 
 // Cubemap class
 class Cubemap : public Texture

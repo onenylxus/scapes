@@ -9,28 +9,34 @@ add_subdirectory(${VENDOR_DIR}/glad/)
 add_subdirectory(${VENDOR_DIR}/glfw/)
 add_subdirectory(${VENDOR_DIR}/glm/)
 add_subdirectory(${VENDOR_DIR}/imgui/)
+
 add_executable(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Application.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Clock.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Engine.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/core/Input.cpp)
+
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/AABB.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Camera.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Cubemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Object.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Shader.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Skybox.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Texture.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Tilemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Transform.cpp)
+
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/BlockManager.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/ShaderManager.cpp)
+
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera2D.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera3D.cpp)
+
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Block.cpp)
-target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Cubemap.cpp)
-target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Skybox.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Sprite.cpp)
-target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Tilemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/World.cpp)
+
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${VENDOR_DIR}/glad ${VENDOR_DIR}/glfw ${VENDOR_DIR}/glm ${VENDOR_DIR}/imgui ${VENDOR_DIR}/stb)

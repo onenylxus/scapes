@@ -6,8 +6,8 @@
 
 // Include
 #pragma once
+#include "../gl/Skybox.h"
 #include "../view/Camera3D.h"
-#include "Skybox.h"
 
 // World class
 class World

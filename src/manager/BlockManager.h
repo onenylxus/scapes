@@ -8,8 +8,8 @@
 #pragma once
 #include <vector>
 #include <glm/glm.hpp>
+#include "../gl/Tilemap.h"
 #include "../world/Block.h"
-#include "../world/Tilemap.h"
 
 // Block manager class
 class BlockManager
