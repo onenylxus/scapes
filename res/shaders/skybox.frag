@@ -10,7 +10,6 @@ in vec3 fTexCoord;
 in vec3 fPosition;
 
 uniform float uTime;
-// uniform samplerCube uCubemap;
 
 layout (location = 0) out vec4 rFragColor;
 layout (location = 1) out vec4 rBloomColor;

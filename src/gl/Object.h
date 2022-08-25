@@ -6,10 +6,9 @@
 
 // Include
 #pragma once
-#include <vector>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
+#include "../util/Mesh.h"
 #include "Camera.h"
 #include "Shader.h"
 #include "Transform.h"
@@ -30,6 +29,7 @@ class Object
   // Constructor and destructor
   public:
     Object(const glm::vec3 &position, const std::vector<float> &data, const std::vector<int> &attr, const std::vector<unsigned int> &indices = std::vector<unsigned int>());
+    Object(const glm::vec3 &position, const Mesh::Data &data);
     virtual ~Object();
 
   // Properties

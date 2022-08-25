@@ -32,7 +32,7 @@ class Block
       BACK
     };
 
-    // Texture index
+  // Texture index
   public:
     struct TextureIndex
     {
@@ -49,7 +49,7 @@ class Block
         this->indices[(int)Block::Face::BACK] = back;
       }
 
-      void operator = (const TextureIndex& that)
+      void operator = (const Block::TextureIndex& that)
       {
         for (int i = 0; i < 6; i++)
         {

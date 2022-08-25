@@ -12,69 +12,10 @@ Skybox::Skybox(const char* path)
 {
   Logger::LogTrace(Logger::Module::SKYBOX, "Skybox::Skybox(const char* path)");
 
-  // Setup vertices and attributes
-  std::vector<float> vertices = std::vector<float>({
-		// Left
-		-1.0f, -1.0f, -1.0f,
-		-1.0f, 1.0f, -1.0f,
-		-1.0f, -1.0f, 1.0f,
-
-		-1.0f, 1.0f, 1.0f,
-		-1.0f, -1.0f, 1.0f,
-		-1.0f, 1.0f, -1.0f,
-
-    // Right
-		1.0f, -1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		1.0f, -1.0f, -1.0f,
-
-		1.0f, 1.0f, -1.0f,
-		1.0f, -1.0f, -1.0f,
-		1.0f, 1.0f, 1.0f,
-
-    // Top
-		-1.0f, 1.0f, -1.0f,
-		1.0f, 1.0f, -1.0f,
-		-1.0f, 1.0f, 1.0f,
-
-		1.0f, 1.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, -1.0f,
-
-		 // Bottom
-		-1.0f, -1.0f, -1.0f,
-		-1.0f, -1.0f, 1.0f,
-		1.0f, -1.0f, -1.0f,
-
-		1.0f, -1.0f, -1.0f,
-		-1.0f, -1.0f, 1.0f,
-		1.0f, -1.0f, 1.0f,
-
-    // Front
-		-1.0f, 1.0f, -1.0f,
-		-1.0f, -1.0f, -1.0f,
-		1.0f, -1.0f, -1.0f,
-
-		1.0f, -1.0f, -1.0f,
-		1.0f, 1.0f, -1.0f,
-		-1.0f, 1.0f, -1.0f,
-
-    // Back
-		-1.0f, -1.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,
-		1.0f, -1.0f, 1.0f,
-
-		1.0f, 1.0f, 1.0f,
-		1.0f, -1.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,
-	});
-  std::vector<int> attributes = std::vector<int>({ 3 });
-
   // Setup texture and object
   this->texture = new Cubemap(path);
-  this->cube = new Object(glm::vec3(0), vertices, attributes);
+  this->cube = new Object(glm::vec3(0), Mesh::Skybox());
   this->cube->SetShader(ShaderManager::SetShader("skybox"));
-  // this->GetShader()->SetTextureUnit("uCubemap", 0);
 }
 
 // Destructor

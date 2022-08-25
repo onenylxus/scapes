@@ -55,6 +55,11 @@ Object::Object(const glm::vec3 &position, const std::vector<float> &data, const 
   glBindVertexArray(0);
 }
 
+Object::Object(const glm::vec3 &position, const Mesh::Data &mesh) : Object(position, mesh.vertices, mesh.attr, mesh.indices)
+{
+  Logger::LogTrace(Logger::Module::OBJECT, "Object::Object(const glm::vec3 &position, const Mesh::Data &mesh)");
+}
+
 // Destructor
 Object::~Object()
 {
