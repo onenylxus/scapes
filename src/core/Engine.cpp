@@ -76,11 +76,13 @@ void Engine::Start()
   Logger::LogTrace(Logger::Module::ENGINE, "void Engine::Start()");
 
   // Start event callback
-  Logger::LogInfo(Logger::Module::ENGINE, "Application name: %s", this->title.c_str());
-  Logger::LogInfo(Logger::Module::ENGINE, "Application version: %s", this->version.c_str());
-  Logger::LogInfo(Logger::Module::ENGINE, "OpenGL company: %s", this->GetGLVendor().c_str());
-  Logger::LogInfo(Logger::Module::ENGINE, "OpenGL renderer: %s", this->GetGLRenderer().c_str());
-  Logger::LogInfo(Logger::Module::ENGINE, "OpenGL version: %s", this->GetGLVersion().c_str());
+  Logger::Log(Logger::Color::BLACK, false, "\n===============================");
+  Logger::Log(Logger::Color::BLACK, false, "Application name: %s", this->title.c_str());
+  Logger::Log(Logger::Color::BLACK, false, "Application version: %s", this->version.c_str());
+  Logger::Log(Logger::Color::BLACK, false, "OpenGL company: %s", this->GetGLVendor().c_str());
+  Logger::Log(Logger::Color::BLACK, false, "OpenGL renderer: %s", this->GetGLRenderer().c_str());
+  Logger::Log(Logger::Color::BLACK, false, "OpenGL version: %s", this->GetGLVersion().c_str());
+  Logger::Log(Logger::Color::BLACK, false, "===============================\n");
   Logger::LogInfo(Logger::Module::ENGINE, "Application started");
   this->OnStart();
 

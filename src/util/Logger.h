@@ -67,6 +67,13 @@ class Logger
 
   // Properties
   private:
+    static inline const char* levels[5] = {
+      "Trace",
+      "Debug",
+      "Info",
+      "Warn",
+      "Error"
+    };
     static inline const char* names[(int)Logger::Module::_MODULE_SIZE] = {
       "Application",
       "Clock",
@@ -120,7 +127,7 @@ class Logger
     {
       if (Logger::priority <= Logger::Priority::TRACE)
       {
-        Logger::Log(module, Logger::Priority::TRACE, message, args...);
+        Logger::LogPriority(module, Logger::Priority::TRACE, message, args...);
       }
     }
 
@@ -128,7 +135,7 @@ class Logger
     {
       if (Logger::priority <= Logger::Priority::DEBUG)
       {
-        Logger::Log(module, Logger::Priority::DEBUG, message, args...);
+        Logger::LogPriority(module, Logger::Priority::DEBUG, message, args...);
       }
     }
 
@@ -136,7 +143,7 @@ class Logger
     {
       if (Logger::priority <= Logger::Priority::INFO)
       {
-        Logger::Log(module, Logger::Priority::INFO, message, args...);
+        Logger::LogPriority(module, Logger::Priority::INFO, message, args...);
       }
     }
 
@@ -144,7 +151,7 @@ class Logger
     {
       if (Logger::priority <= Logger::Priority::WARN)
       {
-        Logger::Log(module, Logger::Priority::WARN, message, args...);
+        Logger::LogPriority(module, Logger::Priority::WARN, message, args...);
       }
     }
 
@@ -152,11 +159,53 @@ class Logger
     {
       if (Logger::priority <= Logger::Priority::ERROR)
       {
-        Logger::Log(module, Logger::Priority::ERROR, message, args...);
+        Logger::LogPriority(module, Logger::Priority::ERROR, message, args...);
       }
     }
 
-    template<typename... Args> static void Log(Logger::Module module, Logger::Priority priority, const char* message, Args... args)
+    template<typename... Args> static void Log(const char* message, Args... args)
+    {
+      Logger::Log(Logger::Color::WHITE, true, message, args...);
+    }
+
+    template<typename... Args> static void Log(Logger::Color color, const char* message, Args... args)
+    {
+      Logger::Log(color, true, message, args...);
+    }
+
+    template<typename... Args> static void Log(bool timestamp, const char* message, Args... args)
+    {
+      Logger::Log(Logger::Color::WHITE, timestamp, message, args...);
+    }
+
+    template<typename... Args> static void Log(Logger::Color color, bool timestamp, const char* message, Args... args)
+    {
+      // Lock mutex within scope
+      std::scoped_lock lock(Logger::mutex);
+
+      // Setup variables
+      if (timestamp)
+      {
+        time_t now;
+        tm* tm;
+        char buf[100];
+        const char* str = buf;
+
+        // Timestamp
+        std::time(&now);
+        tm = std::localtime(&now);
+        std::strftime(buf, 50, "[%Y-%m-%d %H:%M:%S] ", tm);
+        std::printf("\033[%i;1m%s", color, str);
+      }
+
+      // Message
+      std::printf("\033[0m\033[%im", color);
+      std::printf(message, args...);
+      std::printf("\033[0m\n");
+    }
+
+  private:
+    template<typename... Args> static void LogPriority(Logger::Module module, Logger::Priority priority, const char* message, Args... args)
     {
       // Exclude module size option
       if (module == Logger::Module::_MODULE_SIZE)
@@ -184,15 +233,8 @@ class Logger
       std::printf("\033[7m %s ", Logger::names[index]);
 
       // Priority
-      const char* level[5] = {
-        "Trace",
-        "Debug",
-        "Info",
-        "Warn",
-        "Error"
-      };
       std::printf("\033[0m \033[%im", Logger::colors[index]);
-      std::printf("%s: ", level[(int)priority]);
+      std::printf("%s: ", Logger::levels[(int)priority]);
 
       // Message
       std::printf(message, args...);
