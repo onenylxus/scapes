@@ -61,6 +61,7 @@ class Logger
       SHADER_MANAGER,
       CAMERA_2D,
       CAMERA_3D,
+      CAMERA_PLAYER,
       BLOCK,
       ENTITY,
       WORLD,
@@ -96,6 +97,7 @@ class Logger
       "ShaderManager",
       "Camera2D",
       "Camera3D",
+      "CameraPlayer",
       "Block",
       "Entity",
       "World"
@@ -118,6 +120,7 @@ class Logger
       Logger::Color::RED,
       Logger::Color::RED,
       Logger::Color::RED,
+      Logger::Color::YELLOW,
       Logger::Color::YELLOW,
       Logger::Color::YELLOW,
       Logger::Color::GREEN,
