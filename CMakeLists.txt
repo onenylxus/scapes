@@ -23,18 +23,20 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Cubemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Object.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Shader.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Skybox.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Sprite.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Texture.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Tilemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Transform.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/BlockManager.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/EntityManager.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/ShaderManager.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera2D.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera3D.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Block.cpp)
-target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Sprite.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Entity.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/World.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/main.cpp)

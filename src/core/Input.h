@@ -17,14 +17,16 @@ class Engine;
 // Input class
 class Input
 {
-  friend Engine;
+  public:
+    friend class Engine;
 
   // Scroll enum
-  enum class Scroll
-  {
-    HORIZONTAL,
-    VERTICAL
-  };
+  public:
+    enum class Scroll
+    {
+      HORIZONTAL,
+      VERTICAL
+    };
 
   // Properties
   private:
@@ -38,26 +40,27 @@ class Input
     static unsigned int keyPreviousStates[GLFW_KEY_LAST];
 
   // Methods
-  public:
-    static void SetCursorVisibility(const bool &visible);
-    static bool IsCursorVisible();
-
   protected:
-    static void SetCallbacks(GLFWwindow* window);
     static void MousePositionCallback(GLFWwindow* window, double xpos, double ypos);
     static void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
     static void MouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
     static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+    static void Update();
+
+  // Setters
+  public:
+    static void SetCursorVisibility(const bool& visible);
 
   protected:
-    static void Update();
+    static void SetCallbacks(GLFWwindow* window);
 
   // Getters
   public:
-    static bool IsMouseDown(const int &button);
-    static bool IsMousePressed(const int &button);
-    static bool IsKeyDown(const int &key);
-    static bool IsKeyPressed(const int &key);
+    static bool IsCursorVisible();
+    static bool IsMouseDown(const int& button);
+    static bool IsMousePressed(const int& button);
+    static bool IsKeyDown(const int& key);
+    static bool IsKeyPressed(const int& key);
     static glm::vec2 GetMousePosition();
     static glm::vec2 GetMouseDelta();
     static double GetMouseScroll(Input::Scroll direction = Input::Scroll::HORIZONTAL);

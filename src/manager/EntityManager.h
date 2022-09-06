@@ -6,19 +6,29 @@
 
 // Include
 #pragma once
-#include "../gl/Texture.h"
+#include <vector>
+#include "../gl/Camera.h"
 
-// Sprite class
-class Sprite : public Texture
+// Prototypes
+class Entity;
+
+// Entity manager class
+class EntityManager
 {
-  // Constructor and destructor
   public:
-    Sprite(const char* path);
-    virtual ~Sprite();
+    friend class Entity;
+
+  // Properties
+  private:
+    static std::vector<Entity*> entities;
 
   // Methods
+  public:
+    static void Update();
+    static void Render(Camera& camera);
+
   private:
-    bool Load(const char* path);
+    static void Add(Entity& entity);
 };
 
 ////////////////////////////////////////////////////////////////

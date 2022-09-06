@@ -11,128 +11,123 @@
 Tilemap* BlockManager::solidTexture = nullptr;
 Tilemap* BlockManager::liquidTexture = nullptr;
 Tilemap* BlockManager::gaseousTexture = nullptr;
-std::vector<float> BlockManager::solidVertexData;
-std::vector<float> BlockManager::liquidVertexData;
-std::vector<float> BlockManager::gaseousVertexData;
+std::vector<float> BlockManager::solidVertexData = std::vector<float>({
+  // Left
+  0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,
+  0.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f,
+  0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+
+  // Right
+  1.0f, 0.0f, 1.0f,	1.0f, 0.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,	1.0f, 0.0f, 0.0f,
+  1.0f, 1.0f, 0.0f,	1.0f, 0.0f, 0.0f,
+  1.0f, 1.0f, 1.0f,	1.0f, 0.0f, 0.0f,
+
+  // Top
+  1.0f, 1.0f, 1.0f,	0.0f, 1.0f, 0.0f,
+  1.0f, 1.0f, 0.0f,	0.0f, 1.0f, 0.0f,
+  0.0f, 1.0f, 0.0f,	0.0f, 1.0f, 0.0f,
+  0.0f, 1.0f, 1.0f,	0.0f, 1.0f, 0.0f,
+
+  // Bottom
+  0.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
+  1.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
+
+  // Front
+  1.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
+  0.0f, 1.0f, 0.0f,	0.0f, 0.0f, -1.0f,
+  1.0f, 1.0f, 0.0f,	0.0f, 0.0f, -1.0f,
+
+  // Back
+  0.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
+  1.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
+  1.0f, 1.0f, 1.0f,	0.0f, 0.0f, 1.0f,
+  0.0f, 1.0f, 1.0f,	0.0f, 0.0f, 1.0f,
+});
+std::vector<float> BlockManager::liquidVertexData = std::vector<float>({
+  // Left
+  0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,
+  0.0f, 0.9f, 1.0f, -1.0f, 0.0f, 0.0f,
+  0.0f, 0.9f, 0.0f, -1.0f, 0.0f, 0.0f,
+
+  // Right
+  1.0f, 0.0f, 1.0f,	1.0f, 0.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,	1.0f, 0.0f, 0.0f,
+  1.0f, 0.9f, 0.0f,	1.0f, 0.0f, 0.0f,
+  1.0f, 0.9f, 1.0f,	1.0f, 0.0f, 0.0f,
+
+  // Top
+  1.0f, 0.9f, 1.0f,	0.0f, 1.0f, 0.0f,
+  1.0f, 0.9f, 0.0f,	0.0f, 1.0f, 0.0f,
+  0.0f, 0.9f, 0.0f,	0.0f, 1.0f, 0.0f,
+  0.0f, 0.9f, 1.0f,	0.0f, 1.0f, 0.0f,
+
+  // Bottom
+  0.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
+  1.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
+
+  // Front
+  1.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
+  0.0f, 0.9f, 0.0f,	0.0f, 0.0f, -1.0f,
+  1.0f, 0.9f, 0.0f,	0.0f, 0.0f, -1.0f,
+
+  // Back
+  0.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
+  1.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
+  1.0f, 0.9f, 1.0f,	0.0f, 0.0f, 1.0f,
+  0.0f, 0.9f, 1.0f,	0.0f, 0.0f, 1.0f,
+});
+std::vector<float> BlockManager::gaseousVertexData = std::vector<float>({
+  // Left
+  0.8f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+  0.2f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+  0.2f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+  0.8f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+
+  // Right
+  0.2f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+  0.8f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+  0.8f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+  0.2f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+
+  // Top
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+
+  // Bottom
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+  0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
+
+  // Front
+  0.8f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+  0.2f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+  0.2f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+  0.8f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+
+  // Back
+  0.2f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+  0.8f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+  0.8f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
+  0.2f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
+});
 std::vector<Block::Data> BlockManager::blocks;
 
 // Init block manager
 void BlockManager::Init()
 {
   Logger::LogTrace(Logger::Module::BLOCK_MANAGER, "void BlockManager::Init()");
-
-  // Set vertex data
-  BlockManager::solidVertexData = std::vector<float>({
-		// Left
-		0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-
-		// Right
-		1.0f, 0.0f, 1.0f,	1.0f, 0.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,	1.0f, 0.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,	1.0f, 0.0f, 0.0f,
-		1.0f, 1.0f, 1.0f,	1.0f, 0.0f, 0.0f,
-
-		// Top
-		1.0f, 1.0f, 1.0f,	0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,	0.0f, 1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,	0.0f, 1.0f, 0.0f,
-		0.0f, 1.0f, 1.0f,	0.0f, 1.0f, 0.0f,
-
-		// Bottom
-		0.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
-		1.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
-
-    // Front
-    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
-		0.0f, 1.0f, 0.0f,	0.0f, 0.0f, -1.0f,
-		1.0f, 1.0f, 0.0f,	0.0f, 0.0f, -1.0f,
-
-		// Back
-		0.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
-		1.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,	0.0f, 0.0f, 1.0f,
-		0.0f, 1.0f, 1.0f,	0.0f, 0.0f, 1.0f,
-  });
-  BlockManager::liquidVertexData = std::vector<float>({
-		// Left
-		0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,
-		0.0f, 0.9f, 1.0f, -1.0f, 0.0f, 0.0f,
-		0.0f, 0.9f, 0.0f, -1.0f, 0.0f, 0.0f,
-
-		// Right
-		1.0f, 0.0f, 1.0f,	1.0f, 0.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,	1.0f, 0.0f, 0.0f,
-		1.0f, 0.9f, 0.0f,	1.0f, 0.0f, 0.0f,
-		1.0f, 0.9f, 1.0f,	1.0f, 0.0f, 0.0f,
-
-		// Top
-		1.0f, 0.9f, 1.0f,	0.0f, 1.0f, 0.0f,
-		1.0f, 0.9f, 0.0f,	0.0f, 1.0f, 0.0f,
-		0.0f, 0.9f, 0.0f,	0.0f, 1.0f, 0.0f,
-		0.0f, 0.9f, 1.0f,	0.0f, 1.0f, 0.0f,
-
-		// Bottom
-		0.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,	0.0f, -1.0f, 0.0f,
-		1.0f, 0.0f, 1.0f,	0.0f, -1.0f, 0.0f,
-
-    // Front
-    1.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, -1.0f,
-		0.0f, 0.9f, 0.0f,	0.0f, 0.0f, -1.0f,
-		1.0f, 0.9f, 0.0f,	0.0f, 0.0f, -1.0f,
-
-		// Back
-		0.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
-		1.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,
-		1.0f, 0.9f, 1.0f,	0.0f, 0.0f, 1.0f,
-		0.0f, 0.9f, 1.0f,	0.0f, 0.0f, 1.0f,
-  });
-  BlockManager::gaseousVertexData = std::vector<float>({
-    // Left
-		0.8f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-		0.2f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-		0.2f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-		0.8f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-
-		// Right
-		0.2f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-		0.8f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-		0.8f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-		0.2f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-
-		// Top
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-
-		// Bottom
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 0.0f,
-
-    // Front
-    0.8f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-		0.2f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-		0.2f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-		0.8f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-
-		// Back
-		0.2f, 0.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-		0.8f, 0.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-		0.8f, 1.0f, 0.2f,	0.0f, 1.0f, 0.0f,
-		0.2f, 1.0f, 0.8f,	0.0f, 1.0f, 0.0f,
-  });
 
   // Load textures
   BlockManager::solidTexture = new Tilemap("res/textures/solid.png", 1, 1);

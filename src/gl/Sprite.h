@@ -6,31 +6,19 @@
 
 // Include
 #pragma once
-#include "../manager/ShaderManager.h"
-#include "Camera.h"
-#include "Cubemap.h"
-#include "Object.h"
+#include "Texture.h"
 
-// Skybox class
-class Skybox
+// Sprite class
+class Sprite : public Texture
 {
   // Constructor and destructor
   public:
-    Skybox(const char* path);
-    virtual ~Skybox();
-
-  // Properties
-  private:
-    Cubemap* texture;
-    Object* cube;
+    Sprite(const char* path);
+    virtual ~Sprite();
 
   // Methods
-  public:
-    void Render(Camera& camera);
-
-  // Getters
-  public:
-    Shader* GetShader();
+  private:
+    bool Load(const char* path);
 };
 
 ////////////////////////////////////////////////////////////////

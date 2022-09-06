@@ -9,7 +9,7 @@
 #include <array>
 #include <cmath>
 #include <glm/glm.hpp>
-#include "../world/Sprite.h"
+#include "Sprite.h"
 
 // Tilemap class
 class Tilemap
