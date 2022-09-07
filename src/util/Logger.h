@@ -6,9 +6,8 @@
 
 // Include
 #pragma once
-#include <ctime>
 #include <mutex>
-#include <stdio.h>
+#include "Time.h"
 
 // Logger class
 class Logger
@@ -132,7 +131,8 @@ class Logger
 
   // Methods
   public:
-    template<typename... Args> static void LogTrace(Logger::Module module, const char* message, Args... args)
+    template<typename... Args>
+    static void LogTrace(Logger::Module module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::TRACE)
       {
@@ -140,7 +140,8 @@ class Logger
       }
     }
 
-    template<typename... Args> static void LogDebug(Logger::Module module, const char* message, Args... args)
+    template<typename... Args>
+    static void LogDebug(Logger::Module module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::DEBUG)
       {
@@ -148,7 +149,8 @@ class Logger
       }
     }
 
-    template<typename... Args> static void LogInfo(Logger::Module module, const char* message, Args... args)
+    template<typename... Args>
+    static void LogInfo(Logger::Module module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::INFO)
       {
@@ -156,7 +158,8 @@ class Logger
       }
     }
 
-    template<typename... Args> static void LogWarn(Logger::Module module, const char* message, Args... args)
+    template<typename... Args>
+    static void LogWarn(Logger::Module module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::WARN)
       {
@@ -164,7 +167,8 @@ class Logger
       }
     }
 
-    template<typename... Args> static void LogError(Logger::Module module, const char* message, Args... args)
+    template<typename... Args>
+    static void LogError(Logger::Module module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::ERROR)
       {
@@ -172,39 +176,36 @@ class Logger
       }
     }
 
-    template<typename... Args> static void Log(const char* message, Args... args)
+    template<typename... Args>
+    static void Log(const char* message, Args... args)
     {
       Logger::Log(Logger::Color::WHITE, true, message, args...);
     }
 
-    template<typename... Args> static void Log(Logger::Color color, const char* message, Args... args)
+    template<typename... Args>
+    static void Log(Logger::Color color, const char* message, Args... args)
     {
       Logger::Log(color, true, message, args...);
     }
 
-    template<typename... Args> static void Log(bool timestamp, const char* message, Args... args)
+    template<typename... Args>
+    static void Log(bool timestamp, const char* message, Args... args)
     {
       Logger::Log(Logger::Color::WHITE, timestamp, message, args...);
     }
 
-    template<typename... Args> static void Log(Logger::Color color, bool timestamp, const char* message, Args... args)
+    template<typename... Args>
+    static void Log(Logger::Color color, bool timestamp, const char* message, Args... args)
     {
       // Lock mutex within scope
       std::scoped_lock lock(Logger::mutex);
 
-      // Setup variables
+      // Timestamp
       if (timestamp)
       {
-        time_t now;
-        tm* tm;
-        char buf[100];
-        const char* str = buf;
-
-        // Timestamp
-        std::time(&now);
-        tm = std::localtime(&now);
-        std::strftime(buf, 50, "[%Y-%m-%d %H:%M:%S] ", tm);
-        std::printf("\033[%i;1m%s", color, str);
+        std::printf("\033[%i;1m", color);
+        Time::Print();
+        std::printf(" ");
       }
 
       // Message
@@ -214,7 +215,8 @@ class Logger
     }
 
   private:
-    template<typename... Args> static void LogPriority(Logger::Module module, Logger::Priority priority, const char* message, Args... args)
+    template<typename... Args>
+    static void LogPriority(Logger::Module module, Logger::Priority priority, const char* message, Args... args)
     {
       // Exclude module size option
       if (module == Logger::Module::_MODULE_SIZE)
@@ -224,22 +226,16 @@ class Logger
 
       // Setup variables
       int index = (int)module;
-      time_t now;
-      tm* tm;
-      char buf[100];
-      const char* str = buf;
 
       // Lock mutex within scope
       std::scoped_lock lock(Logger::mutex);
 
       // Timestamp
-      std::time(&now);
-      tm = std::localtime(&now);
-      std::strftime(buf, 50, "[%Y-%m-%d %H:%M:%S] ", tm);
-      std::printf("\033[%i;1m%s", Logger::colors[index], str);
+      std::printf("\033[%i;1m", Logger::colors[index]);
+      Time::Print();
 
       // Class name
-      std::printf("\033[7m %s ", Logger::names[index]);
+      std::printf(" \033[7m %s ", Logger::names[index]);
 
       // Priority
       std::printf("\033[0m \033[%im", Logger::colors[index]);
