@@ -1,5 +1,6 @@
 .vscode
 CMakeFiles
+log
 res/skybox
 res/textures
 cmake_install.cmake

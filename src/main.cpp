@@ -17,8 +17,12 @@ const int height = 720;
 // Main function
 int main(int argc, char* argv[])
 {
-  // Set logger priority level
-  Logger::SetPriority(Logger::Priority::DEBUG);
+  // Enable logger file write
+  time_t t = time(0);
+  struct tm* now = std::localtime(&t);
+  char buffer[80];
+  strftime(buffer, 80, "log/%Y%m%d_%H%M%S.txt", now);
+  Logger::EnableWrite(buffer);
 
   // Create application
   Application* app = new Application();
@@ -26,6 +30,9 @@ int main(int argc, char* argv[])
   {
     app->Start();
   }
+
+  // Disable logger file write
+  Logger::DisableWrite();
 
   // Return
   return 0;

@@ -41,6 +41,7 @@ class Logger
   public:
     enum class Module
     {
+      LOGGER,
       APPLICATION,
       CLOCK,
       ENGINE,
@@ -67,16 +68,20 @@ class Logger
       _MODULE_SIZE
     };
 
-  // Properties
+  // Priority data
   private:
-    static inline const char* levels[5] = {
+    static inline const char* priorities[5] = {
       "Trace",
       "Debug",
       "Info",
       "Warn",
       "Error"
     };
+
+  // Name data
+  private:
     static inline const char* names[(int)Logger::Module::_MODULE_SIZE] = {
+      "Logger",
       "Application",
       "Clock",
       "Engine",
@@ -101,36 +106,72 @@ class Logger
       "Entity",
       "World"
     };
+
+  // Color data
+  private:
     static inline Logger::Color colors[(int)Logger::Module::_MODULE_SIZE] = {
-      Logger::Color::WHITE,
-      Logger::Color::CYAN,
-      Logger::Color::WHITE,
-      Logger::Color::CYAN,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::BLUE,
-      Logger::Color::RED,
-      Logger::Color::RED,
-      Logger::Color::RED,
-      Logger::Color::YELLOW,
-      Logger::Color::YELLOW,
-      Logger::Color::YELLOW,
-      Logger::Color::GREEN,
-      Logger::Color::GREEN,
-      Logger::Color::GREEN
+      Logger::Color::BLACK,  // Logger
+      Logger::Color::WHITE,  // Application
+      Logger::Color::CYAN,   // Clock
+      Logger::Color::WHITE,  // Engine
+      Logger::Color::CYAN,   // Input
+      Logger::Color::BLUE,   // AABB
+      Logger::Color::BLUE,   // Camera
+      Logger::Color::BLUE,   // Cubemap
+      Logger::Color::BLUE,   // Object
+      Logger::Color::BLUE,   // Shader
+      Logger::Color::BLUE,   // Skybox
+      Logger::Color::BLUE,   // Sprite
+      Logger::Color::BLUE,   // Texture
+      Logger::Color::BLUE,   // Tilemap
+      Logger::Color::BLUE,   // Transform
+      Logger::Color::RED,    // BlockManager
+      Logger::Color::RED,    // EntityManager
+      Logger::Color::RED,    // ShaderManager
+      Logger::Color::YELLOW, // Camera2D
+      Logger::Color::YELLOW, // Camera3D
+      Logger::Color::YELLOW, // CameraPlayer
+      Logger::Color::GREEN,  // Block
+      Logger::Color::GREEN,  // Entity
+      Logger::Color::GREEN   // World
     };
-    static inline Logger::Priority priority;
+
+  // Properties
+  private:
+    static inline Logger::Priority priority = Logger::Priority::DEBUG;
     static inline std::mutex mutex;
+    static inline const char* path = 0;
+    static inline FILE* file = 0;
+    static inline bool isWriteEnabled = false;
 
   // Methods
   public:
+    static void EnableWrite(const char* path)
+    {
+      // Close file
+      DisableWrite();
+
+      // Open file from path
+      Logger::isWriteEnabled = false;
+      Logger::path = path;
+      Logger::file = fopen(Logger::path, "a");
+
+      // Check file
+      if (Logger::file == 0)
+      {
+        Logger::LogError(Logger::Module::LOGGER, "File failed to open: %s", Logger::path);
+        return;
+      }
+      Logger::isWriteEnabled = true;
+    }
+
+    static void DisableWrite()
+    {
+      fclose(Logger::file);
+      Logger::file = 0;
+      Logger::isWriteEnabled = false;
+    }
+
     template<typename... Args>
     static void LogTrace(Logger::Module module, const char* message, Args... args)
     {
@@ -233,17 +274,33 @@ class Logger
       // Timestamp
       std::printf("\033[%i;1m", Logger::colors[index]);
       Time::Print();
+      if (Logger::isWriteEnabled)
+      {
+        Time::FilePrint(Logger::file);
+      }
 
       // Class name
       std::printf(" \033[7m %s ", Logger::names[index]);
+      if (Logger::isWriteEnabled)
+      {
+        std::fprintf(Logger::file, " [%s]", Logger::names[index]);
+      }
 
       // Priority
-      std::printf("\033[0m \033[%im", Logger::colors[index]);
-      std::printf("%s: ", Logger::levels[(int)priority]);
+      std::printf("\033[0m \033[%im%s: ", Logger::colors[index], Logger::priorities[(int)priority]);
+      if (Logger::isWriteEnabled)
+      {
+        std::fprintf(Logger::file, " %s: ", Logger::priorities[(int)priority]);
+      }
 
       // Message
       std::printf(message, args...);
       std::printf("\033[0m\n");
+      if (Logger::isWriteEnabled)
+      {
+        std::fprintf(Logger::file, message, args...);
+        std::fprintf(Logger::file, "\n");
+      }
     }
 
   // Setters
