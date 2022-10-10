@@ -57,10 +57,10 @@ class Input
   // Getters
   public:
     static bool IsCursorVisible();
-    static bool IsMouseDown(const int& button);
-    static bool IsMousePressed(const int& button);
-    static bool IsKeyDown(const int& key);
-    static bool IsKeyPressed(const int& key);
+    static bool IsMouseDown(const int &button);
+    static bool IsMousePressed(const int &button);
+    static bool IsKeyDown(const int &key);
+    static bool IsKeyPressed(const int &key);
     static glm::vec2 GetMousePosition();
     static glm::vec2 GetMouseDelta();
     static double GetMouseScroll(Input::Scroll direction = Input::Scroll::HORIZONTAL);

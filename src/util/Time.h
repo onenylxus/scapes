@@ -13,6 +13,10 @@
 // Time class
 class Time
 {
+  // Properties
+  private:
+    static inline int timezone = 8;
+
   // Methods
   public:
     template<class Int>
@@ -41,6 +45,7 @@ class Time
       std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
       std::chrono::system_clock::duration tp = now.time_since_epoch();
 
+      tp += std::chrono::hours(Time::timezone);
       tp += offset;
       days d = std::chrono::duration_cast<days>(tp);
       tp -= d;
@@ -63,6 +68,7 @@ class Time
       std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
       std::chrono::system_clock::duration tp = now.time_since_epoch();
 
+      tp += std::chrono::hours(Time::timezone);
       tp += offset;
       days d = std::chrono::duration_cast<days>(tp);
       tp -= d;

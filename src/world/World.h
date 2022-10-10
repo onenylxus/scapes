@@ -7,7 +7,10 @@
 // Include
 #pragma once
 #include "../gl/Skybox.h"
+#include "../manager/BlockManager.h"
+#include "../manager/EntityManager.h"
 #include "../view/Camera3D.h"
+#include "../world/Entity.h"
 
 // World class
 class World

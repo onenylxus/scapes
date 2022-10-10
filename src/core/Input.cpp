@@ -118,9 +118,9 @@ bool Input::IsCursorVisible()
 }
 
 // Check if mouse is down
-bool Input::IsMouseDown(const int& button)
+bool Input::IsMouseDown(const int &button)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsMouseDown(const int& button)");
+  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsMouseDown(const int &button)");
 
   if (button >= 0 && button < GLFW_MOUSE_BUTTON_LAST)
   {
@@ -131,9 +131,9 @@ bool Input::IsMouseDown(const int& button)
 }
 
 // Check if mouse is pressed
-bool Input::IsMousePressed(const int& button)
+bool Input::IsMousePressed(const int &button)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsMousePressed(const int& button)");
+  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsMousePressed(const int &button)");
 
   if (button >= 0 && button < GLFW_MOUSE_BUTTON_LAST)
   {
@@ -144,9 +144,9 @@ bool Input::IsMousePressed(const int& button)
 }
 
 // Check if key is down
-bool Input::IsKeyDown(const int& key)
+bool Input::IsKeyDown(const int &key)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsKeyDown(const int& key)");
+  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsKeyDown(const int &key)");
 
   if (key >= 0 && key < GLFW_KEY_LAST)
   {
@@ -157,9 +157,9 @@ bool Input::IsKeyDown(const int& key)
 }
 
 // Check if key is pressed
-bool Input::IsKeyPressed(const int& key)
+bool Input::IsKeyPressed(const int &key)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsKeyPressed(const int& key)");
+  Logger::LogTrace(Logger::Module::INPUT, "bool Input::IsKeyPressed(const int &key)");
 
   if (key >= 0 && key < GLFW_KEY_LAST)
   {

@@ -16,7 +16,7 @@ class Mesh
   public:
     typedef std::vector<float> VertexData;
     typedef std::vector<int> AttributeData;
-    typedef std::vector<unsigned int>IndexData;
+    typedef std::vector<unsigned int> IndexData;
     struct Data
     {
       Mesh::VertexData vertices;
@@ -152,7 +152,26 @@ class Mesh
 
         +1.0f, +1.0f, +1.0f, +0.0f, +0.0f, -1.0f, +1.0f, +1.0f,
         +1.0f, -1.0f, +1.0f, +0.0f, +0.0f, -1.0f, +1.0f, +0.0f,
-        -1.0f, +1.0f, +1.0f, +0.0f, +0.0f, -1.0f, +0.0f, +1.0f
+        -1.0f, +1.0f, +1.0f, +0.0f, +0.0f, -1.0f, +0.0f, +1.0f,
+      });
+      data.attr = Mesh::AttributeData({ 3, 3, 2 });
+      data.indices = Mesh::IndexData();
+      return data;
+    }
+
+    static Mesh::Data Quad()
+    {
+      Mesh::Data data;
+      data.vertices = Mesh::VertexData({
+        // Lower left triangle
+        -1.0f, -1.0f, +0.0f, +0.0f, +0.0f, +1.0f, +0.0f, +0.0f,
+        -1.0f, +1.0f, +0.0f, +0.0f, +0.0f, +1.0f, +0.0f, +1.0f,
+        +1.0f, -1.0f, +0.0f, +0.0f, +0.0f, +1.0f, +1.0f, +0.0f,
+
+        // Upper right triangle
+        +1.0f, +1.0f, +0.0f, +0.0f, +0.0f, +1.0f, +1.0f, +1.0f,
+        +1.0f, -1.0f, +0.0f, +0.0f, +0.0f, +1.0f, +1.0f, +0.0f,
+        -1.0f, +1.0f, +0.0f, +0.0f, +0.0f, +1.0f, +0.0f, +1.0f,
       });
       data.attr = Mesh::AttributeData({ 3, 3, 2 });
       data.indices = Mesh::IndexData();

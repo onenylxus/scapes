@@ -12,6 +12,7 @@ World::World()
 {
   Logger::LogTrace(Logger::Module::WORLD, "World::World()");
 
+  BlockManager::Init();
   this->skybox = new Skybox("res/skybox/");
 
   Logger::LogInfo(Logger::Module::WORLD, "World created");
@@ -23,6 +24,7 @@ World::~World()
   Logger::LogTrace(Logger::Module::WORLD, "World::~World()");
 
   delete this->skybox;
+  BlockManager::Destroy();
 
   Logger::LogInfo(Logger::Module::WORLD, "World deleted");
 }
@@ -33,6 +35,7 @@ void World::Update()
   Logger::LogTrace(Logger::Module::WORLD, "void World::Update()");
 
   this->skybox->GetShader()->SetFloat("uTime", Clock::GetTotal());
+  EntityManager::Update();
 }
 
 // Render function
@@ -42,6 +45,7 @@ void World::Render()
 
   Camera3D *camera = new Camera3D(glm::vec3(0));
   this->skybox->Render(*camera);
+  EntityManager::Render(*camera);
 }
 
 ////////////////////////////////////////////////////////////////
