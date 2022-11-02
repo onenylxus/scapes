@@ -17,7 +17,7 @@ int Engine::height;
 // Create engine
 bool Engine::Create(const char* title, const char* version, const int &width, const int &height)
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "bool Engine::Create(const char* title, const char* version, const int &width, const int &height)");
+  Logger::LogTrace(Logger::Module::ENGINE, "bool Create(const char* title, const char* version, const int &width, const int &height)");
 
   // Set values
   this->title = title;
@@ -73,7 +73,7 @@ bool Engine::Create(const char* title, const char* version, const int &width, co
 // Start engine
 void Engine::Start()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "void Engine::Start()");
+  Logger::LogTrace(Logger::Module::ENGINE, "void Start()");
 
   // Start event callback
   Logger::Log(Logger::Color::BLACK, false, "\n===============================");
@@ -139,7 +139,7 @@ void Engine::Start()
 // Frame buffer size callback
 void Engine::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "void Engine::FramebufferSizeCallback(GLFWwindow* window, int width, int height)");
+  Logger::LogTrace(Logger::Module::ENGINE, "void FramebufferSizeCallback(GLFWwindow* window, int width, int height)");
 
   glViewport(0, 0, width, height);
 }
@@ -147,7 +147,7 @@ void Engine::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 // Set event callbacks
 void Engine::SetEventCallbacks()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "void Engine::SetEventCallbacks()");
+  Logger::LogTrace(Logger::Module::ENGINE, "void SetEventCallbacks()");
 
   Input::SetCallbacks(this->window);
   glfwSetFramebufferSizeCallback(this->window, Engine::FramebufferSizeCallback);
@@ -156,7 +156,7 @@ void Engine::SetEventCallbacks()
 // Get window
 GLFWwindow &Engine::GetWindow()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "GLFWwindow &Engine::GetWindow()");
+  Logger::LogTrace(Logger::Module::ENGINE, "GLFWwindow &GetWindow()");
 
   return *Engine::window;
 }
@@ -164,7 +164,7 @@ GLFWwindow &Engine::GetWindow()
 // Get window size
 glm::ivec2 Engine::GetWindowSize()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "glm::ivec2 Engine::GetWindowSize()");
+  Logger::LogTrace(Logger::Module::ENGINE, "glm::ivec2 GetWindowSize()");
 
   glm::ivec2 size;
   glfwGetWindowSize(Engine::window, &size.x, &size.y);
@@ -174,7 +174,7 @@ glm::ivec2 Engine::GetWindowSize()
 // Get OpenGL vendor string
 std::string Engine::GetGLVendor()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "std::string Engine::GetGLVendor()");
+  Logger::LogTrace(Logger::Module::ENGINE, "std::string GetGLVendor()");
 
   return std::string(reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
 }
@@ -182,7 +182,7 @@ std::string Engine::GetGLVendor()
 // Get OpenGL renderer string
 std::string Engine::GetGLRenderer()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "std::string Engine::GetGLRenderer()");
+  Logger::LogTrace(Logger::Module::ENGINE, "std::string GetGLRenderer()");
 
   return std::string(reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
 }
@@ -190,7 +190,7 @@ std::string Engine::GetGLRenderer()
 // Get OpenGL version string
 std::string Engine::GetGLVersion()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "std::string Engine::GetGLVersion()");
+  Logger::LogTrace(Logger::Module::ENGINE, "std::string GetGLVersion()");
 
   return std::string(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
 }

@@ -10,7 +10,7 @@
 // Constructor
 Cubemap::Cubemap(const char* path)
 {
-  Logger::LogTrace(Logger::Module::CUBEMAP, "Cubemap::Cubemap(const char* path)");
+  Logger::LogTrace(Logger::Module::CUBEMAP, "Cubemap(const char* path)");
 
   this->Load(path);
 }
@@ -18,7 +18,7 @@ Cubemap::Cubemap(const char* path)
 // Destructor
 Cubemap::~Cubemap()
 {
-  Logger::LogTrace(Logger::Module::CUBEMAP, "Cubemap::~Cubemap()");
+  Logger::LogTrace(Logger::Module::CUBEMAP, "~Cubemap()");
 
   glDeleteTextures(1, &this->texture);
 }
@@ -26,7 +26,7 @@ Cubemap::~Cubemap()
 // Bind texture
 void Cubemap::Bind(const unsigned int &index) const
 {
-  Logger::LogTrace(Logger::Module::CUBEMAP, "void Cubemap::Bind(const unsigned int &index) const");
+  Logger::LogTrace(Logger::Module::CUBEMAP, "void Bind(const unsigned int &index) const");
 
   glActiveTexture(GL_TEXTURE0 + index);
   glBindTexture(GL_TEXTURE_CUBE_MAP, this->texture);
@@ -35,7 +35,7 @@ void Cubemap::Bind(const unsigned int &index) const
 // Load texture
 void Cubemap::Load(const char* path)
 {
-  Logger::LogTrace(Logger::Module::CUBEMAP, "void Cubemap::Load(const char* path)");
+  Logger::LogTrace(Logger::Module::CUBEMAP, "void Load(const char* path)");
 
   // Load data
   std::string paths[6] = { "left.jpg", "right.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg" };

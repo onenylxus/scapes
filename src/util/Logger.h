@@ -283,14 +283,14 @@ class Logger
       std::printf(" \033[7m %s ", Logger::names[index]);
       if (Logger::isWriteEnabled)
       {
-        std::fprintf(Logger::file, " [%s]", Logger::names[index]);
+        std::fprintf(Logger::file, " %s |", Logger::names[index]);
       }
 
       // Priority
-      std::printf("\033[0m \033[%im%s: ", Logger::colors[index], Logger::priorities[(int)priority]);
+      std::printf("\033[0m \033[%im[%s] ", Logger::colors[index], Logger::priorities[(int)priority]);
       if (Logger::isWriteEnabled)
       {
-        std::fprintf(Logger::file, " %s: ", Logger::priorities[(int)priority]);
+        std::fprintf(Logger::file, " %s] ", Logger::priorities[(int)priority]);
       }
 
       // Message

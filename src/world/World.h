@@ -10,7 +10,7 @@
 #include "../manager/BlockManager.h"
 #include "../manager/EntityManager.h"
 #include "../view/Camera3D.h"
-#include "../world/Entity.h"
+#include "Entity.h"
 
 // World class
 class World

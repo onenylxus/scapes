@@ -10,7 +10,7 @@
 // Constructor
 Sprite::Sprite(const char* path)
 {
-  Logger::LogTrace(Logger::Module::SPRITE, "Sprite::Sprite(const char* path)");
+  Logger::LogTrace(Logger::Module::SPRITE, "Sprite(const char* path)");
 
   this->Load(path);
 }
@@ -18,13 +18,13 @@ Sprite::Sprite(const char* path)
 // Destructor
 Sprite::~Sprite()
 {
-  Logger::LogTrace(Logger::Module::SPRITE, "Sprite::~Sprite()");
+  Logger::LogTrace(Logger::Module::SPRITE, "~Sprite()");
 }
 
 // Load texture
 bool Sprite::Load(const char* path)
 {
-  Logger::LogTrace(Logger::Module::SPRITE, "bool Sprite::Load(const char* path)");
+  Logger::LogTrace(Logger::Module::SPRITE, "bool Load(const char* path)");
 
   // Load data
   Texture::Data* data = Texture::Load(path);

@@ -10,7 +10,7 @@
 // Constructor
 Tilemap::Tilemap(const char* path, const unsigned int &rows, const unsigned int &columns)
 {
-  Logger::LogTrace(Logger::Module::TILEMAP, "Tilemap::Tilemap(const char* path, const unsigned int &rows, const unsigned int &columns)");
+  Logger::LogTrace(Logger::Module::TILEMAP, "Tilemap(const char* path, const unsigned int &rows, const unsigned int &columns)");
 
   this->texture = new Sprite(path);
   this->rows = rows;
@@ -22,7 +22,7 @@ Tilemap::Tilemap(const char* path, const unsigned int &rows, const unsigned int 
 // Destructor
 Tilemap::~Tilemap()
 {
-  Logger::LogTrace(Logger::Module::TILEMAP, "Tilemap::~Tilemap()");
+  Logger::LogTrace(Logger::Module::TILEMAP, "~Tilemap()");
 
   delete this->texture;
 }
@@ -30,7 +30,7 @@ Tilemap::~Tilemap()
 // Bind texture
 void Tilemap::Bind(const unsigned int &index) const
 {
-  Logger::LogTrace(Logger::Module::TILEMAP, "void Tilemap::Bind(const unsigned int &index) const");
+  Logger::LogTrace(Logger::Module::TILEMAP, "void Bind(const unsigned int &index) const");
 
   this->texture->Bind(index);
 }
@@ -38,7 +38,7 @@ void Tilemap::Bind(const unsigned int &index) const
 // Get sprite coordinates
 void Tilemap::GetSpriteCoordinates(const unsigned int &index, std::array<glm::vec2, 4> &coords) const
 {
-  Logger::LogTrace(Logger::Module::TILEMAP, "void Tilemap::GetSpriteCoordinates(const unsigned int &index, std::array<glm::vec2, 4> &coords) const");
+  Logger::LogTrace(Logger::Module::TILEMAP, "void GetSpriteCoordinates(const unsigned int &index, std::array<glm::vec2, 4> &coords) const");
 
   float x = index % columns;
   float y = index / rows;

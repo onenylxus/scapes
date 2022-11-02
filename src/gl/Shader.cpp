@@ -10,7 +10,7 @@
 // Constructor
 Shader::Shader()
 {
-  Logger::LogTrace(Logger::Module::SHADER, "Shader::Shader()");
+  Logger::LogTrace(Logger::Module::SHADER, "Shader()");
 
   this->program = -1;
 }
@@ -18,7 +18,7 @@ Shader::Shader()
 // Destructor
 Shader::~Shader()
 {
-  Logger::LogTrace(Logger::Module::SHADER, "Shader::~Shader()");
+  Logger::LogTrace(Logger::Module::SHADER, "~Shader()");
 
   if (this->program != 0)
   {
@@ -29,7 +29,7 @@ Shader::~Shader()
 // Load graphics shader
 bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)");
+  Logger::LogTrace(Logger::Module::SHADER, "bool LoadGraphics(std::string vsPath, std::string fsPath)");
 
   // Create vertex shader
   std::string vStr = this->ReadCode(vsPath);
@@ -78,7 +78,7 @@ bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
 // Load geometry shader
 bool Shader::LoadGeometry(std::string path)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "bool Shader::LoadGeometry(std::string path)");
+  Logger::LogTrace(Logger::Module::SHADER, "bool LoadGeometry(std::string path)");
 
   // Create geometry shader
   std::string gStr = this->ReadCode(path);
@@ -112,7 +112,7 @@ bool Shader::LoadGeometry(std::string path)
 // Load compute shader
 bool Shader::LoadCompute(std::string path)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "bool Shader::LoadCompute(std::string path)");
+  Logger::LogTrace(Logger::Module::SHADER, "bool LoadCompute(std::string path)");
 
   // Create compute shader
   std::string cStr = this->ReadCode(path);
@@ -146,7 +146,7 @@ bool Shader::LoadCompute(std::string path)
 // Use program
 void Shader::Use()
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::Use()");
+  Logger::LogTrace(Logger::Module::SHADER, "void Use()");
 
   glUseProgram(this->program);
 }
@@ -154,7 +154,7 @@ void Shader::Use()
 // Read shader code
 std::string Shader::ReadCode(std::string path)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "std::string Shader::ReadCode(std::string path)");
+  Logger::LogTrace(Logger::Module::SHADER, "std::string ReadCode(std::string path)");
 
   std::ifstream input(path.c_str());
   if (!input.good())
@@ -168,7 +168,7 @@ std::string Shader::ReadCode(std::string path)
 // Check shader status
 bool Shader::CheckShaderStatus(GLuint id)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "bool Shader::CheckShaderStatus(GLuint id)");
+  Logger::LogTrace(Logger::Module::SHADER, "bool CheckShaderStatus(GLuint id)");
 
   return this->CheckStatus(id, glGetShaderiv, glGetShaderInfoLog, GL_COMPILE_STATUS);
 }
@@ -176,7 +176,7 @@ bool Shader::CheckShaderStatus(GLuint id)
 // Check program status
 bool Shader::CheckProgramStatus(GLuint id)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "bool Shader::CheckProgramStatus(GLuint id)");
+  Logger::LogTrace(Logger::Module::SHADER, "bool CheckProgramStatus(GLuint id)");
 
   return this->CheckStatus(id, glGetProgramiv, glGetProgramInfoLog, GL_LINK_STATUS);
 }
@@ -184,7 +184,7 @@ bool Shader::CheckProgramStatus(GLuint id)
 // Check status
 bool Shader::CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERINFOLOGPROC ilFunc, GLenum type)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "bool Shader::CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERINFOLOGPROC ilFunc, GLenum type)");
+  Logger::LogTrace(Logger::Module::SHADER, "bool CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERINFOLOGPROC ilFunc, GLenum type)");
 
   // Run status function
   GLint status;
@@ -213,7 +213,7 @@ bool Shader::CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERI
 // Set uniform float value
 void Shader::SetFloat(const char* name, float value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetFloat(const char* name, float value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetFloat(const char* name, float value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -228,7 +228,7 @@ void Shader::SetFloat(const char* name, float value)
 // Set uniform integer value
 void Shader::SetInt(const char* name, int value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetInt(const char* name, int value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetInt(const char* name, int value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -243,7 +243,7 @@ void Shader::SetInt(const char* name, int value)
 // Set uniform matrix2 value
 void Shader::SetMatrix2(const char* name, const glm::mat2& value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetMatrix2(const char* name, const glm::mat2& value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetMatrix2(const char* name, const glm::mat2& value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -258,7 +258,7 @@ void Shader::SetMatrix2(const char* name, const glm::mat2& value)
 // Set uniform matrix3 value
 void Shader::SetMatrix3(const char* name, const glm::mat3& value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetMatrix3(const char* name, const glm::mat3& value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetMatrix3(const char* name, const glm::mat3& value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -273,7 +273,7 @@ void Shader::SetMatrix3(const char* name, const glm::mat3& value)
 // Set uniform matrix4 value
 void Shader::SetMatrix4(const char* name, const glm::mat4& value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetMatrix4(const char* name, const glm::mat4& value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetMatrix4(const char* name, const glm::mat4& value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -288,7 +288,7 @@ void Shader::SetMatrix4(const char* name, const glm::mat4& value)
 // Set uniform vector2 value
 void Shader::SetVector2(const char* name, const glm::vec2& value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetVector2(const char* name, const glm::vec2& value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetVector2(const char* name, const glm::vec2& value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -303,7 +303,7 @@ void Shader::SetVector2(const char* name, const glm::vec2& value)
 // Set uniform vector3 value
 void Shader::SetVector3(const char* name, const glm::vec3& value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetVector3(const char* name, const glm::vec3& value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetVector3(const char* name, const glm::vec3& value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -318,7 +318,7 @@ void Shader::SetVector3(const char* name, const glm::vec3& value)
 // Set uniform vector4 value
 void Shader::SetVector4(const char* name, const glm::vec4& value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetVector4(const char* name, const glm::vec4& value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetVector4(const char* name, const glm::vec4& value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -333,7 +333,7 @@ void Shader::SetVector4(const char* name, const glm::vec4& value)
 // Set uniform texture unit value
 void Shader::SetTextureUnit(const char* name, const unsigned int& value)
 {
-  Logger::LogTrace(Logger::Module::SHADER, "void Shader::SetTextureUnit(const char* name, const unsigned int& value)");
+  Logger::LogTrace(Logger::Module::SHADER, "void SetTextureUnit(const char* name, const unsigned int& value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);

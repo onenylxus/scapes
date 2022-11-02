@@ -15,7 +15,7 @@ std::map<const char*, Shader*> ShaderManager::computeShaders;
 // Init shader manager
 void ShaderManager::Init()
 {
-  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "void ShaderManager::Init()");
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "void Init()");
 
   ShaderManager::SetShader("base");
 }
@@ -23,7 +23,7 @@ void ShaderManager::Init()
 // Destroy shader manager
 void ShaderManager::Destroy()
 {
-  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "void ShaderManager::Destroy()");
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "void Destroy()");
 
   // Destroy graphics shaders
   for (std::map<const char*, Shader*>::iterator i = ShaderManager::graphicsShaders.begin(); i != ShaderManager::graphicsShaders.end(); i++)
@@ -50,7 +50,7 @@ void ShaderManager::Destroy()
 // Set shader
 Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
 {
-  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "Shader* ShaderManager::SetShader(const char* path, Shader::Type type)");
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "Shader* SetShader(const char* path, Shader::Type type)");
 
   std::string dir = "res/shaders/";
   std::ifstream file;
@@ -110,7 +110,7 @@ Shader* ShaderManager::SetShader(const char* path, Shader::Type type)
 // Get shader
 Shader* ShaderManager::GetShader(const char* path, Shader::Type type)
 {
-  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "Shader* ShaderManager::GetShader(const char* path, Shader::Type type)");
+  Logger::LogTrace(Logger::Module::SHADER_MANAGER, "Shader* GetShader(const char* path, Shader::Type type)");
 
   std::map<const char*, Shader*>::iterator it;
 
