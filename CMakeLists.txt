@@ -29,6 +29,7 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Tilemap.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/gl/Transform.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/BlockManager.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/ChunkManager.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/EntityManager.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/ShaderManager.cpp)
 
@@ -37,6 +38,7 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera3D.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/CameraPlayer.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Block.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Chunk.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Entity.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/World.cpp)
 

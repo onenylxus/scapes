@@ -57,12 +57,14 @@ class Logger
       TILEMAP,
       TRANSFORM,
       BLOCK_MANAGER,
+      CHUNK_MANAGER,
       ENTITY_MANAGER,
       SHADER_MANAGER,
       CAMERA_2D,
       CAMERA_3D,
       CAMERA_PLAYER,
       BLOCK,
+      CHUNK,
       ENTITY,
       WORLD,
       _MODULE_SIZE
@@ -97,12 +99,14 @@ class Logger
       "Tilemap",
       "Transform",
       "BlockManager",
+      "ChunkManager",
       "EntityManager",
       "ShaderManager",
       "Camera2D",
       "Camera3D",
       "CameraPlayer",
       "Block",
+      "Chunk",
       "Entity",
       "World"
     };
@@ -126,12 +130,14 @@ class Logger
       Logger::Color::BLUE,   // Tilemap
       Logger::Color::BLUE,   // Transform
       Logger::Color::RED,    // BlockManager
+      Logger::Color::RED,    // ChunkManager
       Logger::Color::RED,    // EntityManager
       Logger::Color::RED,    // ShaderManager
       Logger::Color::YELLOW, // Camera2D
       Logger::Color::YELLOW, // Camera3D
       Logger::Color::YELLOW, // CameraPlayer
       Logger::Color::GREEN,  // Block
+      Logger::Color::GREEN,  // Chunk
       Logger::Color::GREEN,  // Entity
       Logger::Color::GREEN   // World
     };
