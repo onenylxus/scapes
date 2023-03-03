@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022 MIT License
+// Nicholas Ng, 2022-2023 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -20,9 +20,9 @@ class Object
   public:
     struct Data
     {
-      unsigned int vao;
-      unsigned int vbo;
-      unsigned int ebo;
+      unsigned int vao = 0;
+      unsigned int vbo = 0;
+      unsigned int ebo = 0;
       int size;
     };
 
