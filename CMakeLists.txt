@@ -36,6 +36,7 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/ShaderManager.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera2D.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera3D.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/CameraPlayer.cpp)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Renderer.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Block.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/world/Chunk.cpp)

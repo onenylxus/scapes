@@ -63,6 +63,7 @@ class Logger
       CAMERA_2D,
       CAMERA_3D,
       CAMERA_PLAYER,
+      RENDERER,
       BLOCK,
       CHUNK,
       ENTITY,
@@ -105,6 +106,7 @@ class Logger
       "Camera2D",
       "Camera3D",
       "CameraPlayer",
+      "Renderer",
       "Block",
       "Chunk",
       "Entity",
@@ -136,6 +138,7 @@ class Logger
       Logger::Color::YELLOW, // Camera2D
       Logger::Color::YELLOW, // Camera3D
       Logger::Color::YELLOW, // CameraPlayer
+      Logger::Color::YELLOW, // Renderer
       Logger::Color::GREEN,  // Block
       Logger::Color::GREEN,  // Chunk
       Logger::Color::GREEN,  // Entity

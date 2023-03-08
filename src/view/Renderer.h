@@ -1,0 +1,43 @@
+////////////////////////////////////////////////////////////////
+// Scapes v0.1.0
+// Voxel-based role-playing game
+// Nicholas Ng, 2022-2023 MIT License
+////////////////////////////////////////////////////////////////
+
+// Include
+#pragma once
+#include <vector>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "../gl/Camera.h"
+#include "../manager/ShaderManager.h"
+
+// Renderer class
+class Renderer
+{
+  // Line
+  public:
+    struct Line
+    {
+      glm::vec3 start;
+      glm::vec3 end;
+      glm::vec3 color;
+      unsigned int vao = 0;
+      unsigned int vbo = 0;
+    };
+
+  // Properties
+  private:
+    static Shader* shader;
+    static std::vector<Renderer::Line> lines;
+
+  // Methods
+  public:
+    static void AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color = glm::vec3(0.5f));
+    static void AddBox(glm::vec3 position, glm::vec3 color = glm::vec3(1.0f, 0.0f, 0.0f));
+    static void Render(Camera &camera);
+    static void Clear();
+};
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
