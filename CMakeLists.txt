@@ -33,6 +33,8 @@ target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/ChunkManager.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/EntityManager.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/manager/ShaderManager.cpp)
 
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/player/Raycast.cpp)
+
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera2D.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/Camera3D.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_DIR}/view/CameraPlayer.cpp)

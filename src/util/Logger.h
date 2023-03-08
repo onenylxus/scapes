@@ -60,6 +60,7 @@ class Logger
       CHUNK_MANAGER,
       ENTITY_MANAGER,
       SHADER_MANAGER,
+      RAYCAST,
       CAMERA_2D,
       CAMERA_3D,
       CAMERA_PLAYER,
@@ -103,6 +104,7 @@ class Logger
       "ChunkManager",
       "EntityManager",
       "ShaderManager",
+      "Raycast",
       "Camera2D",
       "Camera3D",
       "CameraPlayer",
@@ -116,33 +118,34 @@ class Logger
   // Color data
   private:
     static inline Logger::Color colors[(int)Logger::Module::_MODULE_SIZE] = {
-      Logger::Color::BLACK,  // Logger
-      Logger::Color::WHITE,  // Application
-      Logger::Color::CYAN,   // Clock
-      Logger::Color::WHITE,  // Engine
-      Logger::Color::CYAN,   // Input
-      Logger::Color::BLUE,   // AABB
-      Logger::Color::BLUE,   // Camera
-      Logger::Color::BLUE,   // Cubemap
-      Logger::Color::BLUE,   // Object
-      Logger::Color::BLUE,   // Shader
-      Logger::Color::BLUE,   // Skybox
-      Logger::Color::BLUE,   // Sprite
-      Logger::Color::BLUE,   // Texture
-      Logger::Color::BLUE,   // Tilemap
-      Logger::Color::BLUE,   // Transform
-      Logger::Color::RED,    // BlockManager
-      Logger::Color::RED,    // ChunkManager
-      Logger::Color::RED,    // EntityManager
-      Logger::Color::RED,    // ShaderManager
-      Logger::Color::YELLOW, // Camera2D
-      Logger::Color::YELLOW, // Camera3D
-      Logger::Color::YELLOW, // CameraPlayer
-      Logger::Color::YELLOW, // Renderer
-      Logger::Color::GREEN,  // Block
-      Logger::Color::GREEN,  // Chunk
-      Logger::Color::GREEN,  // Entity
-      Logger::Color::GREEN   // World
+      Logger::Color::BLACK,   // Logger
+      Logger::Color::WHITE,   // Application
+      Logger::Color::CYAN,    // Clock
+      Logger::Color::WHITE,   // Engine
+      Logger::Color::CYAN,    // Input
+      Logger::Color::BLUE,    // AABB
+      Logger::Color::BLUE,    // Camera
+      Logger::Color::BLUE,    // Cubemap
+      Logger::Color::BLUE,    // Object
+      Logger::Color::BLUE,    // Shader
+      Logger::Color::BLUE,    // Skybox
+      Logger::Color::BLUE,    // Sprite
+      Logger::Color::BLUE,    // Texture
+      Logger::Color::BLUE,    // Tilemap
+      Logger::Color::BLUE,    // Transform
+      Logger::Color::RED,     // BlockManager
+      Logger::Color::RED,     // ChunkManager
+      Logger::Color::RED,     // EntityManager
+      Logger::Color::RED,     // ShaderManager
+      Logger::Color::MAGENTA, // Raycast
+      Logger::Color::YELLOW,  // Camera2D
+      Logger::Color::YELLOW,  // Camera3D
+      Logger::Color::YELLOW,  // CameraPlayer
+      Logger::Color::YELLOW,  // Renderer
+      Logger::Color::GREEN,   // Block
+      Logger::Color::GREEN,   // Chunk
+      Logger::Color::GREEN,   // Entity
+      Logger::Color::GREEN    // World
     };
 
   // Properties
