@@ -10,7 +10,7 @@
 // Constructor
 CameraPlayer::CameraPlayer(Entity& entity, const glm::vec3& position) : Camera3D(position)
 {
-  Logger::LogTrace(Logger::Module::CAMERA_PLAYER, "CameraPlayer::CameraPlayer(Entity& entity, const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::CAMERA_PLAYER, "CameraPlayer::CameraPlayer(Entity& entity, const glm::vec3& position)");
 
   this->entity = &entity;
 }
@@ -18,13 +18,13 @@ CameraPlayer::CameraPlayer(Entity& entity, const glm::vec3& position) : Camera3D
 // Destructor
 CameraPlayer::~CameraPlayer()
 {
-  Logger::LogTrace(Logger::Module::CAMERA_PLAYER, "CameraPlayer::~CameraPlayer()");
+  Logger::LogTrace(ModuleData::Name::CAMERA_PLAYER, "CameraPlayer::~CameraPlayer()");
 }
 
 // Update camera
 void CameraPlayer::Update()
 {
-  Logger::LogTrace(Logger::Module::CAMERA_PLAYER, "void CameraPlayer::Update()");
+  Logger::LogTrace(ModuleData::Name::CAMERA_PLAYER, "void CameraPlayer::Update()");
 
   if (!Input::IsCursorVisible())
   {

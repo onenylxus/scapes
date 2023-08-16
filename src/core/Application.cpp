@@ -13,7 +13,7 @@ Application* Application::app = nullptr;
 // Start event callback
 void Application::OnStart()
 {
-  Logger::LogTrace(Logger::Module::APPLICATION, "void OnStart()");
+  Logger::LogTrace(ModuleData::Name::APPLICATION, "void OnStart()");
 
   // Link static pointer
   Application::app = this;
@@ -28,7 +28,7 @@ void Application::OnStart()
 // Update event callback
 void Application::OnUpdate()
 {
-  Logger::LogTrace(Logger::Module::APPLICATION, "void OnUpdate()");
+  Logger::LogTrace(ModuleData::Name::APPLICATION, "void OnUpdate()");
 
   // Debug
   if (Input::IsKeyPressed(GLFW_KEY_ESCAPE))
@@ -43,7 +43,7 @@ void Application::OnUpdate()
 // Render event callback
 void Application::OnRender()
 {
-  Logger::LogTrace(Logger::Module::APPLICATION, "void OnRender()");
+  Logger::LogTrace(ModuleData::Name::APPLICATION, "void OnRender()");
 
   // Render world
   this->world->Render();
@@ -68,7 +68,7 @@ void Application::OnRender()
 // End event callback
 void Application::OnEnd()
 {
-  Logger::LogTrace(Logger::Module::APPLICATION, "void OnEnd()");
+  Logger::LogTrace(ModuleData::Name::APPLICATION, "void OnEnd()");
 
   // Delete world
   delete this->world;
@@ -77,7 +77,7 @@ void Application::OnEnd()
 // Get application
 Application &Application::GetApp()
 {
-  Logger::LogTrace(Logger::Module::APPLICATION, "Application &GetApp()");
+  Logger::LogTrace(ModuleData::Name::APPLICATION, "Application &GetApp()");
 
   return *Application::app;
 }

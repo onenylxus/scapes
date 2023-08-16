@@ -10,7 +10,7 @@
 // Constructor
 Chunk::Chunk(glm::ivec2 index, ChunkManager& manager)
 {
-  Logger::LogTrace(Logger::Module::CHUNK, "Chunk(const glm::ivec2 index, ChunkManager& manager)");
+  Logger::LogTrace(ModuleData::Name::CHUNK, "Chunk(const glm::ivec2 index, ChunkManager& manager)");
 
   this->manager = &manager;
   this->globalCoords = glm::vec3(index.x * Chunk::chunkSize, 0.0f, index.y * Chunk::chunkSize);
@@ -25,7 +25,7 @@ Chunk::Chunk(glm::ivec2 index, ChunkManager& manager)
 // Destructor
 Chunk::~Chunk()
 {
-  Logger::LogTrace(Logger::Module::CHUNK, "~Chunk()");
+  Logger::LogTrace(ModuleData::Name::CHUNK, "~Chunk()");
 
   delete this->aabb;
 
@@ -38,13 +38,13 @@ Chunk::~Chunk()
 // Render with solid shader
 void Chunk::RenderSolid(Shader& solidShader)
 {
-  Logger::LogTrace(Logger::Module::CHUNK, "void RenderSolid(Shader& solidShader)");
+  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderSolid(Shader& solidShader)");
 }
 
 // Render with liquid shader
 void Chunk::RenderLiquid(Shader& liquidShader)
 {
-  Logger::LogTrace(Logger::Module::CHUNK, "void RenderLiquid(Shader& liquidShader)");
+  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderLiquid(Shader& liquidShader)");
 }
 
 ////////////////////////////////////////////////////////////////

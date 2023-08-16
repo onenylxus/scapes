@@ -10,7 +10,7 @@
 // Constructor
 ChunkManager::ChunkManager()
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "ChunkManager()");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "ChunkManager()");
 
   // Load shaders
   this->solidShader = ShaderManager::SetShader("solid", Shader::Type::GRAPHICS);
@@ -29,7 +29,7 @@ ChunkManager::ChunkManager()
 // Destructor
 ChunkManager::~ChunkManager()
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "~ChunkManager()");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "~ChunkManager()");
 
   // Destroy generation thread
   if (this->generationThread != nullptr)
@@ -64,19 +64,19 @@ ChunkManager::~ChunkManager()
 // Update function
 void ChunkManager::Update()
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "void Update()");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "void Update()");
 }
 
 // Render function
 void ChunkManager::Render(Camera& camera)
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "void Render(Camera& camera)");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "void Render(Camera& camera)");
 }
 
 // Load chunks
 void ChunkManager::Load()
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "void Load()");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "void Load()");
 
   // Setup mutex lock
   std::unique_lock<std::mutex> lock(this->mutex);
@@ -113,7 +113,7 @@ void ChunkManager::Load()
 // Create chunk
 Chunk* ChunkManager::Create(const glm::ivec2& index)
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "void Create(const glm::ivec2& index)");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "void Create(const glm::ivec2& index)");
 
   // Check existing chunk
   Chunk* chunk = LockAndFindChunk(index);
@@ -132,7 +132,7 @@ Chunk* ChunkManager::Create(const glm::ivec2& index)
 // Find chunk by index
 Chunk* ChunkManager::FindChunk(const glm::ivec2& index)
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "Chunk* FindChunk(const glm::ivec2& index)");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "Chunk* FindChunk(const glm::ivec2& index)");
 
   auto iter = this->chunks.find(index);
   return iter != this->chunks.end() ? iter->second : nullptr;
@@ -141,7 +141,7 @@ Chunk* ChunkManager::FindChunk(const glm::ivec2& index)
 // Find chunk by index with mutex lock
 Chunk* ChunkManager::LockAndFindChunk(const glm::ivec2& index)
 {
-  Logger::LogTrace(Logger::Module::CHUNK_MANAGER, "Chunk* LockAndFindChunk(const glm::ivec2& index)");
+  Logger::LogTrace(ModuleData::Name::CHUNK_MANAGER, "Chunk* LockAndFindChunk(const glm::ivec2& index)");
 
   std::unique_lock<std::mutex> lock(this->mutex);
   return FindChunk(index);

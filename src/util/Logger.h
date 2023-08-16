@@ -7,6 +7,7 @@
 // Include
 #pragma once
 #include <mutex>
+#include "ModuleData.h"
 #include "Time.h"
 
 // Logger class
@@ -37,41 +38,6 @@ class Logger
       WHITE
     };
 
-  // Module enum
-  public:
-    enum class Module
-    {
-      LOGGER,
-      APPLICATION,
-      CLOCK,
-      ENGINE,
-      INPUT,
-      AABB,
-      CAMERA,
-      CUBEMAP,
-      OBJECT,
-      SHADER,
-      SKYBOX,
-      SPRITE,
-      TEXTURE,
-      TILEMAP,
-      TRANSFORM,
-      BLOCK_MANAGER,
-      CHUNK_MANAGER,
-      ENTITY_MANAGER,
-      SHADER_MANAGER,
-      RAYCAST,
-      CAMERA_2D,
-      CAMERA_3D,
-      CAMERA_PLAYER,
-      RENDERER,
-      BLOCK,
-      CHUNK,
-      ENTITY,
-      WORLD,
-      _MODULE_SIZE
-    };
-
   // Priority data
   private:
     static inline const char* priorities[5] = {
@@ -82,69 +48,16 @@ class Logger
       "Error"
     };
 
-  // Name data
-  private:
-    static inline const char* names[(int)Logger::Module::_MODULE_SIZE] = {
-      "Logger",
-      "Application",
-      "Clock",
-      "Engine",
-      "Input",
-      "AABB",
-      "Camera",
-      "Cubemap",
-      "Object",
-      "Shader",
-      "Skybox",
-      "Sprite",
-      "Texture",
-      "Tilemap",
-      "Transform",
-      "BlockManager",
-      "ChunkManager",
-      "EntityManager",
-      "ShaderManager",
-      "Raycast",
-      "Camera2D",
-      "Camera3D",
-      "CameraPlayer",
-      "Renderer",
-      "Block",
-      "Chunk",
-      "Entity",
-      "World"
-    };
-
   // Color data
   private:
-    static inline Logger::Color colors[(int)Logger::Module::_MODULE_SIZE] = {
+    static inline Logger::Color colors[(int)ModuleData::Type::_TYPE_SIZE] = {
       Logger::Color::BLACK,   // Logger
-      Logger::Color::WHITE,   // Application
-      Logger::Color::CYAN,    // Clock
-      Logger::Color::WHITE,   // Engine
-      Logger::Color::CYAN,    // Input
-      Logger::Color::BLUE,    // AABB
-      Logger::Color::BLUE,    // Camera
-      Logger::Color::BLUE,    // Cubemap
-      Logger::Color::BLUE,    // Object
-      Logger::Color::BLUE,    // Shader
-      Logger::Color::BLUE,    // Skybox
-      Logger::Color::BLUE,    // Sprite
-      Logger::Color::BLUE,    // Texture
-      Logger::Color::BLUE,    // Tilemap
-      Logger::Color::BLUE,    // Transform
-      Logger::Color::RED,     // BlockManager
-      Logger::Color::RED,     // ChunkManager
-      Logger::Color::RED,     // EntityManager
-      Logger::Color::RED,     // ShaderManager
-      Logger::Color::MAGENTA, // Raycast
-      Logger::Color::YELLOW,  // Camera2D
-      Logger::Color::YELLOW,  // Camera3D
-      Logger::Color::YELLOW,  // CameraPlayer
-      Logger::Color::YELLOW,  // Renderer
-      Logger::Color::GREEN,   // Block
-      Logger::Color::GREEN,   // Chunk
-      Logger::Color::GREEN,   // Entity
+      Logger::Color::WHITE,   // Core (Primary)
+      Logger::Color::CYAN,    // Core (Secondary)
+      Logger::Color::BLUE,    // GL
+      Logger::Color::RED,     // Manager
+      Logger::Color::MAGENTA, // Player
+      Logger::Color::YELLOW,  // View
       Logger::Color::GREEN    // World
     };
 
@@ -171,7 +84,7 @@ class Logger
       // Check file
       if (Logger::file == 0)
       {
-        Logger::LogError(Logger::Module::LOGGER, "File failed to open: %s", Logger::path);
+        Logger::LogError(ModuleData::Name::LOGGER, "File failed to open: %s", Logger::path);
         return;
       }
       Logger::isWriteEnabled = true;
@@ -185,7 +98,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogTrace(Logger::Module module, const char* message, Args... args)
+    static void LogTrace(ModuleData::Name module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::TRACE)
       {
@@ -194,7 +107,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogDebug(Logger::Module module, const char* message, Args... args)
+    static void LogDebug(ModuleData::Name module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::DEBUG)
       {
@@ -203,7 +116,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogInfo(Logger::Module module, const char* message, Args... args)
+    static void LogInfo(ModuleData::Name module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::INFO)
       {
@@ -212,7 +125,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogWarn(Logger::Module module, const char* message, Args... args)
+    static void LogWarn(ModuleData::Name module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::WARN)
       {
@@ -221,7 +134,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogError(Logger::Module module, const char* message, Args... args)
+    static void LogError(ModuleData::Name module, const char* message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::ERROR)
       {
@@ -269,22 +182,23 @@ class Logger
 
   private:
     template<typename... Args>
-    static void LogPriority(Logger::Module module, Logger::Priority priority, const char* message, Args... args)
+    static void LogPriority(ModuleData::Name module, Logger::Priority priority, const char* message, Args... args)
     {
       // Exclude module size option
-      if (module == Logger::Module::_MODULE_SIZE)
+      if (module == ModuleData::Name::_MODULE_SIZE)
       {
         return;
       }
 
       // Setup variables
       int index = (int)module;
+      int type = (int)ModuleData::types[index];
 
       // Lock mutex within scope
       std::scoped_lock lock(Logger::mutex);
 
       // Timestamp
-      std::printf("\033[%i;1m", Logger::colors[index]);
+      std::printf("\033[%i;1m", Logger::colors[type]);
       Time::Print();
       if (Logger::isWriteEnabled)
       {
@@ -292,14 +206,14 @@ class Logger
       }
 
       // Class name
-      std::printf(" \033[7m %s ", Logger::names[index]);
+      std::printf(" \033[7m %s ", ModuleData::names[index]);
       if (Logger::isWriteEnabled)
       {
-        std::fprintf(Logger::file, " %s |", Logger::names[index]);
+        std::fprintf(Logger::file, " %s |", ModuleData::names[index]);
       }
 
       // Priority
-      std::printf("\033[0m \033[%im[%s] ", Logger::colors[index], Logger::priorities[(int)priority]);
+      std::printf("\033[0m \033[%im[%s] ", Logger::colors[type], Logger::priorities[(int)priority]);
       if (Logger::isWriteEnabled)
       {
         std::fprintf(Logger::file, " %s] ", Logger::priorities[(int)priority]);

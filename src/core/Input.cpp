@@ -20,7 +20,7 @@ unsigned int Input::keyPreviousStates[GLFW_KEY_LAST];
 // Mouse position callback
 void Input::MousePositionCallback(GLFWwindow *window, double xpos, double ypos)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "void MousePositionCallback(GLFWwindow *window, double xpos, double ypos)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void MousePositionCallback(GLFWwindow *window, double xpos, double ypos)");
 
   Input::previousPosition = Input::currentPosition;
   Input::currentPosition = glm::vec2(xpos, ypos);
@@ -30,7 +30,7 @@ void Input::MousePositionCallback(GLFWwindow *window, double xpos, double ypos)
 // Mouse button callback
 void Input::MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)");
 
   if (button >= 0 && button < GLFW_MOUSE_BUTTON_LAST)
   {
@@ -41,7 +41,7 @@ void Input::MouseButtonCallback(GLFWwindow *window, int button, int action, int 
 // Mouse scroll callback
 void Input::MouseScrollCallback(GLFWwindow *window, double xoffset, double yoffset)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "void MouseScrollCallback(GLFWwindow *window, double xoffset, double yoffset)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void MouseScrollCallback(GLFWwindow *window, double xoffset, double yoffset)");
 
   Input::scrollStates[0] += xoffset;
   Input::scrollStates[1] += yoffset;
@@ -50,7 +50,7 @@ void Input::MouseScrollCallback(GLFWwindow *window, double xoffset, double yoffs
 // Key callback
 void Input::KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)");
 
   if (key >= 0 && key < GLFW_KEY_LAST)
   {
@@ -61,7 +61,7 @@ void Input::KeyCallback(GLFWwindow *window, int key, int scancode, int action, i
 // Update function
 void Input::Update()
 {
-  Logger::LogTrace(Logger::Module::INPUT, "void Update()");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void Update()");
 
   Input::deltaPosition = glm::vec2(0.0f);
   Input::scrollStates[0] = 0;
@@ -81,7 +81,7 @@ void Input::Update()
 // Set cursor visibility
 void Input::SetCursorVisibility(const bool& visible)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "void SetCursorVisibility(const bool& visible)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void SetCursorVisibility(const bool& visible)");
 
   if (visible)
   {
@@ -95,13 +95,13 @@ void Input::SetCursorVisibility(const bool& visible)
     glfwSetInputMode(&Engine::GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
   }
 
-  Logger::LogDebug(Logger::Module::INPUT, "Cursor visibility set to %s", visible ? "true" : "false");
+  Logger::LogDebug(ModuleData::Name::INPUT, "Cursor visibility set to %s", visible ? "true" : "false");
 }
 
 // Set callbacks
 void Input::SetCallbacks(GLFWwindow* window)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "void SetCallbacks(GLFWwindow* window)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void SetCallbacks(GLFWwindow* window)");
 
   glfwSetCursorPosCallback(window, Input::MousePositionCallback);
   glfwSetMouseButtonCallback(window, Input::MouseButtonCallback);
@@ -112,7 +112,7 @@ void Input::SetCallbacks(GLFWwindow* window)
 // Get cursor visibility
 bool Input::IsCursorVisible()
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool IsCursorVisible()");
+  Logger::LogTrace(ModuleData::Name::INPUT, "bool IsCursorVisible()");
 
   return glfwGetInputMode(&Engine::GetWindow(), GLFW_CURSOR) == GLFW_CURSOR_NORMAL;
 }
@@ -120,7 +120,7 @@ bool Input::IsCursorVisible()
 // Check if mouse is down
 bool Input::IsMouseDown(const int &button)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool IsMouseDown(const int &button)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "bool IsMouseDown(const int &button)");
 
   if (button >= 0 && button < GLFW_MOUSE_BUTTON_LAST)
   {
@@ -133,7 +133,7 @@ bool Input::IsMouseDown(const int &button)
 // Check if mouse is pressed
 bool Input::IsMousePressed(const int &button)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool IsMousePressed(const int &button)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "bool IsMousePressed(const int &button)");
 
   if (button >= 0 && button < GLFW_MOUSE_BUTTON_LAST)
   {
@@ -146,7 +146,7 @@ bool Input::IsMousePressed(const int &button)
 // Check if key is down
 bool Input::IsKeyDown(const int &key)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool IsKeyDown(const int &key)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "bool IsKeyDown(const int &key)");
 
   if (key >= 0 && key < GLFW_KEY_LAST)
   {
@@ -159,7 +159,7 @@ bool Input::IsKeyDown(const int &key)
 // Check if key is pressed
 bool Input::IsKeyPressed(const int &key)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "bool IsKeyPressed(const int &key)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "bool IsKeyPressed(const int &key)");
 
   if (key >= 0 && key < GLFW_KEY_LAST)
   {
@@ -172,7 +172,7 @@ bool Input::IsKeyPressed(const int &key)
 // Get mouse position
 glm::vec2 Input::GetMousePosition()
 {
-  Logger::LogTrace(Logger::Module::INPUT, "glm::vec2 GetMousePosition()");
+  Logger::LogTrace(ModuleData::Name::INPUT, "glm::vec2 GetMousePosition()");
 
   return Input::currentPosition;
 }
@@ -180,7 +180,7 @@ glm::vec2 Input::GetMousePosition()
 // Get mouse delta
 glm::vec2 Input::GetMouseDelta()
 {
-  Logger::LogTrace(Logger::Module::INPUT, "glm::vec2 GetMouseDelta()");
+  Logger::LogTrace(ModuleData::Name::INPUT, "glm::vec2 GetMouseDelta()");
 
   return Input::deltaPosition;
 }
@@ -188,7 +188,7 @@ glm::vec2 Input::GetMouseDelta()
 // Get mouse scroll
 double Input::GetMouseScroll(Input::Scroll direction)
 {
-  Logger::LogTrace(Logger::Module::INPUT, "double GetMouseScroll(Input::Scroll direction)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "double GetMouseScroll(Input::Scroll direction)");
 
   return Input::scrollStates[(int)direction];
 }

@@ -10,7 +10,7 @@
 // Constructor
 Camera::Camera(const glm::vec3 &position, const float &fov, const float &near, const float &far)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "Camera(const glm::vec3 &position, const float &fov, const float &near, const float &far)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "Camera(const glm::vec3 &position, const float &fov, const float &near, const float &far)");
 
   this->position = position;
   this->up = glm::vec3(0, 1, 0);
@@ -30,13 +30,13 @@ Camera::Camera(const glm::vec3 &position, const float &fov, const float &near, c
 // Destructor
 Camera::~Camera()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "~Camera()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "~Camera()");
 }
 
 // Move camera
 void Camera::MoveBy(const glm::vec3 &position)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void MoveBy(const glm::vec3 &position)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void MoveBy(const glm::vec3 &position)");
 
   this->position += position;
   this->SetDirty(true);
@@ -45,7 +45,7 @@ void Camera::MoveBy(const glm::vec3 &position)
 // Rotate camera
 void Camera::RotateBy(const float &yaw, const float &pitch)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void RotateBy(const float &yaw, const float &pitch)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void RotateBy(const float &yaw, const float &pitch)");
 
   this->yaw += yaw;
   this->pitch -= pitch;
@@ -55,7 +55,7 @@ void Camera::RotateBy(const float &yaw, const float &pitch)
 // Update camera
 void Camera::UpdateCamera()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void UpdateCamera()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void UpdateCamera()");
 
   // Update front vector
   glm::vec3 angles = glm::vec3(0);
@@ -78,7 +78,7 @@ void Camera::UpdateCamera()
 // Update frustum
 void Camera::UpdateFrustum()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void UpdateFrustum()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void UpdateFrustum()");
 
   // Set frustum planes based on projection view matrix
   glm::mat4 pv = this->GetProjectionView();
@@ -99,7 +99,7 @@ void Camera::UpdateFrustum()
 // Set field of view
 void Camera::SetFOV(const float &value)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void SetFOV(const float &value)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void SetFOV(const float &value)");
 
   this->fov = value;
   this->UpdateCamera();
@@ -108,7 +108,7 @@ void Camera::SetFOV(const float &value)
 // Set near
 void Camera::SetNear(const float &value)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void SetNear(const float &value)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void SetNear(const float &value)");
 
   this->near = value;
   this->UpdateCamera();
@@ -117,7 +117,7 @@ void Camera::SetNear(const float &value)
 // Set far
 void Camera::SetFar(const float &value)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void SetFar(const float &value)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void SetFar(const float &value)");
 
   this->far = value;
   this->UpdateCamera();
@@ -126,7 +126,7 @@ void Camera::SetFar(const float &value)
 // Set camera dirty
 void Camera::SetDirty(const bool &value)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "void SetDirty(const bool &value)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "void SetDirty(const bool &value)");
 
   this->isDirty = value;
 }
@@ -134,7 +134,7 @@ void Camera::SetDirty(const bool &value)
 // Check point in frustum
 bool Camera::IsPointInFrustum(const glm::vec3 &point)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "bool IsPointInFrustum(const glm::vec3 &point)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "bool IsPointInFrustum(const glm::vec3 &point)");
 
   // Update camera if dirty
   if (this->isDirty)
@@ -156,7 +156,7 @@ bool Camera::IsPointInFrustum(const glm::vec3 &point)
 // Check bounding box in frustum
 bool Camera::IsAABBInFrustum(const AABB &aabb)
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "bool IsAABBInFrustum(const AABB &aabb)");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "bool IsAABBInFrustum(const AABB &aabb)");
 
   // Update camera if dirty
   if (this->isDirty)
@@ -182,7 +182,7 @@ bool Camera::IsAABBInFrustum(const AABB &aabb)
 // Get position
 glm::vec3 Camera::GetPosition() const
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "glm::vec3 GetPosition() const");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "glm::vec3 GetPosition() const");
 
   return this->position;
 }
@@ -190,7 +190,7 @@ glm::vec3 Camera::GetPosition() const
 // Get front vector
 glm::vec3 Camera::GetFront()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "glm::vec3 GetFront()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "glm::vec3 GetFront()");
 
   if (this->isDirty)
   {
@@ -202,7 +202,7 @@ glm::vec3 Camera::GetFront()
 // Get right vector
 glm::vec3 Camera::GetRight()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "glm::vec3 GetRight()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "glm::vec3 GetRight()");
 
   if (this->isDirty)
   {
@@ -214,7 +214,7 @@ glm::vec3 Camera::GetRight()
 // Get top vector
 glm::vec3 Camera::GetTop()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "glm::vec3 GetTop()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "glm::vec3 GetTop()");
 
   if (this->isDirty)
   {
@@ -226,7 +226,7 @@ glm::vec3 Camera::GetTop()
 // Get near
 float Camera::GetNear() const
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "float GetNear() const");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "float GetNear() const");
 
   return this->near;
 }
@@ -234,7 +234,7 @@ float Camera::GetNear() const
 // Get far
 float Camera::GetFar() const
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "float GetFar() const");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "float GetFar() const");
 
   return this->far;
 }
@@ -242,7 +242,7 @@ float Camera::GetFar() const
 // Get view matrix
 glm::mat4 Camera::GetView()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "glm::mat4 GetView()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "glm::mat4 GetView()");
 
   if (this->isDirty)
   {
@@ -254,7 +254,7 @@ glm::mat4 Camera::GetView()
 // Get projection matrix
 glm::mat4 Camera::GetProjection()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "glm::mat4 GetProjection()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "glm::mat4 GetProjection()");
 
   if (this->isDirty)
   {
@@ -266,7 +266,7 @@ glm::mat4 Camera::GetProjection()
 // Get projection and view product matrix
 glm::mat4 Camera::GetProjectionView()
 {
-  Logger::LogTrace(Logger::Module::CAMERA, "glm::mat4 GetProjectionView()");
+  Logger::LogTrace(ModuleData::Name::CAMERA, "glm::mat4 GetProjectionView()");
 
   if (this->isDirty)
   {

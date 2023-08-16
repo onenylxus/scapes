@@ -14,7 +14,7 @@ Shader* Renderer::shader;
 // Add line to renderer
 void Renderer::AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color)
 {
-  Logger::LogTrace(Logger::Module::RENDERER, "void Renderer::AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color)");
+  Logger::LogTrace(ModuleData::Name::RENDERER, "void Renderer::AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color)");
 
   // Create line
   Renderer::Line line = Renderer::Line();
@@ -41,7 +41,7 @@ void Renderer::AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color)
 // Add box to renderer
 void Renderer::AddBox(glm::vec3 position, glm::vec3 color)
 {
-  Logger::LogTrace(Logger::Module::RENDERER, "void Renderer::AddBox(glm::vec3 position, glm::vec3 color)");
+  Logger::LogTrace(ModuleData::Name::RENDERER, "void Renderer::AddBox(glm::vec3 position, glm::vec3 color)");
 
   // Define values
   float offset = 0.5f;
@@ -70,7 +70,7 @@ void Renderer::AddBox(glm::vec3 position, glm::vec3 color)
 // Render with camera
 void Renderer::Render(Camera &camera)
 {
-  Logger::LogTrace(Logger::Module::RENDERER, "void Renderer::Render(Camera &camera)");
+  Logger::LogTrace(ModuleData::Name::RENDERER, "void Renderer::Render(Camera &camera)");
 
   // Setup shader
   if (Renderer::shader == nullptr)
@@ -92,7 +92,7 @@ void Renderer::Render(Camera &camera)
 // Clear renderer
 void Renderer::Clear()
 {
-  Logger::LogTrace(Logger::Module::RENDERER, "void Renderer::Clear()");
+  Logger::LogTrace(ModuleData::Name::RENDERER, "void Renderer::Clear()");
 
   // Delete buffers
   for (int i = 0; i < Renderer::lines.size(); ++i)

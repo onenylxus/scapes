@@ -12,7 +12,7 @@
 // Constructor
 Entity::Entity(const glm::vec3& position)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "Entity(const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "Entity(const glm::vec3& position)");
 
   // Set properties
   this->size = glm::vec3(1);
@@ -34,7 +34,7 @@ Entity::Entity(const glm::vec3& position)
 // Destructor
 Entity::~Entity()
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "~Entity()");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "~Entity()");
 
   delete this->object;
 }
@@ -42,7 +42,7 @@ Entity::~Entity()
 // Direct translate to position
 void Entity::Translate(const glm::vec3& position)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void Translate(const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void Translate(const glm::vec3& position)");
 
   this->object->GetTransform()->SetPosition(position);
 }
@@ -50,7 +50,7 @@ void Entity::Translate(const glm::vec3& position)
 // Apply direction
 void Entity::ApplyDirection(const glm::vec3 &direction)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void ApplyDirection(const glm::vec3 &direction)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void ApplyDirection(const glm::vec3 &direction)");
 
   this->direction = glm::normalize(this->direction + direction);
 }
@@ -58,7 +58,7 @@ void Entity::ApplyDirection(const glm::vec3 &direction)
 // Apply velocity
 void Entity::ApplyVelocity(const glm::vec3 &velocity)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void ApplyVelocity(const glm::vec3 &velocity)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void ApplyVelocity(const glm::vec3 &velocity)");
 
   this->velocity += velocity;
   if (glm::length(this->velocity) > this->speed)
@@ -70,7 +70,7 @@ void Entity::ApplyVelocity(const glm::vec3 &velocity)
 // Move by physics
 void Entity::Move()
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void Move()");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void Move()");
 
   this->object->GetTransform()->Translate(this->velocity);
 }
@@ -78,19 +78,19 @@ void Entity::Move()
 // Update event
 void Entity::OnUpdate()
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void OnUpdate()");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void OnUpdate()");
 }
 
 // Render event
 void Entity::OnRender(Camera& camera)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void OnRender(Camera& camera)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void OnRender(Camera& camera)");
 }
 
 // Collision event
 void Entity::OnCollision(const glm::vec3& normal)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void OnCollision(const glm::vec3& normal)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void OnCollision(const glm::vec3& normal)");
 
   // Check collision by axes
   if (normal.x > 0.0f)
@@ -113,7 +113,7 @@ void Entity::OnCollision(const glm::vec3& normal)
 // Set position
 void Entity::SetPosition(const glm::vec3& position)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void SetPosition(const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetPosition(const glm::vec3& position)");
 
   this->object->GetTransform()->SetPosition(position);
 }
@@ -121,7 +121,7 @@ void Entity::SetPosition(const glm::vec3& position)
 // Set direction
 void Entity::SetDirection(const glm::vec3& direction)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void SetDirection(const glm::vec3& direction)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetDirection(const glm::vec3& direction)");
 
   this->direction = direction;
 }
@@ -129,7 +129,7 @@ void Entity::SetDirection(const glm::vec3& direction)
 // Set physics
 void Entity::SetPhysics(const bool& state)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void SetPhysics(const glm::vec3& physics)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetPhysics(const glm::vec3& physics)");
 
   this->isPhysicsEnabled = state;
 }
@@ -137,7 +137,7 @@ void Entity::SetPhysics(const bool& state)
 // Set speed
 void Entity::SetSpeed(const float& speed)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void SetSpeed(const float& speed)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetSpeed(const float& speed)");
 
   this->speed = speed;
 }
@@ -145,7 +145,7 @@ void Entity::SetSpeed(const float& speed)
 // Set hovering
 void Entity::SetHovering(const bool& hovering)
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "void SetHovering(const bool& hovering)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetHovering(const bool& hovering)");
 
   this->isHovering = hovering;
 }
@@ -153,7 +153,7 @@ void Entity::SetHovering(const bool& hovering)
 // Check hovering state
 bool Entity::IsHovering() const
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "bool IsHovering() const");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "bool IsHovering() const");
 
   return this->isHovering;
 }
@@ -161,7 +161,7 @@ bool Entity::IsHovering() const
 // Get position
 glm::vec3 Entity::GetPosition() const
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "glm::vec3& GetPosition() const");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "glm::vec3& GetPosition() const");
 
   return this->object->GetPosition();
 }
@@ -169,7 +169,7 @@ glm::vec3 Entity::GetPosition() const
 // Get transform matrix
 glm::mat4 Entity::GetMatrix() const
 {
-  Logger::LogTrace(Logger::Module::ENTITY, "glm::mat4 GetMatrix() const");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "glm::mat4 GetMatrix() const");
 
   return this->object->GetTransform()->GetMatrix();
 }

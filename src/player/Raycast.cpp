@@ -10,7 +10,7 @@
 // Cast ray from camera
 Raycast::Ray Raycast::CastFromCamera(const float &distance, Camera &camera)
 {
-  Logger::LogTrace(Logger::Module::RAYCAST, "Raycast::Ray Raycast::CastFromCamera(const float &distance, Camera &camera)");
+  Logger::LogTrace(ModuleData::Name::RAYCAST, "Raycast::Ray Raycast::CastFromCamera(const float &distance, Camera &camera)");
 
   // Adjust values from screen size
   glm::vec2 screenSize = Engine::GetWindowSize();

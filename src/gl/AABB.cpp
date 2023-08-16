@@ -10,7 +10,7 @@
 // Constructor
 AABB::AABB(const glm::vec3 &position, const glm::vec3 &size)
 {
-  Logger::LogTrace(Logger::Module::AABB, "AABB(const glm::vec3 &position, const glm::vec3 &size)");
+  Logger::LogTrace(ModuleData::Name::AABB, "AABB(const glm::vec3 &position, const glm::vec3 &size)");
 
   this->Update(position, size);
 }
@@ -18,13 +18,13 @@ AABB::AABB(const glm::vec3 &position, const glm::vec3 &size)
 // Destructor
 AABB::~AABB()
 {
-  Logger::LogTrace(Logger::Module::AABB, "~AABB()");
+  Logger::LogTrace(ModuleData::Name::AABB, "~AABB()");
 }
 
 // Update bounding box
 void AABB::Update(const glm::vec3 &position, const glm::vec3 &size)
 {
-  Logger::LogTrace(Logger::Module::AABB, "void Update(const glm::vec3 &position, const glm::vec3 &size)");
+  Logger::LogTrace(ModuleData::Name::AABB, "void Update(const glm::vec3 &position, const glm::vec3 &size)");
 
   // Set properties
   glm::vec3 half = size / 2.0f;
@@ -46,7 +46,7 @@ void AABB::Update(const glm::vec3 &position, const glm::vec3 &size)
 // General overlapping check
 bool AABB::IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, const glm::vec3 &positionB, const glm::vec3 &sizeB)
 {
-  Logger::LogTrace(Logger::Module::AABB, "bool IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, const glm::vec3 &positionB, const glm::vec3 &sizeB)");
+  Logger::LogTrace(ModuleData::Name::AABB, "bool IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, const glm::vec3 &positionB, const glm::vec3 &sizeB)");
 
   glm::vec3 halfA = sizeA / 2.0f;
   glm::vec3 minA = positionA - halfA;
@@ -60,7 +60,7 @@ bool AABB::IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, con
 // Overlapping check with position and size
 bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const
 {
-  Logger::LogTrace(Logger::Module::AABB, "bool IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const");
+  Logger::LogTrace(ModuleData::Name::AABB, "bool IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const");
 
   glm::vec3 half = size / 2.0f;
   glm::vec3 min = position - half;
@@ -71,7 +71,7 @@ bool AABB::IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const
 // Overlapping check with AABB
 bool AABB::IsOverlapping(const AABB &aabb) const
 {
-  Logger::LogTrace(Logger::Module::AABB, "bool IsOverlapping(const AABB &aabb) const");
+  Logger::LogTrace(ModuleData::Name::AABB, "bool IsOverlapping(const AABB &aabb) const");
 
   return this->max.x >= aabb.min.x && this->min.x <= aabb.max.x && this->max.y >= aabb.min.y && this->min.y <= aabb.max.y && this->max.z >= aabb.min.z && this->min.z <= aabb.max.z;
 }
@@ -79,7 +79,7 @@ bool AABB::IsOverlapping(const AABB &aabb) const
 // Get vertex position
 glm::vec3 AABB::GetVertex(const unsigned int &index) const
 {
-  Logger::LogTrace(Logger::Module::AABB, "glm::vec3 GetVertex(const unsigned int &index) const");
+  Logger::LogTrace(ModuleData::Name::AABB, "glm::vec3 GetVertex(const unsigned int &index) const");
 
   return this->vertices[index];
 }

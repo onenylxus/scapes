@@ -17,7 +17,7 @@ int Engine::height;
 // Create engine
 bool Engine::Create(const char* title, const char* version, const int &width, const int &height)
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "bool Create(const char* title, const char* version, const int &width, const int &height)");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "bool Create(const char* title, const char* version, const int &width, const int &height)");
 
   // Set values
   this->title = title;
@@ -28,7 +28,7 @@ bool Engine::Create(const char* title, const char* version, const int &width, co
   // Initialize GLFW
   if (!glfwInit())
   {
-    Logger::LogError(Logger::Module::ENGINE, "Failed to initialize GLFW");
+    Logger::LogError(ModuleData::Name::ENGINE, "Failed to initialize GLFW");
     return false;
   }
 
@@ -44,7 +44,7 @@ bool Engine::Create(const char* title, const char* version, const int &width, co
   this->window = glfwCreateWindow(this->width, this->height, this->title.c_str(), NULL, NULL);
   if (!this->window)
   {
-    Logger::LogError(Logger::Module::ENGINE, "Failed to create window or context");
+    Logger::LogError(ModuleData::Name::ENGINE, "Failed to create window or context");
     glfwTerminate();
     return false;
   }
@@ -53,7 +53,7 @@ bool Engine::Create(const char* title, const char* version, const int &width, co
   // Initialize GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
   {
-    Logger::LogError(Logger::Module::ENGINE, "Failed to initialize GLAD");
+    Logger::LogError(ModuleData::Name::ENGINE, "Failed to initialize GLAD");
     glfwTerminate();
     return false;
   }
@@ -73,7 +73,7 @@ bool Engine::Create(const char* title, const char* version, const int &width, co
 // Start engine
 void Engine::Start()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "void Start()");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "void Start()");
 
   // Start event callback
   Logger::Log(Logger::Color::BLACK, false, "\n===============================");
@@ -83,7 +83,7 @@ void Engine::Start()
   Logger::Log(Logger::Color::BLACK, false, "OpenGL renderer: %s", this->GetGLRenderer().c_str());
   Logger::Log(Logger::Color::BLACK, false, "OpenGL version: %s", this->GetGLVersion().c_str());
   Logger::Log(Logger::Color::BLACK, false, "===============================\n");
-  Logger::LogInfo(Logger::Module::ENGINE, "Application started");
+  Logger::LogInfo(ModuleData::Name::ENGINE, "Application started");
   this->OnStart();
 
   // Run engine loop
@@ -125,7 +125,7 @@ void Engine::Start()
 
   // End event callback
   this->OnEnd();
-  Logger::LogInfo(Logger::Module::ENGINE, "Application ended");
+  Logger::LogInfo(ModuleData::Name::ENGINE, "Application ended");
 
   // Terminate ImGui
   ImGui_ImplOpenGL3_Shutdown();
@@ -139,7 +139,7 @@ void Engine::Start()
 // Frame buffer size callback
 void Engine::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "void FramebufferSizeCallback(GLFWwindow* window, int width, int height)");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "void FramebufferSizeCallback(GLFWwindow* window, int width, int height)");
 
   glViewport(0, 0, width, height);
 }
@@ -147,7 +147,7 @@ void Engine::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 // Set event callbacks
 void Engine::SetEventCallbacks()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "void SetEventCallbacks()");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "void SetEventCallbacks()");
 
   Input::SetCallbacks(this->window);
   glfwSetFramebufferSizeCallback(this->window, Engine::FramebufferSizeCallback);
@@ -156,7 +156,7 @@ void Engine::SetEventCallbacks()
 // Get window
 GLFWwindow &Engine::GetWindow()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "GLFWwindow &GetWindow()");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "GLFWwindow &GetWindow()");
 
   return *Engine::window;
 }
@@ -164,7 +164,7 @@ GLFWwindow &Engine::GetWindow()
 // Get window size
 glm::ivec2 Engine::GetWindowSize()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "glm::ivec2 GetWindowSize()");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "glm::ivec2 GetWindowSize()");
 
   glm::ivec2 size;
   glfwGetWindowSize(Engine::window, &size.x, &size.y);
@@ -174,7 +174,7 @@ glm::ivec2 Engine::GetWindowSize()
 // Get OpenGL vendor string
 std::string Engine::GetGLVendor()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "std::string GetGLVendor()");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "std::string GetGLVendor()");
 
   return std::string(reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
 }
@@ -182,7 +182,7 @@ std::string Engine::GetGLVendor()
 // Get OpenGL renderer string
 std::string Engine::GetGLRenderer()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "std::string GetGLRenderer()");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "std::string GetGLRenderer()");
 
   return std::string(reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
 }
@@ -190,7 +190,7 @@ std::string Engine::GetGLRenderer()
 // Get OpenGL version string
 std::string Engine::GetGLVersion()
 {
-  Logger::LogTrace(Logger::Module::ENGINE, "std::string GetGLVersion()");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "std::string GetGLVersion()");
 
   return std::string(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
 }
