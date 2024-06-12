@@ -6,6 +6,7 @@
 
 // Include
 #pragma once
+#define GLM_ENABLE_EXPERIMENTAL
 #include <cmath>
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
