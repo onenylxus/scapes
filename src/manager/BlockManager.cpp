@@ -8,9 +8,9 @@
 #include "BlockManager.h"
 
 // Set default values
-Tilemap* BlockManager::solidTexture = nullptr;
-Tilemap* BlockManager::liquidTexture = nullptr;
-Tilemap* BlockManager::gaseousTexture = nullptr;
+Tilemap *BlockManager::solidTexture = nullptr;
+Tilemap *BlockManager::liquidTexture = nullptr;
+Tilemap *BlockManager::gaseousTexture = nullptr;
 std::vector<float> BlockManager::solidVertexData = std::vector<float>({
   // Left
   0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
@@ -161,30 +161,30 @@ void BlockManager::LoadDatabase()
 }
 
 // Get tilemap
-const Tilemap* BlockManager::GetTilemap(const Block::Type type)
+const Tilemap *BlockManager::GetTilemap(const Block::Type type)
 {
-  Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "const Tilemap* GetTilemap(const Block::Type type)");
+  Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "const Tilemap *GetTilemap(const Block::Type type)");
 
   switch (type)
   {
-    case Block::Type::SOLID:
-      return BlockManager::solidTexture;
+  case Block::Type::SOLID:
+    return BlockManager::solidTexture;
 
-    case Block::Type::LIQUID:
-      return BlockManager::liquidTexture;
+  case Block::Type::LIQUID:
+    return BlockManager::liquidTexture;
 
-    case Block::Type::GASEOUS:
-      return BlockManager::gaseousTexture;
+  case Block::Type::GASEOUS:
+    return BlockManager::gaseousTexture;
 
-    default:
-      return nullptr;
+  default:
+    return nullptr;
   }
 }
 
 // Get block data
-const Block::Data* BlockManager::GetBlockData(const BlockManager::Value &value)
+const Block::Data *BlockManager::GetBlockData(const BlockManager::Value &value)
 {
-  Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "const Block::Data* GetBlockData(const BlockManager::Value &value)");
+  Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "const Block::Data *GetBlockData(const BlockManager::Value &value)");
 
   return &BlockManager::blocks[(int)value];
 }
@@ -194,19 +194,19 @@ void BlockManager::GetTextureCoords(const BlockManager::Value &value, const Bloc
 {
   Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "void GetTextureCoords(const BlockManager::Value &value, const Block::Face &face, std::array<glm::vec2, 4> &coords)");
 
-  const Block::Data* data = BlockManager::GetBlockData(value);
+  const Block::Data *data = BlockManager::GetBlockData(value);
   switch (data->textureType)
   {
-    case Block::Type::SOLID:
-      BlockManager::solidTexture->GetSpriteCoordinates(data->texture[(unsigned int)face], coords);
-      break;
+  case Block::Type::SOLID:
+    BlockManager::solidTexture->GetSpriteCoordinates(data->texture[(unsigned int)face], coords);
+    break;
 
-    case Block::Type::LIQUID:
-      BlockManager::liquidTexture->GetSpriteCoordinates(data->texture[(unsigned int)face], coords);
-      break;
+  case Block::Type::LIQUID:
+    BlockManager::liquidTexture->GetSpriteCoordinates(data->texture[(unsigned int)face], coords);
+    break;
 
-    case Block::Type::GASEOUS:
-      BlockManager::gaseousTexture->GetSpriteCoordinates(data->texture[(unsigned int)face], coords);
+  case Block::Type::GASEOUS:
+    BlockManager::gaseousTexture->GetSpriteCoordinates(data->texture[(unsigned int)face], coords);
   }
 }
 
@@ -218,31 +218,29 @@ void BlockManager::GetMeshFace(const Block::Type &type, const Block::Face &face,
   int i = (int)face * 24 + corner * 6;
   switch (type)
   {
-    case Block::Type::SOLID:
-      vertices.emplace_back(BlockManager::solidVertexData[i] + position.x);
-      vertices.emplace_back(BlockManager::solidVertexData[i + 1] + position.y);
-      vertices.emplace_back(BlockManager::solidVertexData[i + 2] + position.z);
-      vertices.emplace_back(BlockManager::solidVertexData[i + 3]);
-      vertices.emplace_back(BlockManager::solidVertexData[i + 4]);
-      vertices.emplace_back(BlockManager::solidVertexData[i + 5]);
-      break;
-
-    case Block::Type::LIQUID:
-      vertices.emplace_back(BlockManager::liquidVertexData[i] + position.x);
-      vertices.emplace_back(BlockManager::liquidVertexData[i + 1] + position.y);
-      vertices.emplace_back(BlockManager::liquidVertexData[i + 2] + position.z);
-      vertices.emplace_back(BlockManager::liquidVertexData[i + 3]);
-      vertices.emplace_back(BlockManager::liquidVertexData[i + 4]);
-      vertices.emplace_back(BlockManager::liquidVertexData[i + 5]);
-      break;
-
-    case Block::Type::GASEOUS:
-      vertices.emplace_back(BlockManager::gaseousVertexData[i] + position.x);
-      vertices.emplace_back(BlockManager::gaseousVertexData[i + 1] + position.y);
-      vertices.emplace_back(BlockManager::gaseousVertexData[i + 2] + position.z);
-      vertices.emplace_back(BlockManager::gaseousVertexData[i + 3]);
-      vertices.emplace_back(BlockManager::gaseousVertexData[i + 4]);
-      vertices.emplace_back(BlockManager::gaseousVertexData[i + 5]);
+  case Block::Type::SOLID:
+    vertices.emplace_back(BlockManager::solidVertexData[i] + position.x);
+    vertices.emplace_back(BlockManager::solidVertexData[i + 1] + position.y);
+    vertices.emplace_back(BlockManager::solidVertexData[i + 2] + position.z);
+    vertices.emplace_back(BlockManager::solidVertexData[i + 3]);
+    vertices.emplace_back(BlockManager::solidVertexData[i + 4]);
+    vertices.emplace_back(BlockManager::solidVertexData[i + 5]);
+    break;
+  case Block::Type::LIQUID:
+    vertices.emplace_back(BlockManager::liquidVertexData[i] + position.x);
+    vertices.emplace_back(BlockManager::liquidVertexData[i + 1] + position.y);
+    vertices.emplace_back(BlockManager::liquidVertexData[i + 2] + position.z);
+    vertices.emplace_back(BlockManager::liquidVertexData[i + 3]);
+    vertices.emplace_back(BlockManager::liquidVertexData[i + 4]);
+    vertices.emplace_back(BlockManager::liquidVertexData[i + 5]);
+    break;
+  case Block::Type::GASEOUS:
+    vertices.emplace_back(BlockManager::gaseousVertexData[i] + position.x);
+    vertices.emplace_back(BlockManager::gaseousVertexData[i + 1] + position.y);
+    vertices.emplace_back(BlockManager::gaseousVertexData[i + 2] + position.z);
+    vertices.emplace_back(BlockManager::gaseousVertexData[i + 3]);
+    vertices.emplace_back(BlockManager::gaseousVertexData[i + 4]);
+    vertices.emplace_back(BlockManager::gaseousVertexData[i + 5]);
   }
 }
 

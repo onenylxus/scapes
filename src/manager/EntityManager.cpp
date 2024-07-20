@@ -9,7 +9,7 @@
 #include "EntityManager.h"
 
 // Set default values
-std::vector<Entity*> EntityManager::entities;
+std::vector<Entity *> EntityManager::entities;
 
 // Update entities
 void EntityManager::Update()
@@ -23,9 +23,9 @@ void EntityManager::Update()
 }
 
 // Render entities
-void EntityManager::Render(Camera& camera)
+void EntityManager::Render(Camera &camera)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY_MANAGER, "void Render(Camera& camera)");
+  Logger::LogTrace(ModuleData::Name::ENTITY_MANAGER, "void Render(Camera &camera)");
 
   for (int i = 0; i < EntityManager::entities.size(); i++)
   {
@@ -34,9 +34,9 @@ void EntityManager::Render(Camera& camera)
 }
 
 // Add entity
-void EntityManager::Add(Entity& entity)
+void EntityManager::Add(Entity &entity)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY_MANAGER, "void AddEntity(Entity& entity)");
+  Logger::LogTrace(ModuleData::Name::ENTITY_MANAGER, "void AddEntity(Entity &entity)");
 
   EntityManager::entities.push_back(&entity);
 }

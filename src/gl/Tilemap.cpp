@@ -8,9 +8,9 @@
 #include "Tilemap.h"
 
 // Constructor
-Tilemap::Tilemap(const char* path, const unsigned int &rows, const unsigned int &columns)
+Tilemap::Tilemap(const char *path, const unsigned int &rows, const unsigned int &columns)
 {
-  Logger::LogTrace(ModuleData::Name::TILEMAP, "Tilemap(const char* path, const unsigned int &rows, const unsigned int &columns)");
+  Logger::LogTrace(ModuleData::Name::TILEMAP, "Tilemap(const char *path, const unsigned int &rows, const unsigned int &columns)");
 
   this->texture = new Sprite(path);
   this->rows = rows;

@@ -33,7 +33,7 @@ bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
 
   // Create vertex shader
   std::string vStr = this->ReadCode(vsPath);
-  const GLchar* vCode = vStr.c_str();
+  const GLchar *vCode = vStr.c_str();
   GLuint vs = glCreateShader(GL_VERTEX_SHADER);
   glShaderSource(vs, 1, &vCode, NULL);
   glCompileShader(vs);
@@ -46,7 +46,7 @@ bool Shader::LoadGraphics(std::string vsPath, std::string fsPath)
 
   // Create fragment shader
   std::string fStr = this->ReadCode(fsPath);
-  const GLchar* fCode = fStr.c_str();
+  const GLchar *fCode = fStr.c_str();
   GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fs, 1, &fCode, NULL);
   glCompileShader(fs);
@@ -82,7 +82,7 @@ bool Shader::LoadGeometry(std::string path)
 
   // Create geometry shader
   std::string gStr = this->ReadCode(path);
-  const GLchar* gCode = gStr.c_str();
+  const GLchar *gCode = gStr.c_str();
   GLuint gs = glCreateShader(GL_GEOMETRY_SHADER);
   glShaderSource(gs, 1, &gCode, NULL);
   glCompileShader(gs);
@@ -116,7 +116,7 @@ bool Shader::LoadCompute(std::string path)
 
   // Create compute shader
   std::string cStr = this->ReadCode(path);
-  const GLchar* cCode = cStr.c_str();
+  const GLchar *cCode = cStr.c_str();
   GLuint cs = glCreateShader(GL_COMPUTE_SHADER);
   glShaderSource(cs, 1, &cCode, NULL);
   glCompileShader(cs);
@@ -196,7 +196,7 @@ bool Shader::CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERI
     // Create buffer
     GLint ilLength;
     ivFunc(id, GL_INFO_LOG_LENGTH, &ilLength);
-    GLchar* buffer = new GLchar[ilLength];
+    GLchar *buffer = new GLchar[ilLength];
 
     // Write log
     GLsizei bufferSize;
@@ -211,9 +211,9 @@ bool Shader::CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERI
 }
 
 // Set uniform float value
-void Shader::SetFloat(const char* name, float value)
+void Shader::SetFloat(const char *name, float value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetFloat(const char* name, float value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetFloat(const char *name, float value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -226,9 +226,9 @@ void Shader::SetFloat(const char* name, float value)
 }
 
 // Set uniform integer value
-void Shader::SetInt(const char* name, int value)
+void Shader::SetInt(const char *name, int value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetInt(const char* name, int value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetInt(const char *name, int value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -241,9 +241,9 @@ void Shader::SetInt(const char* name, int value)
 }
 
 // Set uniform matrix2 value
-void Shader::SetMatrix2(const char* name, const glm::mat2& value)
+void Shader::SetMatrix2(const char *name, const glm::mat2 &value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetMatrix2(const char* name, const glm::mat2& value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetMatrix2(const char *name, const glm::mat2 &value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -256,9 +256,9 @@ void Shader::SetMatrix2(const char* name, const glm::mat2& value)
 }
 
 // Set uniform matrix3 value
-void Shader::SetMatrix3(const char* name, const glm::mat3& value)
+void Shader::SetMatrix3(const char *name, const glm::mat3 &value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetMatrix3(const char* name, const glm::mat3& value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetMatrix3(const char *name, const glm::mat3 &value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -271,9 +271,9 @@ void Shader::SetMatrix3(const char* name, const glm::mat3& value)
 }
 
 // Set uniform matrix4 value
-void Shader::SetMatrix4(const char* name, const glm::mat4& value)
+void Shader::SetMatrix4(const char *name, const glm::mat4 &value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetMatrix4(const char* name, const glm::mat4& value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetMatrix4(const char *name, const glm::mat4 &value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -286,9 +286,9 @@ void Shader::SetMatrix4(const char* name, const glm::mat4& value)
 }
 
 // Set uniform vector2 value
-void Shader::SetVector2(const char* name, const glm::vec2& value)
+void Shader::SetVector2(const char *name, const glm::vec2 &value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetVector2(const char* name, const glm::vec2& value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetVector2(const char *name, const glm::vec2 &value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -301,9 +301,9 @@ void Shader::SetVector2(const char* name, const glm::vec2& value)
 }
 
 // Set uniform vector3 value
-void Shader::SetVector3(const char* name, const glm::vec3& value)
+void Shader::SetVector3(const char *name, const glm::vec3 &value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetVector3(const char* name, const glm::vec3& value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetVector3(const char *name, const glm::vec3 &value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -316,9 +316,9 @@ void Shader::SetVector3(const char* name, const glm::vec3& value)
 }
 
 // Set uniform vector4 value
-void Shader::SetVector4(const char* name, const glm::vec4& value)
+void Shader::SetVector4(const char *name, const glm::vec4 &value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetVector4(const char* name, const glm::vec4& value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetVector4(const char *name, const glm::vec4 &value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);
@@ -331,9 +331,9 @@ void Shader::SetVector4(const char* name, const glm::vec4& value)
 }
 
 // Set uniform texture unit value
-void Shader::SetTextureUnit(const char* name, const unsigned int& value)
+void Shader::SetTextureUnit(const char *name, const unsigned int &value)
 {
-  Logger::LogTrace(ModuleData::Name::SHADER, "void SetTextureUnit(const char* name, const unsigned int& value)");
+  Logger::LogTrace(ModuleData::Name::SHADER, "void SetTextureUnit(const char *name, const unsigned int &value)");
 
   this->Use();
   unsigned int loc = glGetUniformLocation(this->program, name);

@@ -79,9 +79,9 @@ void Input::Update()
 }
 
 // Set cursor visibility
-void Input::SetCursorVisibility(const bool& visible)
+void Input::SetCursorVisibility(const bool &visible)
 {
-  Logger::LogTrace(ModuleData::Name::INPUT, "void SetCursorVisibility(const bool& visible)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void SetCursorVisibility(const bool &visible)");
 
   if (visible)
   {
@@ -99,9 +99,9 @@ void Input::SetCursorVisibility(const bool& visible)
 }
 
 // Set callbacks
-void Input::SetCallbacks(GLFWwindow* window)
+void Input::SetCallbacks(GLFWwindow *window)
 {
-  Logger::LogTrace(ModuleData::Name::INPUT, "void SetCallbacks(GLFWwindow* window)");
+  Logger::LogTrace(ModuleData::Name::INPUT, "void SetCallbacks(GLFWwindow *window)");
 
   glfwSetCursorPosCallback(window, Input::MousePositionCallback);
   glfwSetMouseButtonCallback(window, Input::MouseButtonCallback);

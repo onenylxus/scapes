@@ -8,9 +8,9 @@
 #include "Skybox.h"
 
 // Constructor
-Skybox::Skybox(const char* path)
+Skybox::Skybox(const char *path)
 {
-  Logger::LogTrace(ModuleData::Name::SKYBOX, "Skybox(const char* path)");
+  Logger::LogTrace(ModuleData::Name::SKYBOX, "Skybox(const char *path)");
 
   // Setup texture and object
   this->texture = new Cubemap(path);
@@ -28,9 +28,9 @@ Skybox::~Skybox()
 }
 
 // Render skybox
-void Skybox::Render(Camera& camera)
+void Skybox::Render(Camera &camera)
 {
-  Logger::LogTrace(ModuleData::Name::SKYBOX, "void Render(Camera& camera)");
+  Logger::LogTrace(ModuleData::Name::SKYBOX, "void Render(Camera &camera)");
 
   // Setup shader and texture
   this->texture->Bind(0);
@@ -44,9 +44,9 @@ void Skybox::Render(Camera& camera)
 }
 
 // Get shader
-Shader* Skybox::GetShader()
+Shader *Skybox::GetShader()
 {
-  Logger::LogTrace(ModuleData::Name::SKYBOX, "Shader* GetShader()");
+  Logger::LogTrace(ModuleData::Name::SKYBOX, "Shader *GetShader()");
 
   return this->cube->GetShader();
 }

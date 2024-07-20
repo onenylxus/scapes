@@ -40,7 +40,7 @@ class Logger
 
   // Priority data
   private:
-    static inline const char* priorities[5] = {
+    static inline const char *priorities[5] = {
       "Trace",
       "Debug",
       "Info",
@@ -65,13 +65,13 @@ class Logger
   private:
     static inline Logger::Priority priority = Logger::Priority::DEBUG;
     static inline std::mutex mutex;
-    static inline const char* path = 0;
-    static inline FILE* file = 0;
+    static inline const char *path = 0;
+    static inline FILE *file = 0;
     static inline bool isWriteEnabled = false;
 
   // Methods
   public:
-    static void EnableWrite(const char* path)
+    static void EnableWrite(const char *path)
     {
       // Close file
       DisableWrite();
@@ -98,7 +98,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogTrace(ModuleData::Name module, const char* message, Args... args)
+    static void LogTrace(ModuleData::Name module, const char *message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::TRACE)
       {
@@ -107,7 +107,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogDebug(ModuleData::Name module, const char* message, Args... args)
+    static void LogDebug(ModuleData::Name module, const char *message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::DEBUG)
       {
@@ -116,7 +116,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogInfo(ModuleData::Name module, const char* message, Args... args)
+    static void LogInfo(ModuleData::Name module, const char *message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::INFO)
       {
@@ -125,7 +125,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogWarn(ModuleData::Name module, const char* message, Args... args)
+    static void LogWarn(ModuleData::Name module, const char *message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::WARN)
       {
@@ -134,7 +134,7 @@ class Logger
     }
 
     template<typename... Args>
-    static void LogError(ModuleData::Name module, const char* message, Args... args)
+    static void LogError(ModuleData::Name module, const char *message, Args... args)
     {
       if (Logger::priority <= Logger::Priority::ERROR)
       {
@@ -143,25 +143,25 @@ class Logger
     }
 
     template<typename... Args>
-    static void Log(const char* message, Args... args)
+    static void Log(const char *message, Args... args)
     {
       Logger::Log(Logger::Color::WHITE, true, message, args...);
     }
 
     template<typename... Args>
-    static void Log(Logger::Color color, const char* message, Args... args)
+    static void Log(Logger::Color color, const char *message, Args... args)
     {
       Logger::Log(color, true, message, args...);
     }
 
     template<typename... Args>
-    static void Log(bool timestamp, const char* message, Args... args)
+    static void Log(bool timestamp, const char *message, Args... args)
     {
       Logger::Log(Logger::Color::WHITE, timestamp, message, args...);
     }
 
     template<typename... Args>
-    static void Log(Logger::Color color, bool timestamp, const char* message, Args... args)
+    static void Log(Logger::Color color, bool timestamp, const char *message, Args... args)
     {
       // Lock mutex within scope
       std::scoped_lock lock(Logger::mutex);
@@ -182,7 +182,7 @@ class Logger
 
   private:
     template<typename... Args>
-    static void LogPriority(ModuleData::Name module, Logger::Priority priority, const char* message, Args... args)
+    static void LogPriority(ModuleData::Name module, Logger::Priority priority, const char *message, Args... args)
     {
       // Exclude module size option
       if (module == ModuleData::Name::_MODULE_SIZE)

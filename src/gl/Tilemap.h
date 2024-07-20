@@ -14,26 +14,26 @@
 // Tilemap class
 class Tilemap
 {
-  // Constructor and destructor
-  public:
-    Tilemap(const char* path, const unsigned int &rows, const unsigned int &columns);
-    virtual ~Tilemap();
+// Constructor and destructor
+public:
+  Tilemap(const char *path, const unsigned int &rows, const unsigned int &columns);
+  virtual ~Tilemap();
 
-  // Properties
-  private:
-    Sprite* texture;
-    unsigned int rows;
-    unsigned int columns;
-    float tileWidth;
-    float tileHeight;
+// Properties
+private:
+  Sprite *texture;
+  unsigned int rows;
+  unsigned int columns;
+  float tileWidth;
+  float tileHeight;
 
-  // Methods
-  public:
-    void Bind(const unsigned int &index = 0) const;
+// Methods
+public:
+  void Bind(const unsigned int &index = 0) const;
 
-  // Getters
-  public:
-    void GetSpriteCoordinates(const unsigned int &index, std::array<glm::vec2, 4> &coords) const;
+// Getters
+public:
+  void GetSpriteCoordinates(const unsigned int &index, std::array<glm::vec2, 4> &coords) const;
 };
 
 ////////////////////////////////////////////////////////////////

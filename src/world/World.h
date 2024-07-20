@@ -15,19 +15,19 @@
 // World class
 class World
 {
-  // Constructor and destructor
-  public:
-    World();
-    virtual ~World();
+// Constructor and destructor
+public:
+  World();
+  virtual ~World();
 
-  // Properties
-  private:
-    Skybox* skybox;
+// Properties
+private:
+  Skybox *skybox;
 
-  // Methods
-  public:
-    void Update();
-    void Render();
+// Methods
+public:
+  void Update();
+  void Render();
 };
 
 ////////////////////////////////////////////////////////////////

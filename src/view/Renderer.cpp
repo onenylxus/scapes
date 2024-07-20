@@ -9,7 +9,7 @@
 
 // Set default values
 std::vector<Renderer::Line> Renderer::lines = std::vector<Renderer::Line>();
-Shader* Renderer::shader;
+Shader *Renderer::shader;
 
 // Add line to renderer
 void Renderer::AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color)
@@ -21,7 +21,7 @@ void Renderer::AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color)
   line.start = start;
   line.end = end;
   line.color = color;
-  glm::vec3 vec[2] = { start, end };
+  glm::vec3 vec[2] = {start, end};
 
   // Create array buffers
   glGenVertexArrays(1, &line.vao);
@@ -31,7 +31,7 @@ void Renderer::AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color)
   glBindVertexArray(line.vao);
   glBindBuffer(GL_ARRAY_BUFFER, line.vbo);
   glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * 2, &vec[0], GL_STATIC_DRAW);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)0);
   glEnableVertexAttribArray(0);
 
   // Push line to renderer

@@ -8,9 +8,9 @@
 #include "Chunk.h"
 
 // Constructor
-Chunk::Chunk(glm::ivec2 index, ChunkManager& manager)
+Chunk::Chunk(glm::ivec2 index, ChunkManager &manager)
 {
-  Logger::LogTrace(ModuleData::Name::CHUNK, "Chunk(const glm::ivec2 index, ChunkManager& manager)");
+  Logger::LogTrace(ModuleData::Name::CHUNK, "Chunk(const glm::ivec2 index, ChunkManager &manager)");
 
   this->manager = &manager;
   this->globalCoords = glm::vec3(index.x * Chunk::chunkSize, 0.0f, index.y * Chunk::chunkSize);
@@ -36,15 +36,15 @@ Chunk::~Chunk()
 }
 
 // Render with solid shader
-void Chunk::RenderSolid(Shader& solidShader)
+void Chunk::RenderSolid(Shader &solidShader)
 {
-  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderSolid(Shader& solidShader)");
+  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderSolid(Shader &solidShader)");
 }
 
 // Render with liquid shader
-void Chunk::RenderLiquid(Shader& liquidShader)
+void Chunk::RenderLiquid(Shader &liquidShader)
 {
-  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderLiquid(Shader& liquidShader)");
+  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderLiquid(Shader &liquidShader)");
 }
 
 ////////////////////////////////////////////////////////////////

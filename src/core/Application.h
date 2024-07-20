@@ -12,21 +12,21 @@
 // Application class
 class Application : public Engine
 {
-  // Properties
-  private:
-    static Application* app;
-    World* world;
+// Properties
+private:
+  static Application *app;
+  World *world;
 
-  // Methods
-  private:
-    virtual void OnStart() override;
-    virtual void OnUpdate() override;
-    virtual void OnRender() override;
-    virtual void OnEnd() override;
+// Methods
+private:
+  virtual void OnStart() override;
+  virtual void OnUpdate() override;
+  virtual void OnRender() override;
+  virtual void OnEnd() override;
 
-  // Getters
-  public:
-    static Application &GetApp();
+// Getters
+public:
+  static Application &GetApp();
 };
 
 ////////////////////////////////////////////////////////////////

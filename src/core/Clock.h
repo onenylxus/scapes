@@ -13,20 +13,20 @@
 // Clock class
 class Clock
 {
-  // Properties
-  private:
-    static float then;
-    static float delta;
-    static float total;
+// Properties
+private:
+  static float then;
+  static float delta;
+  static float total;
 
-  // Methods
-  public:
-    static void Update();
+// Methods
+public:
+  static void Update();
 
-  // Getters
-  public:
-    static float GetDelta();
-    static float GetTotal();
+// Getters
+public:
+  static float GetDelta();
+  static float GetTotal();
 };
 
 ////////////////////////////////////////////////////////////////

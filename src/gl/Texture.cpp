@@ -39,12 +39,12 @@ void Texture::Bind(const unsigned int &index) const
 }
 
 // Load texture
-Texture::Data* Texture::Load(const char* path, const bool &flip)
+Texture::Data *Texture::Load(const char *path, const bool &flip)
 {
-  Logger::LogTrace(ModuleData::Name::TEXTURE, "Texture::Data* Load(const char* path, const bool &flip)");
+  Logger::LogTrace(ModuleData::Name::TEXTURE, "Texture::Data* Load(const char *path, const bool &flip)");
 
   // Load data
-  Texture::Data* data = new Texture::Data();
+  Texture::Data *data = new Texture::Data();
   stbi_set_flip_vertically_on_load(flip);
   data->data = stbi_load(path, &data->width, &data->height, &data->format, 0);
 
@@ -69,9 +69,9 @@ void Texture::Create(const Texture::Data &data)
 }
 
 // Destroy texture
-void Texture::Destroy(Texture::Data* data)
+void Texture::Destroy(Texture::Data *data)
 {
-  Logger::LogTrace(ModuleData::Name::TEXTURE, "void Destroy(Texture::Data* data)");
+  Logger::LogTrace(ModuleData::Name::TEXTURE, "void Destroy(Texture::Data *data)");
 
   if (data)
   {

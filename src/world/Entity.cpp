@@ -10,9 +10,9 @@
 #include "World.h"
 
 // Constructor
-Entity::Entity(const glm::vec3& position)
+Entity::Entity(const glm::vec3 &position)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "Entity(const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "Entity(const glm::vec3 &position)");
 
   // Set properties
   this->size = glm::vec3(1);
@@ -40,9 +40,9 @@ Entity::~Entity()
 }
 
 // Direct translate to position
-void Entity::Translate(const glm::vec3& position)
+void Entity::Translate(const glm::vec3 &position)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void Translate(const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void Translate(const glm::vec3 &position)");
 
   this->object->GetTransform()->SetPosition(position);
 }
@@ -82,15 +82,15 @@ void Entity::OnUpdate()
 }
 
 // Render event
-void Entity::OnRender(Camera& camera)
+void Entity::OnRender(Camera &camera)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void OnRender(Camera& camera)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void OnRender(Camera &camera)");
 }
 
 // Collision event
-void Entity::OnCollision(const glm::vec3& normal)
+void Entity::OnCollision(const glm::vec3 &normal)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void OnCollision(const glm::vec3& normal)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void OnCollision(const glm::vec3 &normal)");
 
   // Check collision by axes
   if (normal.x > 0.0f)
@@ -111,41 +111,41 @@ void Entity::OnCollision(const glm::vec3& normal)
 }
 
 // Set position
-void Entity::SetPosition(const glm::vec3& position)
+void Entity::SetPosition(const glm::vec3 &position)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetPosition(const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetPosition(const glm::vec3 &position)");
 
   this->object->GetTransform()->SetPosition(position);
 }
 
 // Set direction
-void Entity::SetDirection(const glm::vec3& direction)
+void Entity::SetDirection(const glm::vec3 &direction)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetDirection(const glm::vec3& direction)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetDirection(const glm::vec3 &direction)");
 
   this->direction = direction;
 }
 
 // Set physics
-void Entity::SetPhysics(const bool& state)
+void Entity::SetPhysics(const bool &state)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetPhysics(const glm::vec3& physics)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetPhysics(const glm::vec3 &physics)");
 
   this->isPhysicsEnabled = state;
 }
 
 // Set speed
-void Entity::SetSpeed(const float& speed)
+void Entity::SetSpeed(const float &speed)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetSpeed(const float& speed)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetSpeed(const float &speed)");
 
   this->speed = speed;
 }
 
 // Set hovering
-void Entity::SetHovering(const bool& hovering)
+void Entity::SetHovering(const bool &hovering)
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetHovering(const bool& hovering)");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "void SetHovering(const bool &hovering)");
 
   this->isHovering = hovering;
 }
@@ -161,7 +161,7 @@ bool Entity::IsHovering() const
 // Get position
 glm::vec3 Entity::GetPosition() const
 {
-  Logger::LogTrace(ModuleData::Name::ENTITY, "glm::vec3& GetPosition() const");
+  Logger::LogTrace(ModuleData::Name::ENTITY, "glm::vec3 GetPosition() const");
 
   return this->object->GetPosition();
 }

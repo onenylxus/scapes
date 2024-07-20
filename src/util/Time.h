@@ -61,7 +61,7 @@ class Time
     }
 
     template<typename Duration = std::chrono::hours>
-    static void FilePrint(FILE* file, Duration offset = std::chrono::hours(0))
+    static void FilePrint(FILE *file, Duration offset = std::chrono::hours(0))
     {
       typedef std::chrono::duration<int, std::ratio_multiply<std::chrono::hours::period, std::ratio<24>>::type> days;
 

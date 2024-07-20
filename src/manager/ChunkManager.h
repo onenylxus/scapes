@@ -26,36 +26,37 @@ class Chunk;
 // Chunk manager class
 class ChunkManager
 {
-  public:
-    friend class Chunk;
+// Friend class
+public:
+  friend class Chunk;
 
-  // Constructor and destructor
-  public:
-    ChunkManager();
-    virtual ~ChunkManager();
+// Constructor and destructor
+public:
+  ChunkManager();
+  virtual ~ChunkManager();
 
-  // Properties
-  private:
-    unsigned int renderDistance;
-    unsigned int destroyDistance;
-    std::unordered_map<glm::ivec2, Chunk*> chunks;
-    Chunk* cachedChunk;
-    std::mutex mutex;
-    std::thread* generationThread;
-    Shader* solidShader;
-    Shader* liquidShader;
-    bool isAppEnding;
+// Properties
+private:
+  unsigned int renderDistance;
+  unsigned int destroyDistance;
+  std::unordered_map<glm::ivec2, Chunk *> chunks;
+  Chunk *cachedChunk;
+  std::mutex mutex;
+  std::thread *generationThread;
+  Shader *solidShader;
+  Shader *liquidShader;
+  bool isAppEnding;
 
-  // Methods
-  public:
-    void Update();
-    void Render(Camera& camera);
-    void Load();
-    Chunk* Create(const glm::ivec2& index);
-    Chunk* FindChunk(const glm::ivec2& index);
+// Methods
+public:
+  void Update();
+  void Render(Camera &camera);
+  void Load();
+  Chunk *Create(const glm::ivec2 &index);
+  Chunk *FindChunk(const glm::ivec2 &index);
 
-  private:
-    Chunk* LockAndFindChunk(const glm::ivec2& index);
+private:
+  Chunk *LockAndFindChunk(const glm::ivec2 &index);
 };
 
 ////////////////////////////////////////////////////////////////

@@ -11,14 +11,14 @@
 // Sprite class
 class Sprite : public Texture
 {
-  // Constructor and destructor
-  public:
-    Sprite(const char* path);
-    virtual ~Sprite();
+// Constructor and destructor
+public:
+  Sprite(const char *path);
+  virtual ~Sprite();
 
-  // Methods
-  private:
-    bool Load(const char* path);
+// Methods
+private:
+  bool Load(const char *path);
 };
 
 ////////////////////////////////////////////////////////////////

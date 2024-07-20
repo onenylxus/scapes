@@ -8,9 +8,9 @@
 #include "CameraPlayer.h"
 
 // Constructor
-CameraPlayer::CameraPlayer(Entity& entity, const glm::vec3& position) : Camera3D(position)
+CameraPlayer::CameraPlayer(Entity &entity, const glm::vec3 &position) : Camera3D(position)
 {
-  Logger::LogTrace(ModuleData::Name::CAMERA_PLAYER, "CameraPlayer::CameraPlayer(Entity& entity, const glm::vec3& position)");
+  Logger::LogTrace(ModuleData::Name::CAMERA_PLAYER, "CameraPlayer::CameraPlayer(Entity &entity, const glm::vec3 &position)");
 
   this->entity = &entity;
 }

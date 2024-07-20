@@ -15,37 +15,37 @@
 // Texture class
 class Texture
 {
-  // Texture data
-  public:
-    struct Data
-    {
-      int width;
-      int height;
-      int format;
-      unsigned char *data;
-    };
+// Texture data
+public:
+  struct Data
+  {
+    int width;
+    int height;
+    int format;
+    unsigned char *data;
+  };
 
-  // Constructor and destructor
-  public:
-    Texture();
-    virtual ~Texture();
+// Constructor and destructor
+public:
+  Texture();
+  virtual ~Texture();
 
-  // Properties
-  protected:
-    GLuint texture;
+// Properties
+protected:
+  GLuint texture;
 
-  // Methods
-  public:
-    virtual void Bind(const unsigned int &index = 0) const;
+// Methods
+public:
+  virtual void Bind(const unsigned int &index = 0) const;
 
-  protected:
-    Texture::Data* Load(const char* path, const bool &flip = true);
-    virtual void Create(const Texture::Data &data);
-    void Destroy(Texture::Data* data);
+protected:
+  Texture::Data *Load(const char *path, const bool &flip = true);
+  virtual void Create(const Texture::Data &data);
+  void Destroy(Texture::Data *data);
 
-  // Getters
-  public:
-    int GetTexture() const;
+// Getters
+public:
+  int GetTexture() const;
 };
 
 ////////////////////////////////////////////////////////////////

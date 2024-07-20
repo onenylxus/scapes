@@ -23,7 +23,7 @@ class Mesh
       Mesh::AttributeData attr;
       Mesh::IndexData indices;
 
-      void operator = (const Mesh::Data& that)
+      void operator = (const Mesh::Data &that)
       {
         this->vertices = that.vertices;
         this->attr = that.attr;

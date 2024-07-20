@@ -45,7 +45,7 @@ Object::Object(const glm::vec3 &position, const std::vector<float> &data, const 
   int offset = 0;
   for (int i = 0; i < attr.size(); i++)
   {
-    glVertexAttribPointer(i, attr[i], GL_FLOAT, GL_FALSE, sizeof(float) * attrCount, (void*)(sizeof(float) * offset));
+    glVertexAttribPointer(i, attr[i], GL_FLOAT, GL_FALSE, sizeof(float) * attrCount, (void *)(sizeof(float) * offset));
     glEnableVertexAttribArray(i);
     offset += attr[i];
   }
@@ -94,9 +94,9 @@ void Object::BindVBO() const
 }
 
 // Render object with camera
-void Object::Render(Camera& camera)
+void Object::Render(Camera &camera)
 {
-  Logger::LogTrace(ModuleData::Name::OBJECT, "void Render(Camera& camera)");
+  Logger::LogTrace(ModuleData::Name::OBJECT, "void Render(Camera &camera)");
 
   // Check shader exists
   if (!this->shader)
@@ -144,17 +144,17 @@ void Object::Render()
 }
 
 // Set shader
-void Object::SetShader(Shader* shader)
+void Object::SetShader(Shader *shader)
 {
-  Logger::LogTrace(ModuleData::Name::OBJECT, "void SetShader(Shader* shader)");
+  Logger::LogTrace(ModuleData::Name::OBJECT, "void SetShader(Shader *shader)");
 
   this->shader = shader;
 }
 
 // Get shader
-Shader* Object::GetShader() const
+Shader *Object::GetShader() const
 {
-  Logger::LogTrace(ModuleData::Name::OBJECT, "Shader* GetShader() const");
+  Logger::LogTrace(ModuleData::Name::OBJECT, "Shader *GetShader() const");
 
   return this->shader;
 }
@@ -168,13 +168,12 @@ glm::vec3 Object::GetPosition()
 }
 
 // Get transform
-Transform* Object::GetTransform()
+Transform *Object::GetTransform()
 {
-  Logger::LogTrace(ModuleData::Name::OBJECT, "Transform* GetTransform()");
+  Logger::LogTrace(ModuleData::Name::OBJECT, "Transform *GetTransform()");
 
   return this->transform;
 }
-
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

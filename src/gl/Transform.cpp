@@ -27,18 +27,18 @@ Transform::~Transform()
 }
 
 // Translate function
-void Transform::Translate(const glm::vec3& value)
+void Transform::Translate(const glm::vec3 &value)
 {
-  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void Translate(const glm::vec3& value)");
+  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void Translate(const glm::vec3 &value)");
 
   this->SetDirty(true);
   this->position += value;
 }
 
 // Rotate function
-void Transform::Rotate(const glm::vec3& value)
+void Transform::Rotate(const glm::vec3 &value)
 {
-  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void Rotate(const glm::vec3& value)");
+  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void Rotate(const glm::vec3 &value)");
 
   this->SetDirty(true);
   this->rotation = glm::rotate(this->rotation, glm::radians(value.x), glm::vec3(1, 0, 0));
@@ -64,25 +64,25 @@ void Transform::Update()
 }
 
 // Set position
-void Transform::SetPosition(const glm::vec3& value)
+void Transform::SetPosition(const glm::vec3 &value)
 {
-  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetPosition(const glm::vec3& value)");
+  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetPosition(const glm::vec3 &value)");
 
   this->position = value;
 }
 
 // Set scale
-void Transform::SetScale(const glm::vec3& value)
+void Transform::SetScale(const glm::vec3 &value)
 {
-  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetScale(const glm::vec3& value)");
+  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetScale(const glm::vec3 &value)");
 
   this->scale = value;
 }
 
 // Set rotation
-void Transform::SetRotation(const glm::vec3& value)
+void Transform::SetRotation(const glm::vec3 &value)
 {
-  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetRotation(const glm::vec3& value)");
+  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetRotation(const glm::vec3 &value)");
 
   this->rotation = glm::quat(value);
 }
@@ -96,9 +96,9 @@ void Transform::SetDirty(const bool &value)
 }
 
 // Set parent transform
-void Transform::SetParent(Transform* parent)
+void Transform::SetParent(Transform *parent)
 {
-  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetParent(Transform* parent)");
+  Logger::LogTrace(ModuleData::Name::TRANSFORM, "void SetParent(Transform *parent)");
 
   this->parent = parent;
 }

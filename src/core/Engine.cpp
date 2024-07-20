@@ -8,16 +8,16 @@
 #include "Engine.h"
 
 // Set default values
-GLFWwindow* Engine::window = nullptr;
+GLFWwindow *Engine::window = nullptr;
 std::string Engine::title;
 std::string Engine::version;
 int Engine::width;
 int Engine::height;
 
 // Create engine
-bool Engine::Create(const char* title, const char* version, const int &width, const int &height)
+bool Engine::Create(const char *title, const char *version, const int &width, const int &height)
 {
-  Logger::LogTrace(ModuleData::Name::ENGINE, "bool Create(const char* title, const char* version, const int &width, const int &height)");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "bool Create(const char *title, const char *version, const int &width, const int &height)");
 
   // Set values
   this->title = title;
@@ -36,9 +36,9 @@ bool Engine::Create(const char* title, const char* version, const int &width, co
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-  #ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-  #endif
+#ifdef __APPLE__
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
 
   // Create window
   this->window = glfwCreateWindow(this->width, this->height, this->title.c_str(), NULL, NULL);
@@ -137,9 +137,9 @@ void Engine::Start()
 }
 
 // Frame buffer size callback
-void Engine::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
+void Engine::FramebufferSizeCallback(GLFWwindow *window, int width, int height)
 {
-  Logger::LogTrace(ModuleData::Name::ENGINE, "void FramebufferSizeCallback(GLFWwindow* window, int width, int height)");
+  Logger::LogTrace(ModuleData::Name::ENGINE, "void FramebufferSizeCallback(GLFWwindow *window, int width, int height)");
 
   glViewport(0, 0, width, height);
 }
@@ -176,7 +176,7 @@ std::string Engine::GetGLVendor()
 {
   Logger::LogTrace(ModuleData::Name::ENGINE, "std::string GetGLVendor()");
 
-  return std::string(reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
+  return std::string(reinterpret_cast<const char *>(glGetString(GL_VENDOR)));
 }
 
 // Get OpenGL renderer string
@@ -184,7 +184,7 @@ std::string Engine::GetGLRenderer()
 {
   Logger::LogTrace(ModuleData::Name::ENGINE, "std::string GetGLRenderer()");
 
-  return std::string(reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
+  return std::string(reinterpret_cast<const char *>(glGetString(GL_RENDERER)));
 }
 
 // Get OpenGL version string
@@ -192,7 +192,7 @@ std::string Engine::GetGLVersion()
 {
   Logger::LogTrace(ModuleData::Name::ENGINE, "std::string GetGLVersion()");
 
-  return std::string(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
+  return std::string(reinterpret_cast<const char *>(glGetString(GL_VERSION)));
 }
 
 ////////////////////////////////////////////////////////////////

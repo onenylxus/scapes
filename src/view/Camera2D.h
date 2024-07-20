@@ -11,22 +11,22 @@
 // 2D camera class
 class Camera2D : public Camera
 {
-  // Constructor and destructor
-  public:
-    Camera2D(const glm::vec3 &position, const glm::vec3 &front, const float &left, const float &right, const float &top, const float &bottom);
-    virtual ~Camera2D();
+// Constructor and destructor
+public:
+  Camera2D(const glm::vec3 &position, const glm::vec3 &front, const float &left, const float &right, const float &top, const float &bottom);
+  virtual ~Camera2D();
 
-  // Properties
-  private:
-    float left;
-    float right;
-    float top;
-    float bottom;
+// Properties
+private:
+  float left;
+  float right;
+  float top;
+  float bottom;
 
-  // Methods
-  private:
-    virtual void UpdateCamera() override;
-    virtual glm::mat4 CreateProjection() const override;
+// Methods
+private:
+  virtual void UpdateCamera() override;
+  virtual glm::mat4 CreateProjection() const override;
 };
 
 ////////////////////////////////////////////////////////////////

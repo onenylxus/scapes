@@ -14,23 +14,23 @@
 // Skybox class
 class Skybox
 {
-  // Constructor and destructor
-  public:
-    Skybox(const char* path);
-    virtual ~Skybox();
+// Constructor and destructor
+public:
+  Skybox(const char *path);
+  virtual ~Skybox();
 
-  // Properties
-  private:
-    Cubemap* texture;
-    Object* cube;
+// Properties
+private:
+  Cubemap *texture;
+  Object *cube;
 
-  // Methods
-  public:
-    void Render(Camera& camera);
+// Methods
+public:
+  void Render(Camera &camera);
 
-  // Getters
-  public:
-    Shader* GetShader();
+// Getters
+public:
+  Shader *GetShader();
 };
 
 ////////////////////////////////////////////////////////////////

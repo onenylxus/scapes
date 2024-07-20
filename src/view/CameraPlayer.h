@@ -13,18 +13,18 @@
 // Player camera class
 class CameraPlayer : public Camera3D
 {
-  // Constructor and destructor
-  public:
-    CameraPlayer(Entity& entity, const glm::vec3& position);
-    virtual ~CameraPlayer();
+// Constructor and destructor
+public:
+  CameraPlayer(Entity &entity, const glm::vec3 &position);
+  virtual ~CameraPlayer();
 
-  // Properties
-  private:
-    Entity* entity;
+// Properties
+private:
+  Entity *entity;
 
-  // Methods
-  public:
-    void Update();
+// Methods
+public:
+  void Update();
 };
 
 ////////////////////////////////////////////////////////////////

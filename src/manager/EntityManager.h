@@ -15,20 +15,21 @@ class Entity;
 // Entity manager class
 class EntityManager
 {
-  public:
-    friend class Entity;
+// Friend class
+public:
+  friend class Entity;
 
-  // Properties
-  private:
-    static std::vector<Entity*> entities;
+// Properties
+private:
+  static std::vector<Entity *> entities;
 
-  // Methods
-  public:
-    static void Update();
-    static void Render(Camera& camera);
+// Methods
+public:
+  static void Update();
+  static void Render(Camera &camera);
 
-  private:
-    static void Add(Entity& entity);
+private:
+  static void Add(Entity &entity);
 };
 
 ////////////////////////////////////////////////////////////////

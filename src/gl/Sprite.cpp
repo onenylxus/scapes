@@ -8,9 +8,9 @@
 #include "Sprite.h"
 
 // Constructor
-Sprite::Sprite(const char* path)
+Sprite::Sprite(const char *path)
 {
-  Logger::LogTrace(ModuleData::Name::SPRITE, "Sprite(const char* path)");
+  Logger::LogTrace(ModuleData::Name::SPRITE, "Sprite(const char *path)");
 
   this->Load(path);
 }
@@ -22,12 +22,12 @@ Sprite::~Sprite()
 }
 
 // Load texture
-bool Sprite::Load(const char* path)
+bool Sprite::Load(const char *path)
 {
-  Logger::LogTrace(ModuleData::Name::SPRITE, "bool Load(const char* path)");
+  Logger::LogTrace(ModuleData::Name::SPRITE, "bool Load(const char *path)");
 
   // Load data
-  Texture::Data* data = Texture::Load(path);
+  Texture::Data *data = Texture::Load(path);
   if (data == nullptr)
   {
     Logger::LogError(ModuleData::Name::SPRITE, "Texture failed to load: %s", path);

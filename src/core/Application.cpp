@@ -8,7 +8,7 @@
 #include "Application.h"
 
 // Set default values
-Application* Application::app = nullptr;
+Application *Application::app = nullptr;
 
 // Start event callback
 void Application::OnStart()
