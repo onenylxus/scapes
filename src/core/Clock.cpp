@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -15,27 +15,27 @@ float Clock::total = 0.0f;
 // Update clock
 void Clock::Update()
 {
-  Logger::LogTrace(ModuleData::Name::CLOCK, "void Update()");
+	Logger::LogTrace(ModuleData::Name::CLOCK, "void Update()");
 
-  Clock::delta = glfwGetTime() - Clock::then;
-  Clock::then = glfwGetTime();
-  Clock::total += Clock::delta;
+	Clock::delta = glfwGetTime() - Clock::then;
+	Clock::then = glfwGetTime();
+	Clock::total += Clock::delta;
 }
 
 // Get delta time
 float Clock::GetDelta()
 {
-  Logger::LogTrace(ModuleData::Name::CLOCK, "float GetDelta()");
+	Logger::LogTrace(ModuleData::Name::CLOCK, "float GetDelta()");
 
-  return Clock::delta;
+	return Clock::delta;
 }
 
 // Get total time
 float Clock::GetTotal()
 {
-  Logger::LogTrace(ModuleData::Name::CLOCK, "float GetTotal()");
+	Logger::LogTrace(ModuleData::Name::CLOCK, "float GetTotal()");
 
-  return Clock::total;
+	return Clock::total;
 }
 
 ////////////////////////////////////////////////////////////////

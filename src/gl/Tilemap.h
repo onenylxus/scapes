@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -14,26 +14,26 @@
 // Tilemap class
 class Tilemap
 {
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Tilemap(const char *path, const unsigned int &rows, const unsigned int &columns);
-  virtual ~Tilemap();
+	Tilemap(const char *path, const unsigned int &rows, const unsigned int &columns);
+	virtual ~Tilemap();
 
-// Properties
+	// Properties
 private:
-  Sprite *texture;
-  unsigned int rows;
-  unsigned int columns;
-  float tileWidth;
-  float tileHeight;
+	Sprite *texture;
+	unsigned int rows;
+	unsigned int columns;
+	float tileWidth;
+	float tileHeight;
 
-// Methods
+	// Methods
 public:
-  void Bind(const unsigned int &index = 0) const;
+	void Bind(const unsigned int &index = 0) const;
 
-// Getters
+	// Getters
 public:
-  void GetSpriteCoordinates(const unsigned int &index, std::array<glm::vec2, 4> &coords) const;
+	void GetSpriteCoordinates(const unsigned int &index, std::array<glm::vec2, 4> &coords) const;
 };
 
 ////////////////////////////////////////////////////////////////

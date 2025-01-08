@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -19,50 +19,50 @@ class World;
 // Entity class
 class Entity
 {
-// Friend class
+	// Friend class
 public:
-  friend class EntityManager;
+	friend class EntityManager;
 
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Entity(const glm::vec3 &position);
-  virtual ~Entity();
+	Entity(const glm::vec3 &position);
+	virtual ~Entity();
 
-// Properties
+	// Properties
 private:
-  Object *object;
-  glm::vec3 size;
-  glm::vec3 velocity;
-  glm::vec3 direction;
-  float speed;
-  bool isPhysicsEnabled;
-  bool isHovering;
+	Object *object;
+	glm::vec3 size;
+	glm::vec3 velocity;
+	glm::vec3 direction;
+	float speed;
+	bool isPhysicsEnabled;
+	bool isHovering;
 
-// Methods
+	// Methods
 public:
-  void Translate(const glm::vec3 &position);
-  void ApplyDirection(const glm::vec3 &direction);
-  void ApplyVelocity(const glm::vec3 &velocity);
+	void Translate(const glm::vec3 &position);
+	void ApplyDirection(const glm::vec3 &direction);
+	void ApplyVelocity(const glm::vec3 &velocity);
 
 protected:
-  void Move();
-  virtual void OnUpdate();
-  virtual void OnRender(Camera &camera);
-  virtual void OnCollision(const glm::vec3 &normal);
+	void Move();
+	virtual void OnUpdate();
+	virtual void OnRender(Camera &camera);
+	virtual void OnCollision(const glm::vec3 &normal);
 
-// Setters
+	// Setters
 public:
-  void SetPosition(const glm::vec3 &position);
-  void SetDirection(const glm::vec3 &direction);
-  void SetPhysics(const bool &state);
-  void SetSpeed(const float &speed);
-  void SetHovering(const bool &hovering);
+	void SetPosition(const glm::vec3 &position);
+	void SetDirection(const glm::vec3 &direction);
+	void SetPhysics(const bool &state);
+	void SetSpeed(const float &speed);
+	void SetHovering(const bool &hovering);
 
-// Getters
+	// Getters
 public:
-  bool IsHovering() const;
-  glm::vec3 GetPosition() const;
-  glm::mat4 GetMatrix() const;
+	bool IsHovering() const;
+	glm::vec3 GetPosition() const;
+	glm::mat4 GetMatrix() const;
 };
 
 ////////////////////////////////////////////////////////////////

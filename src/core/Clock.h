@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -13,20 +13,20 @@
 // Clock class
 class Clock
 {
-// Properties
+	// Properties
 private:
-  static float then;
-  static float delta;
-  static float total;
+	static float then;
+	static float delta;
+	static float total;
 
-// Methods
+	// Methods
 public:
-  static void Update();
+	static void Update();
 
-// Getters
+	// Getters
 public:
-  static float GetDelta();
-  static float GetTotal();
+	static float GetDelta();
+	static float GetTotal();
 };
 
 ////////////////////////////////////////////////////////////////

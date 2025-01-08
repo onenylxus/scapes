@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -13,18 +13,18 @@
 // Player camera class
 class CameraPlayer : public Camera3D
 {
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  CameraPlayer(Entity &entity, const glm::vec3 &position);
-  virtual ~CameraPlayer();
+	CameraPlayer(Entity &entity, const glm::vec3 &position);
+	virtual ~CameraPlayer();
 
-// Properties
+	// Properties
 private:
-  Entity *entity;
+	Entity *entity;
 
-// Methods
+	// Methods
 public:
-  void Update();
+	void Update();
 };
 
 ////////////////////////////////////////////////////////////////

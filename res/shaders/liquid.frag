@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2023 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 #version 450 core
@@ -22,17 +22,17 @@ const float timeSpeed = 0.03;
 
 void main()
 {
-  float offset = mod(floor(uPhase * 4), 16) / 16.0;
-  vec2 texCoord = fTexCoord;
-  texCoord.x += offset;
-  vec4 sample = texture(uFragTexture, texCoord);
+	float offset = mod(floor(uPhase * 4), 16) / 16.0;
+	vec2 texCoord = fTexCoord;
+	texCoord.x += offset;
+	vec4 sample = texture(uFragTexture, texCoord);
 
-  float light = clamp(fLight.x / 15.0, 0.0, 1.0);
-  float sun = clamp((fLight.y / 15.0) * ((sin(uTime * timeSpeed) + 1) / 2.0), 0.2, 1.0);
-  vec3 color = sample.rgb * max(light, sun);
+	float light = clamp(fLight.x / 15.0, 0.0, 1.0);
+	float sun = clamp((fLight.y / 15.0) * ((sin(uTime * timeSpeed) + 1) / 2.0), 0.2, 1.0);
+	vec3 color = sample.rgb * max(light, sun);
 
-  rFragColor = vec4(color, 0.7);
-  rBloomColor = vec4(0.0, 0.0, 0.0, 0.0);
+	rFragColor = vec4(color, 0.7);
+	rBloomColor = vec4(0.0, 0.0, 0.0, 0.0);
 }
 
 ////////////////////////////////////////////////////////////////

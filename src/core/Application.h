@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -12,21 +12,21 @@
 // Application class
 class Application : public Engine
 {
-// Properties
+	// Properties
 private:
-  static Application *app;
-  World *world;
+	static Application *app;
+	World *world;
 
-// Methods
+	// Methods
 private:
-  virtual void OnStart() override;
-  virtual void OnUpdate() override;
-  virtual void OnRender() override;
-  virtual void OnEnd() override;
+	virtual void OnStart() override;
+	virtual void OnUpdate() override;
+	virtual void OnRender() override;
+	virtual void OnEnd() override;
 
-// Getters
+	// Getters
 public:
-  static Application &GetApp();
+	static Application &GetApp();
 };
 
 ////////////////////////////////////////////////////////////////

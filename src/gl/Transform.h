@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -15,42 +15,42 @@
 // Transform class
 class Transform
 {
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Transform();
-  virtual ~Transform();
+	Transform();
+	virtual ~Transform();
 
-// Properties
+	// Properties
 private:
-  glm::vec3 position;
-  glm::vec3 scale;
-  glm::quat rotation;
-  glm::mat4 matrix;
-  bool isDirty;
-  Transform* parent;
+	glm::vec3 position;
+	glm::vec3 scale;
+	glm::quat rotation;
+	glm::mat4 matrix;
+	bool isDirty;
+	Transform *parent;
 
-// Methods
+	// Methods
 public:
-  void Translate(const glm::vec3& value);
-  void Rotate(const glm::vec3& value);
+	void Translate(const glm::vec3 &value);
+	void Rotate(const glm::vec3 &value);
 
 private:
-  void Update();
+	void Update();
 
-// Setters
+	// Setters
 public:
-  void SetPosition(const glm::vec3& value);
-  void SetScale(const glm::vec3& value);
-  void SetRotation(const glm::vec3& value);
-  void SetDirty(const bool &value);
-  void SetParent(Transform* parent);
+	void SetPosition(const glm::vec3 &value);
+	void SetScale(const glm::vec3 &value);
+	void SetRotation(const glm::vec3 &value);
+	void SetDirty(const bool &value);
+	void SetParent(Transform *parent);
 
-// Getters
+	// Getters
 public:
-  glm::vec3 GetPosition() const;
-  glm::vec3 GetScale() const;
-  glm::quat GetRotation() const;
-  glm::mat4 GetMatrix();
+	glm::vec3 GetPosition() const;
+	glm::vec3 GetScale() const;
+	glm::quat GetRotation() const;
+	glm::mat4 GetMatrix();
 };
 
 ////////////////////////////////////////////////////////////////

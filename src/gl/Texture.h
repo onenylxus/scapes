@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -15,37 +15,37 @@
 // Texture class
 class Texture
 {
-// Texture data
+	// Texture data
 public:
-  struct Data
-  {
-    int width;
-    int height;
-    int format;
-    unsigned char *data;
-  };
+	struct Data
+	{
+		int width;
+		int height;
+		int format;
+		unsigned char *data;
+	};
 
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Texture();
-  virtual ~Texture();
+	Texture();
+	virtual ~Texture();
 
-// Properties
+	// Properties
 protected:
-  GLuint texture;
+	GLuint texture;
 
-// Methods
+	// Methods
 public:
-  virtual void Bind(const unsigned int &index = 0) const;
+	virtual void Bind(const unsigned int &index = 0) const;
 
 protected:
-  Texture::Data *Load(const char *path, const bool &flip = true);
-  virtual void Create(const Texture::Data &data);
-  void Destroy(Texture::Data *data);
+	Texture::Data *Load(const char *path, const bool &flip = true);
+	virtual void Create(const Texture::Data &data);
+	void Destroy(Texture::Data *data);
 
-// Getters
+	// Getters
 public:
-  int GetTexture() const;
+	int GetTexture() const;
 };
 
 ////////////////////////////////////////////////////////////////

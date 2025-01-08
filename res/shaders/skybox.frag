@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2023 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 #version 450 core
@@ -22,15 +22,15 @@ const float timeSpeed = 0.03;
 
 void main()
 {
-  float point = (normalize(fPosition).y + 1.0) / 2;
-  float daytime = (sin(uTime * timeSpeed) + 1.0) / 2;
+	float point = (normalize(fPosition).y + 1.0) / 2;
+	float daytime = (sin(uTime * timeSpeed) + 1.0) / 2;
 
-  vec3 dayMix = mix(dayBottomColor, dayTopColor, point);
-  vec3 nightMix = mix(nightBottomColor, nightTopColor, point);
-  vec3 color = mix(nightMix, dayMix, daytime);
+	vec3 dayMix = mix(dayBottomColor, dayTopColor, point);
+	vec3 nightMix = mix(nightBottomColor, nightTopColor, point);
+	vec3 color = mix(nightMix, dayMix, daytime);
 
-  rFragColor = vec4(color, 1.0);
-  rBloomColor = vec4(0.0, 0.0, 0.0, 1.0);
+	rFragColor = vec4(color, 1.0);
+	rBloomColor = vec4(0.0, 0.0, 0.0, 1.0);
 }
 
 ////////////////////////////////////////////////////////////////

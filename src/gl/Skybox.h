@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -14,23 +14,23 @@
 // Skybox class
 class Skybox
 {
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Skybox(const char *path);
-  virtual ~Skybox();
+	Skybox(const char *path);
+	virtual ~Skybox();
 
-// Properties
+	// Properties
 private:
-  Cubemap *texture;
-  Object *cube;
+	Cubemap *texture;
+	Object *cube;
 
-// Methods
+	// Methods
 public:
-  void Render(Camera &camera);
+	void Render(Camera &camera);
 
-// Getters
+	// Getters
 public:
-  Shader *GetShader();
+	Shader *GetShader();
 };
 
 ////////////////////////////////////////////////////////////////

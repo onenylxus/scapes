@@ -88,57 +88,57 @@ set(IMGUI_GLUT_TARGET "" CACHE STRING "A custom GLFW target name that will be us
 
 # ##############################################################################
 if(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
-    set(IMGUI_IMPL_GLFW OFF)
-    set(IMGUI_IMPL_GLUT OFF)
+	set(IMGUI_IMPL_GLFW OFF)
+	set(IMGUI_IMPL_GLUT OFF)
 endif()
 
 # Tidy up build dir, but only if user has not configured it yet.
 if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 endif()
 
 if(NOT DEFINED CMAKE_LIBRARY_OUTPUT_DIRECTORY)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 endif()
 
 if(NOT DEFINED CMAKE_ARCHIVE_OUTPUT_DIRECTORY)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 endif()
 
 # Minimal supported C++ standard.
 if(NOT DEFINED CMAKE_CXX_STANDARD)
-    set(CMAKE_CXX_STANDARD 11)
+	set(CMAKE_CXX_STANDARD 11)
 endif()
 
 # Warnings.
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    add_compile_options(-Wall -Wextra -Wunused-parameter -Wformat $<$<COMPILE_LANGUAGE:CXX>:-pedantic> -Wnarrowing)
+	add_compile_options(-Wall -Wextra -Wunused-parameter -Wformat $<$<COMPILE_LANGUAGE:CXX>:-pedantic> -Wnarrowing)
 endif()
 
 # These warnings are overzealous in GCC and only practical to use with Clang.
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    add_compile_options(-Wsign-conversion -Wshadow)
+	add_compile_options(-Wsign-conversion -Wshadow)
 endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wno-class-memaccess>)
+	add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wno-class-memaccess>)
 endif()
 
 # Helper variables. They allow to use this CMakeLists.txt file while it is in examples or in root directory. You may
 # copy/symlink this file to imgui root directory in order to help IDEs like CLion to recognize headers as part of the
 # project.
 if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/imgui.h)
-    # CMakeLists.txt is in root directory.
-    set(IMGUI_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
-    set(IMGUI_EXAMPLES_DIR ${IMGUI_ROOT_DIR}/examples)
-    set(IMGUI_BACKENDS_DIR ${IMGUI_ROOT_DIR}/backends)
-    set(IMGUI_MISC_DIR ${IMGUI_ROOT_DIR}/misc)
+	# CMakeLists.txt is in root directory.
+	set(IMGUI_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
+	set(IMGUI_EXAMPLES_DIR ${IMGUI_ROOT_DIR}/examples)
+	set(IMGUI_BACKENDS_DIR ${IMGUI_ROOT_DIR}/backends)
+	set(IMGUI_MISC_DIR ${IMGUI_ROOT_DIR}/misc)
 else()
-    # CMakeLists.txt is in examples directory.
-    set(IMGUI_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
-    set(IMGUI_EXAMPLES_DIR ${CMAKE_CURRENT_LIST_DIR})
-    set(IMGUI_BACKENDS_DIR ${CMAKE_CURRENT_LIST_DIR}/../backends)
-    set(IMGUI_MISC_DIR ${IMGUI_ROOT_DIR}/../misc)
+	# CMakeLists.txt is in examples directory.
+	set(IMGUI_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+	set(IMGUI_EXAMPLES_DIR ${CMAKE_CURRENT_LIST_DIR})
+	set(IMGUI_BACKENDS_DIR ${CMAKE_CURRENT_LIST_DIR}/../backends)
+	set(IMGUI_MISC_DIR ${IMGUI_ROOT_DIR}/../misc)
 endif()
 
 # Set up main library. It is created as an INTERFACE library because it allows using different
@@ -146,7 +146,7 @@ endif()
 file(GLOB IMGUI_SOURCE_FILES ${IMGUI_ROOT_DIR}/*.h ${IMGUI_ROOT_DIR}/*.cpp)
 
 if(NOT IMGUI_DEMO)
-    list(REMOVE_ITEM IMGUI_SOURCE_FILES ${IMGUI_ROOT_DIR}/imgui_demo.cpp)
+	list(REMOVE_ITEM IMGUI_SOURCE_FILES ${IMGUI_ROOT_DIR}/imgui_demo.cpp)
 endif()
 
 add_library(imgui INTERFACE)
@@ -154,64 +154,64 @@ target_link_libraries(imgui INTERFACE ${CMAKE_DL_LIBS})
 target_sources(imgui INTERFACE ${IMGUI_SOURCE_FILES})
 
 if(IMGUI_DISABLE_OBSOLETE_FUNCTIONS)
-    target_compile_definitions(imgui INTERFACE -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS=1)
+	target_compile_definitions(imgui INTERFACE -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS=1)
 endif()
 
 if(IMGUI_DISABLE_FILE_FUNCTIONS)
-    target_compile_definitions(imgui INTERFACE -DIMGUI_DISABLE_FILE_FUNCTIONS=1)
+	target_compile_definitions(imgui INTERFACE -DIMGUI_DISABLE_FILE_FUNCTIONS=1)
 endif()
 
 if(IMGUI_USER_CONFIG)
-    target_compile_definitions(imgui INTERFACE "-DIMGUI_USER_CONFIG=<${IMGUI_USER_CONFIG}>")
+	target_compile_definitions(imgui INTERFACE "-DIMGUI_USER_CONFIG=<${IMGUI_USER_CONFIG}>")
 endif()
 
 target_include_directories(imgui INTERFACE ${IMGUI_ROOT_DIR})
 
 if(NOT IMGUI_DEMO)
-    target_compile_definitions(imgui INTERFACE -DIMGUI_DISABLE_DEMO_WINDOWS=1)
+	target_compile_definitions(imgui INTERFACE -DIMGUI_DISABLE_DEMO_WINDOWS=1)
 endif()
 
 if(IMGUI_ENABLE_STDLIB_SUPPORT)
-    target_include_directories(imgui INTERFACE misc/cpp)
-    target_sources(imgui PRIVATE misc/cpp/imgui_stdlib.h misc/cpp/imgui_stdlib.cpp)
+	target_include_directories(imgui INTERFACE misc/cpp)
+	target_sources(imgui PRIVATE misc/cpp/imgui_stdlib.h misc/cpp/imgui_stdlib.cpp)
 endif()
 
 if(IMGUI_ENABLE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_compile_options(imgui INTERFACE -fprofile-arcs -ftest-coverage)
-    target_link_libraries(imgui INTERFACE -fprofile-arcs -ftest-coverage)
-    target_link_libraries(imgui INTERFACE gcov)
+	target_compile_options(imgui INTERFACE -fprofile-arcs -ftest-coverage)
+	target_link_libraries(imgui INTERFACE -fprofile-arcs -ftest-coverage)
+	target_link_libraries(imgui INTERFACE gcov)
 endif()
 
 if(IMGUI_ENABLE_ASAN AND CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_compile_options(imgui INTERFACE -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls)
-    target_link_libraries(imgui INTERFACE -g -fsanitize=address)
+	target_compile_options(imgui INTERFACE -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls)
+	target_link_libraries(imgui INTERFACE -g -fsanitize=address)
 endif()
 
 # ##############################################################################
 # Freetype
 # ##############################################################################
 if(IMGUI_ENABLE_FREETYPE)
-    add_library(imgui-freetype INTERFACE)
-    target_sources(imgui-freetype INTERFACE
-        ${IMGUI_MISC_DIR}/freetype/imgui_freetype.h
-        ${IMGUI_MISC_DIR}/freetype/imgui_freetype.cpp
-    )
+	add_library(imgui-freetype INTERFACE)
+	target_sources(imgui-freetype INTERFACE
+		${IMGUI_MISC_DIR}/freetype/imgui_freetype.h
+		${IMGUI_MISC_DIR}/freetype/imgui_freetype.cpp
+	)
 
-    find_package(Freetype)
+	find_package(Freetype)
 
-    if(FREETYPE_FOUND)
-        target_include_directories(imgui-freetype INTERFACE ${FREETYPE_INCLUDE_DIRS})
-        target_link_libraries(imgui-freetype INTERFACE ${FREETYPE_LIBRARIES})
-    elseif(EXISTS ../freetype)
-        set(SKIP_INSTALL_ALL ON)
-        add_subdirectory(../freetype ${CMAKE_BINARY_DIR}/freetype)
-        target_link_libraries(imgui-freetype INTERFACE freetype)
-    else()
-        message(FATAL_ERROR "IMGUI_ENABLE_FREETYPE but FreeType was not found.")
-    endif()
+	if(FREETYPE_FOUND)
+		target_include_directories(imgui-freetype INTERFACE ${FREETYPE_INCLUDE_DIRS})
+		target_link_libraries(imgui-freetype INTERFACE ${FREETYPE_LIBRARIES})
+	elseif(EXISTS ../freetype)
+		set(SKIP_INSTALL_ALL ON)
+		add_subdirectory(../freetype ${CMAKE_BINARY_DIR}/freetype)
+		target_link_libraries(imgui-freetype INTERFACE freetype)
+	else()
+		message(FATAL_ERROR "IMGUI_ENABLE_FREETYPE but FreeType was not found.")
+	endif()
 
-    target_compile_definitions(imgui-freetype INTERFACE -DIMGUI_ENABLE_FREETYPE=1)
-    target_link_libraries(imgui INTERFACE imgui-freetype)
+	target_compile_definitions(imgui-freetype INTERFACE -DIMGUI_ENABLE_FREETYPE=1)
+	target_link_libraries(imgui INTERFACE imgui-freetype)
 endif()
 
 # ##############################################################################
@@ -219,21 +219,21 @@ endif()
 # ##############################################################################
 add_library(imgui-stdlib INTERFACE)
 target_sources(imgui-stdlib INTERFACE
-    ${IMGUI_MISC_DIR}/cpp/imgui_stdlib.h
-    ${IMGUI_MISC_DIR}/cpp/imgui_stdlib.cpp
+	${IMGUI_MISC_DIR}/cpp/imgui_stdlib.h
+	${IMGUI_MISC_DIR}/cpp/imgui_stdlib.cpp
 )
 
 # ##############################################################################
 # Tracy
 # ##############################################################################
 if(IMGUI_ENABLE_TRACY AND EXISTS ${IMGUI_ROOT_DIR}/../tracy)
-    add_library(TracyLib INTERFACE)
-    target_sources(TracyLib INTERFACE ../tracy/TracyClient.cpp)
-    find_package(Threads REQUIRED)
-    target_link_libraries(TracyLib INTERFACE Threads::Threads ${CMAKE_DL_LIBS})
-    target_compile_definitions(TracyLib INTERFACE -DTRACY_ENABLE=1) # -DTRACY_VERBOSE=1
-    target_include_directories(TracyLib INTERFACE ../tracy)
-    target_link_libraries(imgui INTERFACE TracyLib)
+	add_library(TracyLib INTERFACE)
+	target_sources(TracyLib INTERFACE ../tracy/TracyClient.cpp)
+	find_package(Threads REQUIRED)
+	target_link_libraries(TracyLib INTERFACE Threads::Threads ${CMAKE_DL_LIBS})
+	target_compile_definitions(TracyLib INTERFACE -DTRACY_ENABLE=1) # -DTRACY_VERBOSE=1
+	target_include_directories(TracyLib INTERFACE ../tracy)
+	target_link_libraries(imgui INTERFACE TracyLib)
 endif()
 
 # ##############################################################################
@@ -247,419 +247,419 @@ include(CheckIncludeFile)
 find_package(PkgConfig QUIET)
 
 if(IMGUI_IMPL_SDL)
-    find_package(SDL2 QUIET)
+	find_package(SDL2 QUIET)
 
-    if(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
-    # Nothing to do for emscripten builds. SDL is bunled with the compiler.
-    elseif(IMGUI_SDL_TARGET)
-    # Custom user target was set. No auto-detection required.
-    elseif(EXISTS ${IMGUI_ROOT_DIR}/../SDL2/CMakeLists.txt)
-        # When parent directory contains SDL2 source code - we can build it directly.
-        add_subdirectory(${IMGUI_ROOT_DIR}/../SDL2 ${CMAKE_CURRENT_BINARY_DIR}/SDL2)
-        set(IMGUI_SDL_TARGET SDL2-static)
-    elseif(TARGET SDL2::SDL2)
-    # Some platforms (Linux) have SDL target properly exported as CMake target.
-    elseif(SDL2_FOUND)
-        # Platforms that do not export target but use old CMake conventions can be handled this way.
-        add_library(SDL2::SDL2 INTERFACE IMPORTED)
-        target_link_libraries(SDL2::SDL2 INTERFACE ${SDL2_LIBRARIES})
-        target_include_directories(SDL2::SDL2 INTERFACE ${SDL2_INCLUDE_DIRS})
-    elseif(NOT "$ENV{SDL2_DIR}" STREQUAL "")
-        # On windows we may set SDL2_DIR environment variable and link to binary SDL distribution.
-        if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-            set(IMGUI_SDL_PLATFORM_ARCH x64)
-        elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
-            set(IMGUI_SDL_PLATFORM_ARCH x86)
-        else()
-            message(FATAL_ERROR "Unsupported platform.")
-        endif()
+	if(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
+	# Nothing to do for emscripten builds. SDL is bunled with the compiler.
+	elseif(IMGUI_SDL_TARGET)
+	# Custom user target was set. No auto-detection required.
+	elseif(EXISTS ${IMGUI_ROOT_DIR}/../SDL2/CMakeLists.txt)
+		# When parent directory contains SDL2 source code - we can build it directly.
+		add_subdirectory(${IMGUI_ROOT_DIR}/../SDL2 ${CMAKE_CURRENT_BINARY_DIR}/SDL2)
+		set(IMGUI_SDL_TARGET SDL2-static)
+	elseif(TARGET SDL2::SDL2)
+	# Some platforms (Linux) have SDL target properly exported as CMake target.
+	elseif(SDL2_FOUND)
+		# Platforms that do not export target but use old CMake conventions can be handled this way.
+		add_library(SDL2::SDL2 INTERFACE IMPORTED)
+		target_link_libraries(SDL2::SDL2 INTERFACE ${SDL2_LIBRARIES})
+		target_include_directories(SDL2::SDL2 INTERFACE ${SDL2_INCLUDE_DIRS})
+	elseif(NOT "$ENV{SDL2_DIR}" STREQUAL "")
+		# On windows we may set SDL2_DIR environment variable and link to binary SDL distribution.
+		if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+			set(IMGUI_SDL_PLATFORM_ARCH x64)
+		elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+			set(IMGUI_SDL_PLATFORM_ARCH x86)
+		else()
+			message(FATAL_ERROR "Unsupported platform.")
+		endif()
 
-        add_library(SDL2::SDL2 SHARED IMPORTED)
-        target_include_directories(SDL2::SDL2 INTERFACE "$ENV{SDL2_DIR}/include")
-        target_link_libraries(SDL2::SDL2 INTERFACE $ENV{SDL2_DIR}/lib/${IMGUI_SDL_PLATFORM_ARCH}/SDL2main.lib)
-        set_target_properties(SDL2::SDL2 PROPERTIES
-            IMPORTED_LOCATION "$ENV{SDL2_DIR}/lib/${IMGUI_SDL_PLATFORM_ARCH}/SDL2.dll"
-            IMPORTED_IMPLIB "$ENV{SDL2_DIR}/lib/${IMGUI_SDL_PLATFORM_ARCH}/SDL2.lib"
-        )
-    elseif(PkgConfig_FOUND)
-        # Rest of the platforms (like MacOS) can consume SDL via pkg-config.
-        # CMake 3.6 supports IMPORTED_TARGET parameter which creates PkgConfig::sdl2 target that we can easily link to.
-        # TODO: Switch to using IMPORTED_TARGET when CMake minimal version is increased.
-        pkg_check_modules(SDL2 QUIET sdl2)
+		add_library(SDL2::SDL2 SHARED IMPORTED)
+		target_include_directories(SDL2::SDL2 INTERFACE "$ENV{SDL2_DIR}/include")
+		target_link_libraries(SDL2::SDL2 INTERFACE $ENV{SDL2_DIR}/lib/${IMGUI_SDL_PLATFORM_ARCH}/SDL2main.lib)
+		set_target_properties(SDL2::SDL2 PROPERTIES
+			IMPORTED_LOCATION "$ENV{SDL2_DIR}/lib/${IMGUI_SDL_PLATFORM_ARCH}/SDL2.dll"
+			IMPORTED_IMPLIB "$ENV{SDL2_DIR}/lib/${IMGUI_SDL_PLATFORM_ARCH}/SDL2.lib"
+		)
+	elseif(PkgConfig_FOUND)
+		# Rest of the platforms (like MacOS) can consume SDL via pkg-config.
+		# CMake 3.6 supports IMPORTED_TARGET parameter which creates PkgConfig::sdl2 target that we can easily link to.
+		# TODO: Switch to using IMPORTED_TARGET when CMake minimal version is increased.
+		pkg_check_modules(SDL2 QUIET sdl2)
 
-        if(SDL2_FOUND)
-            add_library(SDL2::SDL2 INTERFACE IMPORTED)
-            target_link_libraries(SDL2::SDL2 INTERFACE ${SDL2_LDFLAGS})
-            target_compile_options(SDL2::SDL2 INTERFACE ${SDL2_CFLAGS})
-        endif()
-    endif()
+		if(SDL2_FOUND)
+			add_library(SDL2::SDL2 INTERFACE IMPORTED)
+			target_link_libraries(SDL2::SDL2 INTERFACE ${SDL2_LDFLAGS})
+			target_compile_options(SDL2::SDL2 INTERFACE ${SDL2_CFLAGS})
+		endif()
+	endif()
 
-    if(NOT IMGUI_SDL_TARGET)
-        set(IMGUI_SDL_TARGET SDL2::SDL2)
-    endif()
+	if(NOT IMGUI_SDL_TARGET)
+		set(IMGUI_SDL_TARGET SDL2::SDL2)
+	endif()
 
-    if(TARGET ${IMGUI_SDL_TARGET} OR CMAKE_SYSTEM_NAME STREQUAL Emscripten)
-        # SDL platform
-        add_library(imgui-sdl INTERFACE)
-        target_sources(imgui-sdl INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_sdl.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_sdl.cpp
-        )
-        target_include_directories(imgui-sdl SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-        target_link_libraries(imgui-sdl INTERFACE imgui)
+	if(TARGET ${IMGUI_SDL_TARGET} OR CMAKE_SYSTEM_NAME STREQUAL Emscripten)
+		# SDL platform
+		add_library(imgui-sdl INTERFACE)
+		target_sources(imgui-sdl INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_sdl.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_sdl.cpp
+		)
+		target_include_directories(imgui-sdl SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+		target_link_libraries(imgui-sdl INTERFACE imgui)
 
-        if(TARGET ${IMGUI_SDL_TARGET})
-            target_link_libraries(imgui-sdl INTERFACE ${IMGUI_SDL_TARGET})
-        endif()
+		if(TARGET ${IMGUI_SDL_TARGET})
+			target_link_libraries(imgui-sdl INTERFACE ${IMGUI_SDL_TARGET})
+		endif()
 
-        # SDL renderer
-        add_library(imgui-sdlrenderer INTERFACE)
-        target_sources(imgui-sdlrenderer INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_sdlrenderer.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_sdlrenderer.cpp
-        )
-        target_include_directories(imgui-sdlrenderer SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-        target_link_libraries(imgui-sdlrenderer INTERFACE imgui)
+		# SDL renderer
+		add_library(imgui-sdlrenderer INTERFACE)
+		target_sources(imgui-sdlrenderer INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_sdlrenderer.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_sdlrenderer.cpp
+		)
+		target_include_directories(imgui-sdlrenderer SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+		target_link_libraries(imgui-sdlrenderer INTERFACE imgui)
 
-        if(TARGET ${IMGUI_SDL_TARGET})
-            target_link_libraries(imgui-sdlrenderer INTERFACE ${IMGUI_SDL_TARGET})
-        endif()
-    else()
-        message(STATUS "IMGUI_IMPL_SDL set to ON but SDL2 could not be found.")
-    endif()
+		if(TARGET ${IMGUI_SDL_TARGET})
+			target_link_libraries(imgui-sdlrenderer INTERFACE ${IMGUI_SDL_TARGET})
+		endif()
+	else()
+		message(STATUS "IMGUI_IMPL_SDL set to ON but SDL2 could not be found.")
+	endif()
 endif()
 
 if(IMGUI_IMPL_METAL AND APPLE)
-    add_library(imgui-metal INTERFACE)
-    target_sources(imgui-metal INTERFACE
-        ${IMGUI_BACKENDS_DIR}/imgui_impl_metal.h
-        ${IMGUI_BACKENDS_DIR}/imgui_impl_metal.mm
-    )
-    target_link_libraries(imgui-metal INTERFACE imgui "-framework Cocoa" "-framework Metal" "-framework QuartzCore")
-    target_compile_options(imgui-metal INTERFACE -fobjc-arc)
-    target_include_directories(imgui-metal SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	add_library(imgui-metal INTERFACE)
+	target_sources(imgui-metal INTERFACE
+		${IMGUI_BACKENDS_DIR}/imgui_impl_metal.h
+		${IMGUI_BACKENDS_DIR}/imgui_impl_metal.mm
+	)
+	target_link_libraries(imgui-metal INTERFACE imgui "-framework Cocoa" "-framework Metal" "-framework QuartzCore")
+	target_compile_options(imgui-metal INTERFACE -fobjc-arc)
+	target_include_directories(imgui-metal SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
 endif()
 
 if(IMGUI_IMPL_OSX AND APPLE)
-    add_library(imgui-osx INTERFACE)
-    target_sources(imgui-osx INTERFACE
-        ${IMGUI_BACKENDS_DIR}/imgui_impl_osx.h
-        ${IMGUI_BACKENDS_DIR}/imgui_impl_osx.mm
-    )
-    target_link_libraries(imgui-osx INTERFACE imgui "-framework Cocoa" "-framework AppKit")
-    target_compile_options(imgui-osx INTERFACE -fobjc-arc)
-    target_include_directories(imgui-osx SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	add_library(imgui-osx INTERFACE)
+	target_sources(imgui-osx INTERFACE
+		${IMGUI_BACKENDS_DIR}/imgui_impl_osx.h
+		${IMGUI_BACKENDS_DIR}/imgui_impl_osx.mm
+	)
+	target_link_libraries(imgui-osx INTERFACE imgui "-framework Cocoa" "-framework AppKit")
+	target_compile_options(imgui-osx INTERFACE -fobjc-arc)
+	target_include_directories(imgui-osx SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
 endif()
 
 if(IMGUI_IMPL_WIN32 AND WIN32)
-    add_library(imgui-win32 INTERFACE)
-    target_sources(imgui-win32 INTERFACE
-        ${IMGUI_BACKENDS_DIR}/imgui_impl_win32.h
-        ${IMGUI_BACKENDS_DIR}/imgui_impl_win32.cpp
-    )
-    target_include_directories(imgui-win32 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	add_library(imgui-win32 INTERFACE)
+	target_sources(imgui-win32 INTERFACE
+		${IMGUI_BACKENDS_DIR}/imgui_impl_win32.h
+		${IMGUI_BACKENDS_DIR}/imgui_impl_win32.cpp
+	)
+	target_include_directories(imgui-win32 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
 endif()
 
 if(IMGUI_IMPL_GLFW)
-    if(IMGUI_GLFW_TARGET)
-    # Custom user target was set. No auto-detection required.
-    elseif(TARGET glfw)
-    # GLFW exists already. Nothing to do.
-    elseif(EXISTS ${IMGUI_ROOT_DIR}/../glfw/CMakeLists.txt)
-        # When parent directory contains GLFW source code - we can build it directly.
-        set(GLFW_STANDALONE OFF)
-        set(GLFW_INSTALL OFF)
-        set(GLFW_BUILD_DOCS OFF)
-        add_subdirectory(${IMGUI_ROOT_DIR}/../glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
-    elseif(MSVC)
-        # We ship compiled libraries in our repository for Visual Studio.
-        if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-            set(IMGUI_GLFW_PLATFORM_BITS 64)
-        elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
-            set(IMGUI_GLFW_PLATFORM_BITS 32)
-        else()
-            message(FATAL_ERROR "Unsupported platform.")
-        endif()
+	if(IMGUI_GLFW_TARGET)
+	# Custom user target was set. No auto-detection required.
+	elseif(TARGET glfw)
+	# GLFW exists already. Nothing to do.
+	elseif(EXISTS ${IMGUI_ROOT_DIR}/../glfw/CMakeLists.txt)
+		# When parent directory contains GLFW source code - we can build it directly.
+		set(GLFW_STANDALONE OFF)
+		set(GLFW_INSTALL OFF)
+		set(GLFW_BUILD_DOCS OFF)
+		add_subdirectory(${IMGUI_ROOT_DIR}/../glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
+	elseif(MSVC)
+		# We ship compiled libraries in our repository for Visual Studio.
+		if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+			set(IMGUI_GLFW_PLATFORM_BITS 64)
+		elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+			set(IMGUI_GLFW_PLATFORM_BITS 32)
+		else()
+			message(FATAL_ERROR "Unsupported platform.")
+		endif()
 
-        add_library(glfw INTERFACE IMPORTED)
-        target_link_libraries(glfw INTERFACE libs/glfw/lib-vc2010-${IMGUI_GLFW_PLATFORM_BITS}/glfw3.lib)
-        target_include_directories(glfw INTERFACE libs/glfw/include)
-    elseif(PkgConfig_FOUND)
-        # CMake 3.6 supports IMPORTED_TARGET parameter which creates PkgConfig::glfw target that we can easily link to.
-        # TODO: Switch to using IMPORTED_TARGET when CMake minimal version is increased.
-        pkg_check_modules(GLFW QUIET glfw3)
+		add_library(glfw INTERFACE IMPORTED)
+		target_link_libraries(glfw INTERFACE libs/glfw/lib-vc2010-${IMGUI_GLFW_PLATFORM_BITS}/glfw3.lib)
+		target_include_directories(glfw INTERFACE libs/glfw/include)
+	elseif(PkgConfig_FOUND)
+		# CMake 3.6 supports IMPORTED_TARGET parameter which creates PkgConfig::glfw target that we can easily link to.
+		# TODO: Switch to using IMPORTED_TARGET when CMake minimal version is increased.
+		pkg_check_modules(GLFW QUIET glfw3)
 
-        if(GLFW_FOUND)
-            add_library(glfw INTERFACE IMPORTED)
-            target_link_libraries(glfw INTERFACE ${GLFW_LDFLAGS})
-            target_compile_options(glfw INTERFACE ${GLFW_CFLAGS})
-        endif()
-    endif()
+		if(GLFW_FOUND)
+			add_library(glfw INTERFACE IMPORTED)
+			target_link_libraries(glfw INTERFACE ${GLFW_LDFLAGS})
+			target_compile_options(glfw INTERFACE ${GLFW_CFLAGS})
+		endif()
+	endif()
 
-    if(NOT IMGUI_GLFW_TARGET)
-        set(IMGUI_GLFW_TARGET glfw)
-    endif()
+	if(NOT IMGUI_GLFW_TARGET)
+		set(IMGUI_GLFW_TARGET glfw)
+	endif()
 
-    if(TARGET ${IMGUI_GLFW_TARGET})
-        add_library(imgui-glfw INTERFACE)
-        target_sources(imgui-glfw INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_glfw.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_glfw.cpp
-        )
-        target_link_libraries(imgui-glfw INTERFACE ${CMAKE_DL_LIBS} ${IMGUI_GLFW_TARGET})
-        target_include_directories(imgui-glfw SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-    else()
-        message(STATUS "IMGUI_IMPL_GLFW set to ON but GLFW could not be found.")
-    endif()
+	if(TARGET ${IMGUI_GLFW_TARGET})
+		add_library(imgui-glfw INTERFACE)
+		target_sources(imgui-glfw INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_glfw.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_glfw.cpp
+		)
+		target_link_libraries(imgui-glfw INTERFACE ${CMAKE_DL_LIBS} ${IMGUI_GLFW_TARGET})
+		target_include_directories(imgui-glfw SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	else()
+		message(STATUS "IMGUI_IMPL_GLFW set to ON but GLFW could not be found.")
+	endif()
 endif()
 
 if(IMGUI_IMPL_OPENGL2 OR IMGUI_IMPL_OPENGL3)
-    set(OpenGL_GL_PREFERENCE "GLVND") # GLVND is vendor-agnostic OpenGL dispatch library on Linux.
-    include(FindOpenGL)
+	set(OpenGL_GL_PREFERENCE "GLVND") # GLVND is vendor-agnostic OpenGL dispatch library on Linux.
+	include(FindOpenGL)
 
-    if(NOT OPENGL_FOUND)
-        message(FATAL_ERROR "IMGUI_IMPL_OPENGL2 or IMGUI_IMPL_OPENGL3 set to ON but OpenGL could not be found.")
-    endif()
+	if(NOT OPENGL_FOUND)
+		message(FATAL_ERROR "IMGUI_IMPL_OPENGL2 or IMGUI_IMPL_OPENGL3 set to ON but OpenGL could not be found.")
+	endif()
 
-    if(NOT TARGET OpenGL::GL)
-        add_library(OpenGL::GL INTERFACE IMPORTED)
-        target_include_directories(OpenGL::GL INTERFACE ${OPENGL_INCLUDE_DIR})
-        target_link_libraries(OpenGL::GL INTERFACE ${OPENGL_gl_LIBRARY})
-    endif()
+	if(NOT TARGET OpenGL::GL)
+		add_library(OpenGL::GL INTERFACE IMPORTED)
+		target_include_directories(OpenGL::GL INTERFACE ${OPENGL_INCLUDE_DIR})
+		target_link_libraries(OpenGL::GL INTERFACE ${OPENGL_gl_LIBRARY})
+	endif()
 
-    if(IMGUI_IMPL_OPENGL2)
-        add_library(imgui-opengl2 INTERFACE)
-        target_sources(imgui-opengl2 INTERFACE ${IMGUI_BACKENDS_DIR}/imgui_impl_opengl2.cpp)
-        target_link_libraries(imgui-opengl2 INTERFACE imgui OpenGL::GL)
-        target_include_directories(imgui-opengl2 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-    endif()
+	if(IMGUI_IMPL_OPENGL2)
+		add_library(imgui-opengl2 INTERFACE)
+		target_sources(imgui-opengl2 INTERFACE ${IMGUI_BACKENDS_DIR}/imgui_impl_opengl2.cpp)
+		target_link_libraries(imgui-opengl2 INTERFACE imgui OpenGL::GL)
+		target_include_directories(imgui-opengl2 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	endif()
 
-    if(IMGUI_IMPL_OPENGL3)
-        add_library(imgui-opengl3 INTERFACE)
-        target_sources(imgui-opengl3 INTERFACE ${IMGUI_BACKENDS_DIR}/imgui_impl_opengl3.cpp)
-        target_link_libraries(imgui-opengl3 INTERFACE imgui OpenGL::GL)
-        target_include_directories(imgui-opengl3 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-    endif()
+	if(IMGUI_IMPL_OPENGL3)
+		add_library(imgui-opengl3 INTERFACE)
+		target_sources(imgui-opengl3 INTERFACE ${IMGUI_BACKENDS_DIR}/imgui_impl_opengl3.cpp)
+		target_link_libraries(imgui-opengl3 INTERFACE imgui OpenGL::GL)
+		target_include_directories(imgui-opengl3 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	endif()
 endif()
 
 if(IMGUI_IMPL_GLUT)
-    find_package(GLUT QUIET)
+	find_package(GLUT QUIET)
 
-    if(GLUT_glut_LIBRARY OR IMGUI_GLUT_TARGET)
-        add_library(imgui-glut INTERFACE)
-        target_sources(imgui-glut INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_glut.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_glut.cpp
-        )
-        target_link_libraries(imgui-glut INTERFACE imgui)
+	if(GLUT_glut_LIBRARY OR IMGUI_GLUT_TARGET)
+		add_library(imgui-glut INTERFACE)
+		target_sources(imgui-glut INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_glut.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_glut.cpp
+		)
+		target_link_libraries(imgui-glut INTERFACE imgui)
 
-        if(IMGUI_GLUT_TARGET)
-            target_link_libraries(imgui-glut INTERFACE ${IMGUI_GLUT_TARGET})
-        else()
-            target_include_directories(imgui-glut SYSTEM INTERFACE ${GLUT_INCLUDE_DIR} ${IMGUI_BACKENDS_DIR})
-            target_link_libraries(imgui-glut INTERFACE imgui ${GLUT_glut_LIBRARY})
+		if(IMGUI_GLUT_TARGET)
+			target_link_libraries(imgui-glut INTERFACE ${IMGUI_GLUT_TARGET})
+		else()
+			target_include_directories(imgui-glut SYSTEM INTERFACE ${GLUT_INCLUDE_DIR} ${IMGUI_BACKENDS_DIR})
+			target_link_libraries(imgui-glut INTERFACE imgui ${GLUT_glut_LIBRARY})
 
-            if(APPLE)
-                target_link_libraries(imgui-glut INTERFACE ${GLUT_cocoa_LIBRARY})
-            endif()
-        endif()
-    else()
-        message(STATUS "IMGUI_IMPL_GLUT set to ON but GLUT could not be found.")
-    endif()
+			if(APPLE)
+				target_link_libraries(imgui-glut INTERFACE ${GLUT_cocoa_LIBRARY})
+			endif()
+		endif()
+	else()
+		message(STATUS "IMGUI_IMPL_GLUT set to ON but GLUT could not be found.")
+	endif()
 endif()
 
 if(IMGUI_IMPL_DX9)
-    check_include_file(d3d9.h HAS_D3D9)
+	check_include_file(d3d9.h HAS_D3D9)
 
-    if(HAS_D3D9)
-        add_library(imgui-dx9 INTERFACE)
-        target_sources(imgui-dx9 INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx9.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx9.cpp
-        )
-        target_link_libraries(imgui-dx9 INTERFACE imgui d3d9)
-        target_include_directories(imgui-dx9 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-    else()
-        message(STATUS "IMGUI_IMPL_DX9 set to ON but DirectX 9 could not be found.")
-    endif()
+	if(HAS_D3D9)
+		add_library(imgui-dx9 INTERFACE)
+		target_sources(imgui-dx9 INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx9.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx9.cpp
+		)
+		target_link_libraries(imgui-dx9 INTERFACE imgui d3d9)
+		target_include_directories(imgui-dx9 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	else()
+		message(STATUS "IMGUI_IMPL_DX9 set to ON but DirectX 9 could not be found.")
+	endif()
 endif()
 
 if(IMGUI_IMPL_DX10)
-    check_include_file(d3d10.h HAS_D3D10)
+	check_include_file(d3d10.h HAS_D3D10)
 
-    if(HAS_D3D10)
-        add_library(imgui-dx10 INTERFACE)
-        target_sources(imgui-dx10 INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx10.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx10.cpp
-        )
-        target_link_libraries(imgui-dx10 INTERFACE imgui d3d10)
-        target_include_directories(imgui-dx10 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-    else()
-        message(STATUS "IMGUI_IMPL_DX10 set to ON but DirectX 10 could not be found.")
-    endif()
+	if(HAS_D3D10)
+		add_library(imgui-dx10 INTERFACE)
+		target_sources(imgui-dx10 INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx10.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx10.cpp
+		)
+		target_link_libraries(imgui-dx10 INTERFACE imgui d3d10)
+		target_include_directories(imgui-dx10 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	else()
+		message(STATUS "IMGUI_IMPL_DX10 set to ON but DirectX 10 could not be found.")
+	endif()
 endif()
 
 if(IMGUI_IMPL_DX11)
-    check_include_file(d3d11.h HAS_D3D11)
+	check_include_file(d3d11.h HAS_D3D11)
 
-    if(HAS_D3D11)
-        add_library(imgui-dx11 INTERFACE)
-        target_sources(imgui-dx11 INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx11.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx11.cpp
-        )
-        target_link_libraries(imgui-dx11 INTERFACE imgui d3d11)
-        target_include_directories(imgui-dx11 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-    else()
-        message(STATUS "IMGUI_IMPL_DX11 set to ON but DirectX 11 could not be found.")
-    endif()
+	if(HAS_D3D11)
+		add_library(imgui-dx11 INTERFACE)
+		target_sources(imgui-dx11 INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx11.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx11.cpp
+		)
+		target_link_libraries(imgui-dx11 INTERFACE imgui d3d11)
+		target_include_directories(imgui-dx11 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	else()
+		message(STATUS "IMGUI_IMPL_DX11 set to ON but DirectX 11 could not be found.")
+	endif()
 endif()
 
 if(IMGUI_IMPL_DX12)
-    check_include_file(d3d12.h HAS_D3D12)
+	check_include_file(d3d12.h HAS_D3D12)
 
-    if(HAS_D3D11)
-        add_library(imgui-dx12 INTERFACE)
-        target_sources(imgui-dx12 INTERFACE
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx12.h
-            ${IMGUI_BACKENDS_DIR}/imgui_impl_dx12.cpp
-        )
-        target_link_libraries(imgui-dx12 INTERFACE imgui d3d12 dxgi)
-        target_include_directories(imgui-dx12 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
-    else()
-        message(STATUS "IMGUI_IMPL_DX12 set to ON but DirectX 12 could not be found.")
-    endif()
+	if(HAS_D3D11)
+		add_library(imgui-dx12 INTERFACE)
+		target_sources(imgui-dx12 INTERFACE
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx12.h
+			${IMGUI_BACKENDS_DIR}/imgui_impl_dx12.cpp
+		)
+		target_link_libraries(imgui-dx12 INTERFACE imgui d3d12 dxgi)
+		target_include_directories(imgui-dx12 SYSTEM INTERFACE ${IMGUI_BACKENDS_DIR})
+	else()
+		message(STATUS "IMGUI_IMPL_DX12 set to ON but DirectX 12 could not be found.")
+	endif()
 endif()
 
 if(IMGUI_IMPL_VULKAN)
-    find_package(Vulkan QUIET)
+	find_package(Vulkan QUIET)
 
-    if(CMAKE_CXX_STANDARD EQUAL 98)
-        message(STATUS "IMGUI_IMPL_VULKAN set to ON but Vulkan SDK requires at least C++11.")
-    elseif(NOT Vulkan_FOUND)
-        message(STATUS "IMGUI_IMPL_VULKAN set to ON but Vulkan could not be found.")
-    else()
-        add_library(imgui-vulkan INTERFACE)
-        target_sources(imgui-vulkan INTERFACE ${IMGUI_BACKENDS_DIR}/imgui_impl_vulkan.cpp)
-        target_link_libraries(imgui-vulkan INTERFACE imgui ${Vulkan_LIBRARIES} OpenGL::GL)
-        target_include_directories(imgui-vulkan SYSTEM INTERFACE ${Vulkan_INCLUDE_DIRS} ${IMGUI_BACKENDS_DIR})
-    endif()
+	if(CMAKE_CXX_STANDARD EQUAL 98)
+		message(STATUS "IMGUI_IMPL_VULKAN set to ON but Vulkan SDK requires at least C++11.")
+	elseif(NOT Vulkan_FOUND)
+		message(STATUS "IMGUI_IMPL_VULKAN set to ON but Vulkan could not be found.")
+	else()
+		add_library(imgui-vulkan INTERFACE)
+		target_sources(imgui-vulkan INTERFACE ${IMGUI_BACKENDS_DIR}/imgui_impl_vulkan.cpp)
+		target_link_libraries(imgui-vulkan INTERFACE imgui ${Vulkan_LIBRARIES} OpenGL::GL)
+		target_include_directories(imgui-vulkan SYSTEM INTERFACE ${Vulkan_INCLUDE_DIRS} ${IMGUI_BACKENDS_DIR})
+	endif()
 endif()
 
 # ##############################################################################
 # Examples
 # ##############################################################################
 if(IMGUI_EXAMPLES)
-    function(IMGUI_EXAMPLE)
-        cmake_parse_arguments(IMGUI_EXAMPLE "" "TARGET;SOURCE" "LINKS" ${ARGN})
+	function(IMGUI_EXAMPLE)
+		cmake_parse_arguments(IMGUI_EXAMPLE "" "TARGET;SOURCE" "LINKS" ${ARGN})
 
-        if(NOT IMGUI_EXAMPLE_SOURCE)
-            set(IMGUI_EXAMPLE_SOURCE main.cpp)
-        endif()
+		if(NOT IMGUI_EXAMPLE_SOURCE)
+			set(IMGUI_EXAMPLE_SOURCE main.cpp)
+		endif()
 
-        # Check whether dependency libraries are available.
-        foreach(dep ${IMGUI_EXAMPLE_LINKS})
-            if(NOT TARGET ${dep})
-                return()
-            endif()
-        endforeach()
+		# Check whether dependency libraries are available.
+		foreach(dep ${IMGUI_EXAMPLE_LINKS})
+			if(NOT TARGET ${dep})
+				return()
+			endif()
+		endforeach()
 
-        # Resize a target.
-        add_executable(${IMGUI_EXAMPLE_TARGET} ${IMGUI_EXAMPLES_DIR}/${IMGUI_EXAMPLE_TARGET}/${IMGUI_EXAMPLE_SOURCE})
-        target_link_libraries(${IMGUI_EXAMPLE_TARGET} PRIVATE imgui ${IMGUI_EXAMPLE_LINKS})
-        list(FIND IMGUI_EXAMPLE_LINKS imgui-sdl LINKS_SDL)
+		# Resize a target.
+		add_executable(${IMGUI_EXAMPLE_TARGET} ${IMGUI_EXAMPLES_DIR}/${IMGUI_EXAMPLE_TARGET}/${IMGUI_EXAMPLE_SOURCE})
+		target_link_libraries(${IMGUI_EXAMPLE_TARGET} PRIVATE imgui ${IMGUI_EXAMPLE_LINKS})
+		list(FIND IMGUI_EXAMPLE_LINKS imgui-sdl LINKS_SDL)
 
-        if(NOT LINKS_SDL EQUAL -1 AND WIN32)
-            get_target_property(SDL_IS_IMPORTED ${IMGUI_SDL_TARGET} IMPORTED)
+		if(NOT LINKS_SDL EQUAL -1 AND WIN32)
+			get_target_property(SDL_IS_IMPORTED ${IMGUI_SDL_TARGET} IMPORTED)
 
-            if(SDL_IS_IMPORTED)
-                # When program links to imgui-sdl and imported target ${IMGUI_SDL_TARGET} exists - copy SDL dll.
-                add_custom_command(TARGET ${IMGUI_EXAMPLE_TARGET} POST_BUILD
-                    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                    $<TARGET_FILE:${IMGUI_SDL_TARGET}> $<TARGET_FILE_DIR:${IMGUI_EXAMPLE_TARGET}>)
-            endif()
-        endif()
-    endfunction()
+			if(SDL_IS_IMPORTED)
+				# When program links to imgui-sdl and imported target ${IMGUI_SDL_TARGET} exists - copy SDL dll.
+				add_custom_command(TARGET ${IMGUI_EXAMPLE_TARGET} POST_BUILD
+					COMMAND ${CMAKE_COMMAND} -E copy_if_different
+					$<TARGET_FILE:${IMGUI_SDL_TARGET}> $<TARGET_FILE_DIR:${IMGUI_EXAMPLE_TARGET}>)
+			endif()
+		endif()
+	endfunction()
 
-    if(APPLE)
-        # MacOS Metal example
-        # FIXME: This sample is still broken.
-        add_executable(example_apple_metal MACOSX_BUNDLE
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/main.m
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/AppDelegate.h
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/AppDelegate.m
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/Renderer.h
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/Renderer.mm
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/ViewController.h
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/ViewController.mm
-            ${IMGUI_EXAMPLES_DIR}/example_apple_metal/macOS/Base.lproj/Main.storyboard
-        )
-        target_link_libraries(example_apple_metal imgui imgui-osx imgui-metal)
+	if(APPLE)
+		# MacOS Metal example
+		# FIXME: This sample is still broken.
+		add_executable(example_apple_metal MACOSX_BUNDLE
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/main.m
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/AppDelegate.h
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/AppDelegate.m
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/Renderer.h
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/Renderer.mm
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/ViewController.h
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/Shared/ViewController.mm
+			${IMGUI_EXAMPLES_DIR}/example_apple_metal/macOS/Base.lproj/Main.storyboard
+		)
+		target_link_libraries(example_apple_metal imgui imgui-osx imgui-metal)
 
-        # Generate new plist
-        file(READ ${IMGUI_EXAMPLES_DIR}/example_apple_metal/macOS/Info-macOS.plist INFO_PLIST)
-        string(REPLACE "$(EXECUTABLE_NAME)" example_apple_metal INFO_PLIST "${INFO_PLIST}")
-        string(REPLACE "$(PRODUCT_BUNDLE_IDENTIFIER)" org.imgui.example.apple-metal-macos INFO_PLIST "${INFO_PLIST}")
-        string(REPLACE "$(MACOSX_DEPLOYMENT_TARGET)" 10.12 INFO_PLIST "${INFO_PLIST}")
-        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/example_apple_metal-info.plist "${INFO_PLIST}")
+		# Generate new plist
+		file(READ ${IMGUI_EXAMPLES_DIR}/example_apple_metal/macOS/Info-macOS.plist INFO_PLIST)
+		string(REPLACE "$(EXECUTABLE_NAME)" example_apple_metal INFO_PLIST "${INFO_PLIST}")
+		string(REPLACE "$(PRODUCT_BUNDLE_IDENTIFIER)" org.imgui.example.apple-metal-macos INFO_PLIST "${INFO_PLIST}")
+		string(REPLACE "$(MACOSX_DEPLOYMENT_TARGET)" 10.12 INFO_PLIST "${INFO_PLIST}")
+		file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/example_apple_metal-info.plist "${INFO_PLIST}")
 
-        # Consume new plist
-        set_property(TARGET example_apple_metal PROPERTY
-            MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/example_apple_metal-info.plist)
+		# Consume new plist
+		set_property(TARGET example_apple_metal PROPERTY
+			MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/example_apple_metal-info.plist)
 
-        # Compile storyboard
-        if(NOT "${CMAKE_GENERATOR}" MATCHES "^Xcode.*")
-            # Xcode compiles storyboard automatically. We must do it manually when using other build systems.
-            find_program(IBTOOL ibtool HINTS /usr/bin ${OSX_DEVELOPER_ROOT}/usr/bin)
-            add_custom_command(TARGET example_apple_metal POST_BUILD COMMAND ${IBTOOL} --errors --warnings --notices
-                --output-format human-readable-text --compile
-                ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/example_apple_metal.app/Contents/Resources/Base.lproj/Main.storyboardc
-                ${IMGUI_EXAMPLES_DIR}/example_apple_metal/macOS/Base.lproj/Main.storyboard
-                COMMENT "Compiling storyboard"
-            )
-        endif()
+		# Compile storyboard
+		if(NOT "${CMAKE_GENERATOR}" MATCHES "^Xcode.*")
+			# Xcode compiles storyboard automatically. We must do it manually when using other build systems.
+			find_program(IBTOOL ibtool HINTS /usr/bin ${OSX_DEVELOPER_ROOT}/usr/bin)
+			add_custom_command(TARGET example_apple_metal POST_BUILD COMMAND ${IBTOOL} --errors --warnings --notices
+				--output-format human-readable-text --compile
+				${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/example_apple_metal.app/Contents/Resources/Base.lproj/Main.storyboardc
+				${IMGUI_EXAMPLES_DIR}/example_apple_metal/macOS/Base.lproj/Main.storyboard
+				COMMENT "Compiling storyboard"
+			)
+		endif()
 
-        IMGUI_EXAMPLE(TARGET example_apple_opengl2 LINKS imgui-osx imgui-opengl2 SOURCE main.mm)
-        IMGUI_EXAMPLE(TARGET example_glfw_metal LINKS imgui-glfw imgui-metal SOURCE main.mm)
-        IMGUI_EXAMPLE(TARGET example_sdl_metal LINKS imgui-sdl imgui-metal SOURCE main.mm)
-    endif()
+		IMGUI_EXAMPLE(TARGET example_apple_opengl2 LINKS imgui-osx imgui-opengl2 SOURCE main.mm)
+		IMGUI_EXAMPLE(TARGET example_glfw_metal LINKS imgui-glfw imgui-metal SOURCE main.mm)
+		IMGUI_EXAMPLE(TARGET example_sdl_metal LINKS imgui-sdl imgui-metal SOURCE main.mm)
+	endif()
 
-    if(WIN32)
-        IMGUI_EXAMPLE(TARGET example_sdl_directx11 LINKS imgui-sdl imgui-dx11)
-        IMGUI_EXAMPLE(TARGET example_win32_directx9 LINKS imgui-win32 imgui-dx9)
-        IMGUI_EXAMPLE(TARGET example_win32_directx10 LINKS imgui-win32 imgui-dx10)
-        IMGUI_EXAMPLE(TARGET example_win32_directx11 LINKS imgui-win32 imgui-dx11)
-        IMGUI_EXAMPLE(TARGET example_win32_directx12 LINKS imgui-win32 imgui-dx12)
-        IMGUI_EXAMPLE(TARGET example_null)
-    endif()
+	if(WIN32)
+		IMGUI_EXAMPLE(TARGET example_sdl_directx11 LINKS imgui-sdl imgui-dx11)
+		IMGUI_EXAMPLE(TARGET example_win32_directx9 LINKS imgui-win32 imgui-dx9)
+		IMGUI_EXAMPLE(TARGET example_win32_directx10 LINKS imgui-win32 imgui-dx10)
+		IMGUI_EXAMPLE(TARGET example_win32_directx11 LINKS imgui-win32 imgui-dx11)
+		IMGUI_EXAMPLE(TARGET example_win32_directx12 LINKS imgui-win32 imgui-dx12)
+		IMGUI_EXAMPLE(TARGET example_null)
+	endif()
 
-    if(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
-        IMGUI_EXAMPLE(TARGET example_emscripten LINKS imgui-sdl imgui-opengl3)
-        target_compile_options(example_emscripten PUBLIC -s USE_SDL=2)
-        target_link_libraries(example_emscripten PUBLIC "-s WASM=1")
-        target_link_libraries(example_emscripten PUBLIC "-s ALLOW_MEMORY_GROWTH=1")
-        target_link_libraries(example_emscripten PUBLIC "-s DISABLE_EXCEPTION_CATCHING=1" "-s NO_EXIT_RUNTIME=0")
-        target_link_libraries(example_emscripten PUBLIC "-s ASSERTIONS=1")
-        target_link_libraries(example_emscripten PUBLIC "--shell-file ${IMGUI_EXAMPLES_DIR}/example_emscripten/shell_minimal.html")
+	if(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
+		IMGUI_EXAMPLE(TARGET example_emscripten LINKS imgui-sdl imgui-opengl3)
+		target_compile_options(example_emscripten PUBLIC -s USE_SDL=2)
+		target_link_libraries(example_emscripten PUBLIC "-s WASM=1")
+		target_link_libraries(example_emscripten PUBLIC "-s ALLOW_MEMORY_GROWTH=1")
+		target_link_libraries(example_emscripten PUBLIC "-s DISABLE_EXCEPTION_CATCHING=1" "-s NO_EXIT_RUNTIME=0")
+		target_link_libraries(example_emscripten PUBLIC "-s ASSERTIONS=1")
+		target_link_libraries(example_emscripten PUBLIC "--shell-file ${IMGUI_EXAMPLES_DIR}/example_emscripten/shell_minimal.html")
 
-        if(IMGUI_DISABLE_FILE_FUNCTIONS)
-            target_link_libraries(example_emscripten PUBLIC "-s NO_FILESYSTEM=1")
-        else()
-            target_link_libraries(example_emscripten PUBLIC --no-heap-copy "--preload-file ${IMGUI_ROOT_DIR}/misc/fonts@/fonts")
-        endif()
+		if(IMGUI_DISABLE_FILE_FUNCTIONS)
+			target_link_libraries(example_emscripten PUBLIC "-s NO_FILESYSTEM=1")
+		else()
+			target_link_libraries(example_emscripten PUBLIC --no-heap-copy "--preload-file ${IMGUI_ROOT_DIR}/misc/fonts@/fonts")
+		endif()
 
-    # Uncomment next line to fix possible rendering bugs with Emscripten version older then 1.39.0 (https://github.com/ocornut/imgui/issues/2877)
-    # target_link_libraries(example_emscripten PUBLIC "-s BINARYEN_TRAP_MODE=clamp")
-    # target_link_libraries(example_emscripten PUBLIC "-s SAFE_HEAP=1")    ## Adds overhead
-    else()
-        IMGUI_EXAMPLE(TARGET example_glfw_opengl2 LINKS imgui-glfw imgui-opengl2)
-        IMGUI_EXAMPLE(TARGET example_glfw_opengl3 LINKS imgui-glfw imgui-opengl3)
-        IMGUI_EXAMPLE(TARGET example_glfw_vulkan LINKS imgui-glfw imgui-vulkan)
-        IMGUI_EXAMPLE(TARGET example_glut_opengl2 LINKS imgui-glut imgui-opengl2)
-        IMGUI_EXAMPLE(TARGET example_sdl_opengl2 LINKS imgui-sdl imgui-opengl2)
-        IMGUI_EXAMPLE(TARGET example_sdl_opengl3 LINKS imgui-sdl imgui-opengl3)
-        IMGUI_EXAMPLE(TARGET example_sdl_vulkan LINKS imgui-sdl imgui-vulkan)
-        IMGUI_EXAMPLE(TARGET example_sdl_sdlrenderer LINKS imgui-sdl imgui-sdlrenderer)
-    endif()
+	# Uncomment next line to fix possible rendering bugs with Emscripten version older then 1.39.0 (https://github.com/ocornut/imgui/issues/2877)
+	# target_link_libraries(example_emscripten PUBLIC "-s BINARYEN_TRAP_MODE=clamp")
+	# target_link_libraries(example_emscripten PUBLIC "-s SAFE_HEAP=1")    ## Adds overhead
+	else()
+		IMGUI_EXAMPLE(TARGET example_glfw_opengl2 LINKS imgui-glfw imgui-opengl2)
+		IMGUI_EXAMPLE(TARGET example_glfw_opengl3 LINKS imgui-glfw imgui-opengl3)
+		IMGUI_EXAMPLE(TARGET example_glfw_vulkan LINKS imgui-glfw imgui-vulkan)
+		IMGUI_EXAMPLE(TARGET example_glut_opengl2 LINKS imgui-glut imgui-opengl2)
+		IMGUI_EXAMPLE(TARGET example_sdl_opengl2 LINKS imgui-sdl imgui-opengl2)
+		IMGUI_EXAMPLE(TARGET example_sdl_opengl3 LINKS imgui-sdl imgui-opengl3)
+		IMGUI_EXAMPLE(TARGET example_sdl_vulkan LINKS imgui-sdl imgui-vulkan)
+		IMGUI_EXAMPLE(TARGET example_sdl_sdlrenderer LINKS imgui-sdl imgui-sdlrenderer)
+	endif()
 endif()

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -17,29 +17,29 @@
 // Raycast class
 class Raycast
 {
-// Ray
+	// Ray
 public:
-  struct Ray
-  {
-    BlockManager::Value hitValue;
-    BlockManager::Value neighborValue;
-    glm::vec3 hitPosition;
-    glm::vec3 neighborPosition;
-    bool isHit;
+	struct Ray
+	{
+		BlockManager::Value hitValue;
+		BlockManager::Value neighborValue;
+		glm::vec3 hitPosition;
+		glm::vec3 neighborPosition;
+		bool isHit;
 
-    Ray(BlockManager::Value hitValue, const glm::vec3 &hitPosition, BlockManager::Value neighborValue, const glm::vec3 &neighborPosition, bool isHit)
-    {
-      this->hitValue = hitValue;
-      this->neighborValue = neighborValue;
-      this->hitPosition = hitPosition;
-      this->neighborPosition = neighborPosition;
-      this->isHit = isHit;
-    }
-  };
+		Ray(BlockManager::Value hitValue, const glm::vec3 &hitPosition, BlockManager::Value neighborValue, const glm::vec3 &neighborPosition, bool isHit)
+		{
+			this->hitValue = hitValue;
+			this->neighborValue = neighborValue;
+			this->hitPosition = hitPosition;
+			this->neighborPosition = neighborPosition;
+			this->isHit = isHit;
+		}
+	};
 
-// Methods
+	// Methods
 public:
-  static Raycast::Ray CastFromCamera(const float &distance, Camera &camera);
+	static Raycast::Ray CastFromCamera(const float &distance, Camera &camera);
 };
 
 ////////////////////////////////////////////////////////////////

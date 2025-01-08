@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -20,36 +20,36 @@
 // Engine class
 class Engine
 {
-// Properties
+	// Properties
 protected:
-  static GLFWwindow *window;
-  static std::string title;
-  static std::string version;
-  static int width;
-  static int height;
+	static GLFWwindow *window;
+	static std::string title;
+	static std::string version;
+	static int width;
+	static int height;
 
-// Methods
+	// Methods
 public:
-  bool Create(const char *title, const char *version, const int &width, const int &height);
-  void Start();
+	bool Create(const char *title, const char *version, const int &width, const int &height);
+	void Start();
 
 protected:
-  virtual void OnStart() = 0;
-  virtual void OnUpdate() = 0;
-  virtual void OnRender() = 0;
-  virtual void OnEnd() = 0;
+	virtual void OnStart() = 0;
+	virtual void OnUpdate() = 0;
+	virtual void OnRender() = 0;
+	virtual void OnEnd() = 0;
 
 private:
-  static void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
-  void SetEventCallbacks();
+	static void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
+	void SetEventCallbacks();
 
-// Getters
+	// Getters
 public:
-  static GLFWwindow &GetWindow();
-  static glm::ivec2 GetWindowSize();
-  static std::string GetGLVendor();
-  static std::string GetGLRenderer();
-  static std::string GetGLVersion();
+	static GLFWwindow &GetWindow();
+	static glm::ivec2 GetWindowSize();
+	static std::string GetGLVendor();
+	static std::string GetGLRenderer();
+	static std::string GetGLVersion();
 };
 
 ////////////////////////////////////////////////////////////////

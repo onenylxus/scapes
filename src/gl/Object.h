@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -16,44 +16,44 @@
 // Object class
 class Object
 {
-// Object data
+	// Object data
 public:
-  struct Data
-  {
-    unsigned int vao = 0;
-    unsigned int vbo = 0;
-    unsigned int ebo = 0;
-    int size;
-  };
+	struct Data
+	{
+		unsigned int vao = 0;
+		unsigned int vbo = 0;
+		unsigned int ebo = 0;
+		int size;
+	};
 
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Object(const glm::vec3 &position, const std::vector<float> &data, const std::vector<int> &attr, const std::vector<unsigned int> &indices = std::vector<unsigned int>());
-  Object(const glm::vec3 &position, const Mesh::Data &data);
-  virtual ~Object();
+	Object(const glm::vec3 &position, const std::vector<float> &data, const std::vector<int> &attr, const std::vector<unsigned int> &indices = std::vector<unsigned int>());
+	Object(const glm::vec3 &position, const Mesh::Data &data);
+	virtual ~Object();
 
-// Properties
+	// Properties
 private:
-  Object::Data data;
-  Transform *transform;
-  Shader *shader;
+	Object::Data data;
+	Transform *transform;
+	Shader *shader;
 
-// Methods
+	// Methods
 public:
-  void BindVAO() const;
-  void BindVBO() const;
-  void Render(Camera &camera);
-  void Render();
+	void BindVAO() const;
+	void BindVBO() const;
+	void Render(Camera &camera);
+	void Render();
 
-// Setters
+	// Setters
 public:
-  void SetShader(Shader *shader);
+	void SetShader(Shader *shader);
 
-// Getters
+	// Getters
 public:
-  Shader *GetShader() const;
-  glm::vec3 GetPosition();
-  Transform *GetTransform();
+	Shader *GetShader() const;
+	glm::vec3 GetPosition();
+	Transform *GetTransform();
 };
 
 ////////////////////////////////////////////////////////////////

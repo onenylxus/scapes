@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -26,37 +26,37 @@ class Chunk;
 // Chunk manager class
 class ChunkManager
 {
-// Friend class
+	// Friend class
 public:
-  friend class Chunk;
+	friend class Chunk;
 
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  ChunkManager();
-  virtual ~ChunkManager();
+	ChunkManager();
+	virtual ~ChunkManager();
 
-// Properties
+	// Properties
 private:
-  unsigned int renderDistance;
-  unsigned int destroyDistance;
-  std::unordered_map<glm::ivec2, Chunk *> chunks;
-  Chunk *cachedChunk;
-  std::mutex mutex;
-  std::thread *generationThread;
-  Shader *solidShader;
-  Shader *liquidShader;
-  bool isAppEnding;
+	unsigned int renderDistance;
+	unsigned int destroyDistance;
+	std::unordered_map<glm::ivec2, Chunk *> chunks;
+	Chunk *cachedChunk;
+	std::mutex mutex;
+	std::thread *generationThread;
+	Shader *solidShader;
+	Shader *liquidShader;
+	bool isAppEnding;
 
-// Methods
+	// Methods
 public:
-  void Update();
-  void Render(Camera &camera);
-  void Load();
-  Chunk *Create(const glm::ivec2 &index);
-  Chunk *FindChunk(const glm::ivec2 &index);
+	void Update();
+	void Render(Camera &camera);
+	void Load();
+	Chunk *Create(const glm::ivec2 &index);
+	Chunk *FindChunk(const glm::ivec2 &index);
 
 private:
-  Chunk *LockAndFindChunk(const glm::ivec2 &index);
+	Chunk *LockAndFindChunk(const glm::ivec2 &index);
 };
 
 ////////////////////////////////////////////////////////////////

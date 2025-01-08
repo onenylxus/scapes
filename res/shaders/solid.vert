@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2023 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 #version 450 core
@@ -22,14 +22,14 @@ out vec2 fLight;
 
 void main()
 {
-  mat4 model = mat4(1);
-  model[3] = vec4(uPosition, 1);
-  glPosition = uProjectionView * model * vec4(vPosition, 1);
+	mat4 model = mat4(1);
+	model[3] = vec4(uPosition, 1);
+	glPosition = uProjectionView * model * vec4(vPosition, 1);
 
-  fTexCoord = vTexCoord;
-  fNormal = vNormal;
-  fAmbient = vAmbient;
-  fLight = vLight;
+	fTexCoord = vTexCoord;
+	fNormal = vNormal;
+	fAmbient = vAmbient;
+	fLight = vLight;
 }
 
 ////////////////////////////////////////////////////////////////

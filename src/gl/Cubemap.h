@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -12,17 +12,17 @@
 // Cubemap class
 class Cubemap : public Texture
 {
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Cubemap(const char *path);
-  virtual ~Cubemap();
+	Cubemap(const char *path);
+	virtual ~Cubemap();
 
-// Methods
+	// Methods
 public:
-  void Bind(const unsigned int &index = 0) const override;
+	void Bind(const unsigned int &index = 0) const override;
 
 private:
-  void Load(const char *path);
+	void Load(const char *path);
 };
 
 ////////////////////////////////////////////////////////////////

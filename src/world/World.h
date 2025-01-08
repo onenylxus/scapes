@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -15,19 +15,19 @@
 // World class
 class World
 {
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  World();
-  virtual ~World();
+	World();
+	virtual ~World();
 
-// Properties
+	// Properties
 private:
-  Skybox *skybox;
+	Skybox *skybox;
 
-// Methods
+	// Methods
 public:
-  void Update();
-  void Render();
+	void Update();
+	void Render();
 };
 
 ////////////////////////////////////////////////////////////////

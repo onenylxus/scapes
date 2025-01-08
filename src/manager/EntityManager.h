@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -15,21 +15,21 @@ class Entity;
 // Entity manager class
 class EntityManager
 {
-// Friend class
+	// Friend class
 public:
-  friend class Entity;
+	friend class Entity;
 
-// Properties
+	// Properties
 private:
-  static std::vector<Entity *> entities;
+	static std::vector<Entity *> entities;
 
-// Methods
+	// Methods
 public:
-  static void Update();
-  static void Render(Camera &camera);
+	static void Update();
+	static void Render(Camera &camera);
 
 private:
-  static void Add(Entity &entity);
+	static void Add(Entity &entity);
 };
 
 ////////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2024 MIT License
+// Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
 // Include
@@ -11,14 +11,14 @@
 // Sprite class
 class Sprite : public Texture
 {
-// Constructor and destructor
+	// Constructor and destructor
 public:
-  Sprite(const char *path);
-  virtual ~Sprite();
+	Sprite(const char *path);
+	virtual ~Sprite();
 
-// Methods
+	// Methods
 private:
-  bool Load(const char *path);
+	bool Load(const char *path);
 };
 
 ////////////////////////////////////////////////////////////////
