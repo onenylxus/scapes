@@ -4,20 +4,17 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <string>
 #include "Texture.h"
 
-// Cubemap class
 class Cubemap : public Texture
 {
-	// Constructor and destructor
 public:
 	Cubemap(const char *path);
 	virtual ~Cubemap();
 
-	// Methods
 public:
 	void Bind(const unsigned int &index = 0) const override;
 

@@ -4,17 +4,16 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
+#include <cstdio>
 #include <vector>
 #include <glm/glm.hpp>
 #include "../gl/Tilemap.h"
 #include "../world/Block.h"
 
-// Block manager class
 class BlockManager
 {
-	// Block values
 public:
 	enum class Value
 	{
@@ -22,7 +21,6 @@ public:
 		_VALUE_SIZE,
 	};
 
-	// Properties
 private:
 	static Tilemap *solidTexture;
 	static Tilemap *liquidTexture;
@@ -32,13 +30,12 @@ private:
 	static std::vector<float> gaseousVertexData;
 	static std::vector<Block::Data> blocks;
 
-	// Methods
 public:
 	static void Init();
 	static void Destroy();
+	static std::vector<float> LoadVertexData(const char *path);
 	static void LoadDatabase();
 
-	// Getters
 public:
 	static const Tilemap *GetTilemap(const Block::Type type = Block::Type::SOLID);
 	static const Block::Data *GetBlockData(const BlockManager::Value &value);

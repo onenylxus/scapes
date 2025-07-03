@@ -4,8 +4,8 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <cfloat>
 #include <glm/glm.hpp>
 #include "../core/Input.h"
@@ -14,10 +14,8 @@
 #include "../view/Renderer.h"
 #include "../world/World.h"
 
-// Raycast class
 class Raycast
 {
-	// Ray
 public:
 	struct Ray
 	{
@@ -37,7 +35,6 @@ public:
 		}
 	};
 
-	// Methods
 public:
 	static Raycast::Ray CastFromCamera(const float &distance, Camera &camera);
 };

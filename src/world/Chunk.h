@@ -4,8 +4,8 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <array>
 #include <chrono>
 #include <queue>
@@ -15,17 +15,13 @@
 #include "../gl/Shader.h"
 #include "../manager/BlockManager.h"
 
-// Prototypes
 class ChunkManager;
 
-// Chunk class
 class Chunk
 {
-	// Friend class
 public:
 	friend class ChunkManager;
 
-	// Chunk neighbors
 private:
 	enum class Neighbor
 	{
@@ -39,12 +35,10 @@ private:
 		NORTH_WEST = 7
 	};
 
-	// Constructor and destructor
 public:
 	Chunk(glm::ivec2 index, ChunkManager &manager);
 	virtual ~Chunk();
 
-	// Properties
 public:
 	static const unsigned int chunkSize = 16;
 	static const unsigned int chunkArea = Chunk::chunkSize * Chunk::chunkSize;
@@ -64,7 +58,6 @@ public:
 private:
 	glm::ivec2 neighborOffset[8] = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
 
-	// Methods
 public:
 	void RenderSolid(Shader &solidShader);
 	void RenderLiquid(Shader &liquidShader);

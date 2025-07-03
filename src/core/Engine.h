@@ -4,9 +4,11 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #define GLFW_INCLUDE_NONE
+
+#include <string>
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
@@ -17,10 +19,8 @@
 #include "Clock.h"
 #include "Input.h"
 
-// Engine class
 class Engine
 {
-	// Properties
 protected:
 	static GLFWwindow *window;
 	static std::string title;
@@ -28,7 +28,6 @@ protected:
 	static int width;
 	static int height;
 
-	// Methods
 public:
 	bool Create(const char *title, const char *version, const int &width, const int &height);
 	void Start();
@@ -43,7 +42,6 @@ private:
 	static void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
 	void SetEventCallbacks();
 
-	// Getters
 public:
 	static GLFWwindow &GetWindow();
 	static glm::ivec2 GetWindowSize();

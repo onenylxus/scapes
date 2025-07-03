@@ -4,7 +4,6 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #include "Engine.h"
 
 // Set default values
@@ -76,14 +75,12 @@ void Engine::Start()
 	Logger::LogTrace(ModuleData::Name::ENGINE, "void Start()");
 
 	// Start event callback
-	Logger::Log(Logger::Color::BLACK, false, "\n===============================");
-	Logger::Log(Logger::Color::BLACK, false, "Application name: %s", this->title.c_str());
-	Logger::Log(Logger::Color::BLACK, false, "Application version: %s", this->version.c_str());
-	Logger::Log(Logger::Color::BLACK, false, "OpenGL company: %s", this->GetGLVendor().c_str());
-	Logger::Log(Logger::Color::BLACK, false, "OpenGL renderer: %s", this->GetGLRenderer().c_str());
-	Logger::Log(Logger::Color::BLACK, false, "OpenGL version: %s", this->GetGLVersion().c_str());
-	Logger::Log(Logger::Color::BLACK, false, "===============================\n");
 	Logger::LogInfo(ModuleData::Name::ENGINE, "Application started");
+	Logger::LogInfo(ModuleData::Name::ENGINE, "Application name: %s", this->title.c_str());
+	Logger::LogInfo(ModuleData::Name::ENGINE, "Application version: %s", this->version.c_str());
+	Logger::LogInfo(ModuleData::Name::ENGINE, "OpenGL company: %s", this->GetGLVendor().c_str());
+	Logger::LogInfo(ModuleData::Name::ENGINE, "OpenGL renderer: %s", this->GetGLRenderer().c_str());
+	Logger::LogInfo(ModuleData::Name::ENGINE, "OpenGL version: %s", this->GetGLVersion().c_str());
 	this->OnStart();
 
 	// Run engine loop

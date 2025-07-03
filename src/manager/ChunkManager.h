@@ -4,9 +4,9 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
 #define GLM_ENABLE_EXPERIMENTAL
+
 #include <array>
 #include <mutex>
 #include <thread>
@@ -20,22 +20,17 @@
 #include "../world/Chunk.h"
 #include "ShaderManager.h"
 
-// Prototypes
 class Chunk;
 
-// Chunk manager class
 class ChunkManager
 {
-	// Friend class
 public:
 	friend class Chunk;
 
-	// Constructor and destructor
 public:
 	ChunkManager();
 	virtual ~ChunkManager();
 
-	// Properties
 private:
 	unsigned int renderDistance;
 	unsigned int destroyDistance;
@@ -47,7 +42,6 @@ private:
 	Shader *liquidShader;
 	bool isAppEnding;
 
-	// Methods
 public:
 	void Update();
 	void Render(Camera &camera);

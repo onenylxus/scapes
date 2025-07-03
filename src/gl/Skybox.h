@@ -4,31 +4,27 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include "../manager/ShaderManager.h"
+#include "../gl/Mesh.h"
 #include "Camera.h"
 #include "Cubemap.h"
 #include "Object.h"
 
-// Skybox class
 class Skybox
 {
-	// Constructor and destructor
 public:
 	Skybox(const char *path);
 	virtual ~Skybox();
 
-	// Properties
 private:
 	Cubemap *texture;
 	Object *cube;
 
-	// Methods
 public:
 	void Render(Camera &camera);
 
-	// Getters
 public:
 	Shader *GetShader();
 };

@@ -4,20 +4,17 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <chrono>
 #include <cstdio>
 #include <tuple>
 
-// Time class
 class Time
 {
-	// Properties
 private:
 	static inline int timezone = 8;
 
-	// Methods
 public:
 	template <class Int>
 	static constexpr std::tuple<Int, unsigned int, unsigned int> GetDate(Int z) noexcept

@@ -4,15 +4,13 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <glm/glm.hpp>
 #include "../util/Logger.h"
 
-// Axis-aligned bounding box class
 class AABB
 {
-	// Vertices
 public:
 	enum class Vertices
 	{
@@ -23,26 +21,22 @@ public:
 		BOTTOM_BACK_LEFT,
 		BOTTOM_BACK_RIGHT,
 		BOTTOM_FRONT_LEFT,
-		BOTTOM_FRONT_RIGHT
+		BOTTOM_FRONT_RIGHT,
 	};
 
-	// Properties
 private:
 	glm::vec3 position;
 	glm::vec3 vertices[8];
 	glm::vec3 min;
 	glm::vec3 max;
 
-	// Constructor and destructor
 public:
 	AABB(const glm::vec3 &position, const glm::vec3 &size);
 	virtual ~AABB();
 
-	// Methods
 public:
 	void Update(const glm::vec3 &position, const glm::vec3 &size);
 
-	// Getters
 public:
 	static bool IsOverlapping(const glm::vec3 &positionA, const glm::vec3 &sizeA, const glm::vec3 &positionB, const glm::vec3 &sizeB);
 	bool IsOverlapping(const glm::vec3 &position, glm::vec3 &size) const;

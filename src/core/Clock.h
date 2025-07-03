@@ -4,26 +4,22 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include "../util/Logger.h"
 
-// Clock class
 class Clock
 {
-	// Properties
 private:
 	static float then;
 	static float delta;
 	static float total;
 
-	// Methods
 public:
 	static void Update();
 
-	// Getters
 public:
 	static float GetDelta();
 	static float GetTotal();

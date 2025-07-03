@@ -4,18 +4,16 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <vector>
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include "../gl/Camera.h"
 #include "../manager/ShaderManager.h"
 
-// Renderer class
 class Renderer
 {
-	// Line
 public:
 	struct Line
 	{
@@ -26,12 +24,10 @@ public:
 		unsigned int vbo = 0;
 	};
 
-	// Properties
 private:
 	static Shader *shader;
 	static std::vector<Renderer::Line> lines;
 
-	// Methods
 public:
 	static void AddLine(glm::vec3 start, glm::vec3 end, glm::vec3 color = glm::vec3(0.5f));
 	static void AddBox(glm::vec3 position, glm::vec3 color = glm::vec3(1.0f, 0.0f, 0.0f));

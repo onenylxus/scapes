@@ -4,31 +4,26 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
 #define GLM_ENABLE_EXPERIMENTAL
+
 #include <cmath>
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include "../gl/Object.h"
 
-// Prototypes
 class EntityManager;
 class World;
 
-// Entity class
 class Entity
 {
-	// Friend class
 public:
 	friend class EntityManager;
 
-	// Constructor and destructor
 public:
 	Entity(const glm::vec3 &position);
 	virtual ~Entity();
 
-	// Properties
 private:
 	Object *object;
 	glm::vec3 size;
@@ -38,7 +33,6 @@ private:
 	bool isPhysicsEnabled;
 	bool isHovering;
 
-	// Methods
 public:
 	void Translate(const glm::vec3 &position);
 	void ApplyDirection(const glm::vec3 &direction);
@@ -50,7 +44,6 @@ protected:
 	virtual void OnRender(Camera &camera);
 	virtual void OnCollision(const glm::vec3 &normal);
 
-	// Setters
 public:
 	void SetPosition(const glm::vec3 &position);
 	void SetDirection(const glm::vec3 &direction);
@@ -58,7 +51,6 @@ public:
 	void SetSpeed(const float &speed);
 	void SetHovering(const bool &hovering);
 
-	// Getters
 public:
 	bool IsHovering() const;
 	glm::vec3 GetPosition() const;

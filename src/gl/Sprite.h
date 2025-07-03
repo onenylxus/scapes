@@ -4,19 +4,16 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include "Texture.h"
 
-// Sprite class
 class Sprite : public Texture
 {
-	// Constructor and destructor
 public:
 	Sprite(const char *path);
 	virtual ~Sprite();
 
-	// Methods
 private:
 	bool Load(const char *path);
 };

@@ -4,24 +4,20 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
 #include "Engine.h"
 
-// Prototypes
 class Engine;
 
-// Input class
 class Input
 {
-	// Friend class
 public:
 	friend class Engine;
 
-	// Scroll enum
 public:
 	enum class Scroll
 	{
@@ -29,7 +25,6 @@ public:
 		VERTICAL
 	};
 
-	// Properties
 private:
 	static glm::vec2 currentPosition;
 	static glm::vec2 previousPosition;
@@ -40,7 +35,6 @@ private:
 	static unsigned int keyCurrentStates[GLFW_KEY_LAST];
 	static unsigned int keyPreviousStates[GLFW_KEY_LAST];
 
-	// Methods
 protected:
 	static void MousePositionCallback(GLFWwindow *window, double xpos, double ypos);
 	static void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
@@ -48,14 +42,12 @@ protected:
 	static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
 	static void Update();
 
-	// Setters
 public:
 	static void SetCursorVisibility(const bool &visible);
 
 protected:
 	static void SetCallbacks(GLFWwindow *window);
 
-	// Getters
 public:
 	static bool IsCursorVisible();
 	static bool IsMouseDown(const int &button);

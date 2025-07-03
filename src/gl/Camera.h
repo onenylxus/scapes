@@ -4,16 +4,14 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "AABB.h"
 
-// Camera class
 class Camera
 {
-	// Frustum
 public:
 	enum class Frustum
 	{
@@ -22,15 +20,13 @@ public:
 		TOP,
 		BOTTOM,
 		NEAR,
-		FAR
+		FAR,
 	};
 
-	// Constructor and destructor
 public:
 	Camera(const glm::vec3 &position, const float &fov, const float &near, const float &far);
 	virtual ~Camera();
 
-	// Properties
 protected:
 	glm::vec3 position;
 	glm::vec3 up;
@@ -47,7 +43,6 @@ protected:
 	glm::vec4 frustum[6];
 	bool isDirty;
 
-	// Methods
 public:
 	void MoveBy(const glm::vec3 &position);
 	void RotateBy(const float &yaw, const float &pitch);
@@ -57,14 +52,12 @@ protected:
 	virtual glm::mat4 CreateProjection() const = 0;
 	void UpdateFrustum();
 
-	// Setters
 public:
 	void SetFOV(const float &value);
 	void SetNear(const float &value);
 	void SetFar(const float &value);
 	void SetDirty(const bool &value);
 
-	// Getters
 public:
 	bool IsPointInFrustum(const glm::vec3 &point);
 	bool IsAABBInFrustum(const AABB &aabb);

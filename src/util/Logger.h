@@ -4,16 +4,14 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <mutex>
 #include "ModuleData.h"
 #include "Time.h"
 
-// Logger class
 class Logger
 {
-	// Priority enum
 public:
 	enum class Priority
 	{
@@ -24,7 +22,6 @@ public:
 		ERROR
 	};
 
-	// Color enum
 public:
 	enum class Color
 	{
@@ -38,16 +35,15 @@ public:
 		WHITE
 	};
 
-	// Priority data
 private:
 	static inline const char *priorities[5] = {
 		"Trace",
 		"Debug",
 		"Info",
 		"Warn",
-		"Error"};
+		"Error",
+	};
 
-	// Color data
 private:
 	static inline Logger::Color colors[(int)ModuleData::Type::_TYPE_SIZE] = {
 		Logger::Color::BLACK,	// Logger
@@ -60,7 +56,6 @@ private:
 		Logger::Color::GREEN	// World
 	};
 
-	// Properties
 private:
 	static inline Logger::Priority priority = Logger::Priority::DEBUG;
 	static inline std::mutex mutex;
@@ -68,7 +63,6 @@ private:
 	static inline FILE *file = 0;
 	static inline bool isWriteEnabled = false;
 
-	// Methods
 public:
 	static void EnableWrite(const char *path)
 	{
@@ -228,7 +222,6 @@ private:
 		}
 	}
 
-	// Setters
 public:
 	static void SetPriority(Logger::Priority value)
 	{

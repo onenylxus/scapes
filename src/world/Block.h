@@ -4,30 +4,27 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <array>
 
-// Block class
 class Block
 {
-	// Block types
 public:
 	enum class Type
 	{
 		SOLID,
 		LIQUID,
-		GASEOUS
+		GASEOUS,
 	};
 
-	// Block faces
 public:
 	enum class Face
 	{
 		LEFT,
 		RIGHT,
-		TOP,
-		BOTTOM,
+		UP,
+		DOWN,
 		FRONT,
 		BACK
 	};
@@ -38,13 +35,13 @@ public:
 	{
 		std::array<unsigned int, 6> indices;
 
-		TextureIndex(const unsigned int &left = 0, const unsigned int &right = 0, const unsigned int &top = 0, const unsigned int &bottom = 0, const unsigned int &front = 0, const unsigned int &back = 0)
+		TextureIndex(const unsigned int &left = 0, const unsigned int &right = 0, const unsigned int &up = 0, const unsigned int &down = 0, const unsigned int &front = 0, const unsigned int &back = 0)
 		{
 			this->indices = std::array<unsigned int, 6>();
 			this->indices[(int)Block::Face::LEFT] = left;
 			this->indices[(int)Block::Face::RIGHT] = right;
-			this->indices[(int)Block::Face::TOP] = top;
-			this->indices[(int)Block::Face::BOTTOM] = bottom;
+			this->indices[(int)Block::Face::UP] = up;
+			this->indices[(int)Block::Face::DOWN] = down;
 			this->indices[(int)Block::Face::FRONT] = front;
 			this->indices[(int)Block::Face::BACK] = back;
 		}

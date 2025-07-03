@@ -4,8 +4,8 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #pragma once
+
 #include <fstream>
 #include <string>
 #include <glad/glad.h>
@@ -15,10 +15,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "../util/Logger.h"
 
-// Shader class
 class Shader
 {
-	// Shader types
 public:
 	enum class Type
 	{
@@ -27,16 +25,13 @@ public:
 		COMPUTE
 	};
 
-	// Constructor and destructor
 public:
 	Shader();
 	virtual ~Shader();
 
-	// Properties
 private:
 	GLint program;
 
-	// Methods
 public:
 	bool LoadGraphics(std::string vsPath, std::string fsPath);
 	bool LoadGeometry(std::string path);
@@ -49,7 +44,6 @@ private:
 	bool CheckProgramStatus(GLuint id);
 	bool CheckStatus(GLuint id, PFNGLGETSHADERIVPROC ivFunc, PFNGLGETSHADERINFOLOGPROC ilFunc, GLenum type);
 
-	// Setters
 public:
 	void SetFloat(const char *name, float value);
 	void SetInt(const char *name, int value);

@@ -4,7 +4,6 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #include "Input.h"
 
 // Set default values

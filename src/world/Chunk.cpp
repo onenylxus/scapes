@@ -4,47 +4,46 @@
 // Nicholas Ng, 2022-2025 MIT License
 ////////////////////////////////////////////////////////////////
 
-// Include
 #include "Chunk.h"
 
 // Constructor
 Chunk::Chunk(glm::ivec2 index, ChunkManager &manager)
 {
-  Logger::LogTrace(ModuleData::Name::CHUNK, "Chunk(const glm::ivec2 index, ChunkManager &manager)");
+	Logger::LogTrace(ModuleData::Name::CHUNK, "Chunk(const glm::ivec2 index, ChunkManager &manager)");
 
-  this->manager = &manager;
-  this->globalCoords = glm::vec3(index.x * Chunk::chunkSize, 0.0f, index.y * Chunk::chunkSize);
-  this->aabb = new AABB(glm::vec3(this->globalCoords.x + Chunk::chunkSize / 2.0f, Chunk::chunkHeight / 2.0f, this->globalCoords.z + Chunk::chunkSize / 2.0f), glm::vec3(Chunk::chunkSize, Chunk::chunkHeight, Chunk::chunkSize));
+	this->manager = &manager;
+	this->globalCoords = glm::vec3(index.x * Chunk::chunkSize, 0.0f, index.y * Chunk::chunkSize);
+	this->aabb = new AABB(glm::vec3(this->globalCoords.x + Chunk::chunkSize / 2.0f, Chunk::chunkHeight / 2.0f, this->globalCoords.z + Chunk::chunkSize / 2.0f), glm::vec3(Chunk::chunkSize, Chunk::chunkHeight, Chunk::chunkSize));
 
-  for (int i = 0; i < 8; i++)
-  {
-    this->neighbors[i] = nullptr;
-  }
+	for (int i = 0; i < 8; i++)
+	{
+		this->neighbors[i] = nullptr;
+	}
 }
 
 // Destructor
 Chunk::~Chunk()
 {
-  Logger::LogTrace(ModuleData::Name::CHUNK, "~Chunk()");
+	Logger::LogTrace(ModuleData::Name::CHUNK, "~Chunk()");
 
-  delete this->aabb;
+	delete this->aabb;
 
-  for (int i = 0; i < 8; i++)
-  {
-    this->neighbors[i] = nullptr;
-  }
+	for (int i = 0; i < 8; i++)
+	{
+		this->neighbors[i] = nullptr;
+	}
 }
 
 // Render with solid shader
 void Chunk::RenderSolid(Shader &solidShader)
 {
-  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderSolid(Shader &solidShader)");
+	Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderSolid(Shader &solidShader)");
 }
 
 // Render with liquid shader
 void Chunk::RenderLiquid(Shader &liquidShader)
 {
-  Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderLiquid(Shader &liquidShader)");
+	Logger::LogTrace(ModuleData::Name::CHUNK, "void RenderLiquid(Shader &liquidShader)");
 }
 
 ////////////////////////////////////////////////////////////////
