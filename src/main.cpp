@@ -16,50 +16,62 @@ const int height = 720;
 // Main function
 int main(int argc, char *argv[])
 {
-	// Check argument flags
-	char *logFlag;
-	if (argc > 0)
+	// Default values
+	std::string priority = "debug";
+	bool enableWrite = false;
+
+	// Parse arguments
+	for (int i = 1; i < argc; ++i)
 	{
-		char *flag = argv[0];
-		while (*argv[0])
+		std::string arg(argv[i]);
+		if (arg.rfind("--priority=", 0) == 0)
 		{
-			*argv[0] = tolower(*argv[0]);
-			argv[0]++;
+			priority = arg.substr(11);
 		}
-		logFlag = flag;
+		else if (arg.rfind("--write=", 0) == 0)
+		{
+			std::string val = arg.substr(8);
+			enableWrite = (val == "true" || val == "1");
+		}
 	}
 
-	// Enable logger file write
-	time_t t = time(0);
-	struct tm *now = std::localtime(&t);
+	// Check enable write
 	char buffer[80];
-	strftime(buffer, 80, "log/%Y%m%d_%H%M%S.txt", now);
-	Logger::EnableWrite(buffer);
-
-	// Check log level
-	if (logFlag == "trace")
+	if (enableWrite)
 	{
-		Logger::SetPriority(Logger::Priority::TRACE);
-	}
-	else if (logFlag == "debug")
-	{
-		Logger::SetPriority(Logger::Priority::DEBUG);
-	}
-	else if (logFlag == "info")
-	{
-		Logger::SetPriority(Logger::Priority::INFO);
-	}
-	else if (logFlag == "warn")
-	{
-		Logger::SetPriority(Logger::Priority::WARN);
-	}
-	else if (logFlag == "error")
-	{
-		Logger::SetPriority(Logger::Priority::ERROR);
+		time_t t = time(0);
+		struct tm *now = std::localtime(&t);
+		strftime(buffer, 80, "log/%Y%m%d_%H%M%S.txt", now);
+		Logger::EnableWrite(buffer);
 	}
 	else
 	{
 		Logger::DisableWrite();
+	}
+
+	// Check priority level
+	if (!priority.empty())
+	{
+		if (priority == "trace")
+		{
+			Logger::SetPriority(Logger::Priority::TRACE);
+		}
+		else if (priority == "debug")
+		{
+			Logger::SetPriority(Logger::Priority::DEBUG);
+		}
+		else if (priority == "info")
+		{
+			Logger::SetPriority(Logger::Priority::INFO);
+		}
+		else if (priority == "warn")
+		{
+			Logger::SetPriority(Logger::Priority::WARN);
+		}
+		else if (priority == "error")
+		{
+			Logger::SetPriority(Logger::Priority::ERROR);
+		}
 	}
 
 	// Create application
