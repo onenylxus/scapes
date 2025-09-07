@@ -37,7 +37,7 @@ void Cubemap::Load(const char *path)
 	Logger::LogTrace(ModuleData::Name::CUBEMAP, "void Load(const char *path)");
 
 	// Load data
-	std::string paths[6] = {"left.jpg", "right.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg"};
+	std::string paths[6] = {"left.png", "right.png", "top.png", "bottom.png", "front.png", "back.png"};
 	Texture::Data *data = new Texture::Data();
 	glGenTextures(1, &this->texture);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, this->texture);
