@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "BlockManager.h"
@@ -82,7 +82,7 @@ void BlockManager::LoadDatabase()
 	Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "void LoadDatabase()");
 
 	BlockManager::blocks.reserve(1);
-	BlockManager::blocks.push_back(Block::Data((int)BlockManager::Value::AIR, "Air", Block::TextureIndex()));
+	BlockManager::blocks.push_back(Block::Data((int)BlockID::AIR, "Air", Block::TextureIndex()));
 }
 
 // Get tilemap
@@ -107,17 +107,17 @@ const Tilemap *BlockManager::GetTilemap(const Block::Type type)
 }
 
 // Get block data
-const Block::Data *BlockManager::GetBlockData(const BlockManager::Value &value)
+const Block::Data *BlockManager::GetBlockData(const BlockID &value)
 {
-	Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "const Block::Data *GetBlockData(const BlockManager::Value &value)");
+	Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "const Block::Data *GetBlockData(const BlockID &value)");
 
 	return &BlockManager::blocks[(int)value];
 }
 
 // Get texture coordinates
-void BlockManager::GetTextureCoords(const BlockManager::Value &value, const Block::Face &face, std::array<glm::vec2, 4> &coords)
+void BlockManager::GetTextureCoords(const BlockID &value, const Block::Face &face, std::array<glm::vec2, 4> &coords)
 {
-	Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "void GetTextureCoords(const BlockManager::Value &value, const Block::Face &face, std::array<glm::vec2, 4> &coords)");
+	Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "void GetTextureCoords(const BlockID &value, const Block::Face &face, std::array<glm::vec2, 4> &coords)");
 
 	const Block::Data *data = BlockManager::GetBlockData(value);
 	switch (data->textureType)
@@ -182,7 +182,7 @@ int BlockManager::GetValueSize()
 {
 	Logger::LogTrace(ModuleData::Name::BLOCK_MANAGER, "int GetValueSize()");
 
-	return (int)BlockManager::Value::_VALUE_SIZE;
+	return (int)BlockID::_VALUE_SIZE;
 }
 
 ////////////////////////////////////////////////////////////////

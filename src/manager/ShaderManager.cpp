@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "ShaderManager.h"
@@ -25,21 +25,21 @@ void ShaderManager::Destroy()
 	Logger::LogTrace(ModuleData::Name::SHADER_MANAGER, "void Destroy()");
 
 	// Destroy graphics shaders
-	for (std::map<const char *, Shader *>::iterator i = ShaderManager::graphicsShaders.begin(); i != ShaderManager::graphicsShaders.end(); i++)
+	for (std::map<const char *, Shader *>::iterator i = ShaderManager::graphicsShaders.begin(); i != ShaderManager::graphicsShaders.end(); ++i)
 	{
 		delete i->second;
 		i->second = nullptr;
 	}
 
 	// Destroy geometry shaders
-	for (std::map<const char *, Shader *>::iterator i = ShaderManager::geometryShaders.begin(); i != ShaderManager::geometryShaders.end(); i++)
+	for (std::map<const char *, Shader *>::iterator i = ShaderManager::geometryShaders.begin(); i != ShaderManager::geometryShaders.end(); ++i)
 	{
 		delete i->second;
 		i->second = nullptr;
 	}
 
 	// Destroy compute shaders
-	for (std::map<const char *, Shader *>::iterator i = ShaderManager::computeShaders.begin(); i != ShaderManager::computeShaders.end(); i++)
+	for (std::map<const char *, Shader *>::iterator i = ShaderManager::computeShaders.begin(); i != ShaderManager::computeShaders.end(); ++i)
 	{
 		delete i->second;
 		i->second = nullptr;

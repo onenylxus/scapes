@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -19,13 +19,13 @@ class Raycast
 public:
 	struct Ray
 	{
-		BlockManager::Value hitValue;
-		BlockManager::Value neighborValue;
+		BlockID hitValue;
+		BlockID neighborValue;
 		glm::vec3 hitPosition;
 		glm::vec3 neighborPosition;
 		bool isHit;
 
-		Ray(BlockManager::Value hitValue, const glm::vec3 &hitPosition, BlockManager::Value neighborValue, const glm::vec3 &neighborPosition, bool isHit)
+		Ray(BlockID hitValue, const glm::vec3 &hitPosition, BlockID neighborValue, const glm::vec3 &neighborPosition, bool isHit)
 		{
 			this->hitValue = hitValue;
 			this->neighborValue = neighborValue;

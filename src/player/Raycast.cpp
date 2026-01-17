@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "Raycast.h"
@@ -16,7 +16,7 @@ Raycast::Ray Raycast::CastFromCamera(const float &distance, Camera &camera)
 	glm::vec2 mousePosition = screenSize / 2.0f;
 	if (screenSize.x == 0 || screenSize.y == 0)
 	{
-		return Raycast::Ray(BlockManager::Value::AIR, glm::vec3(0), BlockManager::Value::AIR, glm::vec3(0), false);
+		return Raycast::Ray(BlockID::AIR, glm::vec3(0), BlockID::AIR, glm::vec3(0), false);
 	}
 
 	// Calculate space values
@@ -86,21 +86,21 @@ Raycast::Ray Raycast::CastFromCamera(const float &distance, Camera &camera)
 			}
 		}
 
-		BlockManager::Value value = BlockManager::Value::AIR;
+		BlockID value = BlockID::AIR;
 		if (current.y < 0)
 		{
 			break;
 		}
-		if (value == BlockManager::Value::AIR)
+		if (value == BlockID::AIR)
 		{
 			++counter;
 			positions.push_back(glm::floor(current));
 			continue;
 		}
-		return Raycast::Ray(value, glm::floor(current), BlockManager::Value::AIR, positions.size() != 0 ? positions[positions.size() - 1] : current, true);
+		return Raycast::Ray(value, glm::floor(current), BlockID::AIR, positions.size() != 0 ? positions[positions.size() - 1] : current, true);
 	}
 
-	return Raycast::Ray(BlockManager::Value::AIR, glm::vec3(0), BlockManager::Value::AIR, glm::vec3(0), false);
+	return Raycast::Ray(BlockID::AIR, glm::vec3(0), BlockID::AIR, glm::vec3(0), false);
 }
 
 ////////////////////////////////////////////////////////////////

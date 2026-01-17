@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -50,7 +50,7 @@ public:
 	glm::vec3 globalCoords;
 	bool isDirty;
 	int maxHeight;
-	BlockManager::Value blocks[Chunk::chunkVolume];
+	BlockID blocks[Chunk::chunkVolume];
 	ChunkManager *manager;
 	Chunk *neighbors[8];
 	AABB *aabb;

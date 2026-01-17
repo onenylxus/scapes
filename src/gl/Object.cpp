@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "Object.h"
@@ -36,13 +36,13 @@ Object::Object(const glm::vec3 &position, const std::vector<float> &data, const 
 	}
 
 	int attrCount = 0;
-	for (int i = 0; i < attr.size(); i++)
+	for (int i = 0; i < attr.size(); ++i)
 	{
 		attrCount += attr[i];
 	}
 
 	int offset = 0;
-	for (int i = 0; i < attr.size(); i++)
+	for (int i = 0; i < attr.size(); ++i)
 	{
 		glVertexAttribPointer(i, attr[i], GL_FLOAT, GL_FALSE, sizeof(float) * attrCount, (void *)(sizeof(float) * offset));
 		glEnableVertexAttribArray(i);

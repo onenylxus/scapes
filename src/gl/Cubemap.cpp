@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "Cubemap.h"
@@ -42,7 +42,7 @@ void Cubemap::Load(const char *path)
 	glGenTextures(1, &this->texture);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, this->texture);
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; ++i)
 	{
 		std::string finalPath = std::string(path) + paths[i];
 		data = Texture::Load(finalPath.c_str(), false);

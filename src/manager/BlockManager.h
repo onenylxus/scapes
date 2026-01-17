@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -12,15 +12,16 @@
 #include "../gl/Tilemap.h"
 #include "../world/Block.h"
 
+enum class BlockID
+{
+	AIR,
+
+	// Add new block IDs above this line
+	_VALUE_SIZE,
+};
+
 class BlockManager
 {
-public:
-	enum class Value
-	{
-		AIR,
-		_VALUE_SIZE,
-	};
-
 private:
 	static Tilemap *solidTexture;
 	static Tilemap *liquidTexture;
@@ -38,8 +39,8 @@ public:
 
 public:
 	static const Tilemap *GetTilemap(const Block::Type type = Block::Type::SOLID);
-	static const Block::Data *GetBlockData(const BlockManager::Value &value);
-	static void GetTextureCoords(const BlockManager::Value &value, const Block::Face &face, std::array<glm::vec2, 4> &coords);
+	static const Block::Data *GetBlockData(const BlockID &value);
+	static void GetTextureCoords(const BlockID &value, const Block::Face &face, std::array<glm::vec2, 4> &coords);
 	static void GetMeshFace(const Block::Type &type, const Block::Face &face, const unsigned int &corner, const glm::vec3 &position, std::vector<float> &vertices);
 	static int GetMeshFaceSize(const Block::Type &type);
 	static int GetValueSize();

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "ChunkManager.h"
@@ -84,16 +84,16 @@ void ChunkManager::Load()
 	glm::ivec2 last = glm::ivec2(0);
 	while (!this->isAppEnding)
 	{
-		for (int i = 0; i <= this->renderDistance; i++)
+		for (int i = 0; i <= this->renderDistance; ++i)
 		{
 			int minX = last.x - i;
 			int maxX = last.x + i;
 			int minZ = last.y - i;
 			int maxZ = last.y + i;
 
-			for (int z = minZ; z <= maxZ; z++)
+			for (int z = minZ; z <= maxZ; ++z)
 			{
-				for (int x = minX; x <= maxX; x++)
+				for (int x = minX; x <= maxX; ++x)
 				{
 					Chunk *chunk = Create(glm::ivec2(x, z));
 				}

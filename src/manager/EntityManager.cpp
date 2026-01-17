@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "../world/Entity.h"
@@ -15,7 +15,7 @@ void EntityManager::Update()
 {
 	Logger::LogTrace(ModuleData::Name::ENTITY_MANAGER, "void Update()");
 
-	for (int i = 0; i < EntityManager::entities.size(); i++)
+	for (int i = 0; i < EntityManager::entities.size(); ++i)
 	{
 		EntityManager::entities[i]->OnUpdate();
 	}
@@ -26,7 +26,7 @@ void EntityManager::Render(Camera &camera)
 {
 	Logger::LogTrace(ModuleData::Name::ENTITY_MANAGER, "void Render(Camera &camera)");
 
-	for (int i = 0; i < EntityManager::entities.size(); i++)
+	for (int i = 0; i < EntityManager::entities.size(); ++i)
 	{
 		EntityManager::entities[i]->OnRender(camera);
 	}

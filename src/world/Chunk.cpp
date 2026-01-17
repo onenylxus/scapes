@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "Chunk.h"
@@ -15,7 +15,7 @@ Chunk::Chunk(glm::ivec2 index, ChunkManager &manager)
 	this->globalCoords = glm::vec3(index.x * Chunk::chunkSize, 0.0f, index.y * Chunk::chunkSize);
 	this->aabb = new AABB(glm::vec3(this->globalCoords.x + Chunk::chunkSize / 2.0f, Chunk::chunkHeight / 2.0f, this->globalCoords.z + Chunk::chunkSize / 2.0f), glm::vec3(Chunk::chunkSize, Chunk::chunkHeight, Chunk::chunkSize));
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 8; ++i)
 	{
 		this->neighbors[i] = nullptr;
 	}
@@ -28,7 +28,7 @@ Chunk::~Chunk()
 
 	delete this->aabb;
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 8; ++i)
 	{
 		this->neighbors[i] = nullptr;
 	}

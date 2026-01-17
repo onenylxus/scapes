@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -41,6 +41,7 @@ public:
 		CAMERA_3D,
 		CAMERA_PLAYER,
 		RENDERER,
+		BIOME,
 		BLOCK,
 		CHUNK,
 		ENTITY,
@@ -89,6 +90,7 @@ private:
 		"Camera3D",
 		"CameraPlayer",
 		"Renderer",
+		"Biome",
 		"Block",
 		"Chunk",
 		"Entity",
@@ -97,35 +99,36 @@ private:
 
 private:
 	static inline ModuleData::Type types[(int)ModuleData::Name::_MODULE_SIZE] = {
-		ModuleData::Type::LOGGER,			// Logger
-		ModuleData::Type::CORE_PRIMARY,		// Application
-		ModuleData::Type::CORE_SECONDARY,	// Clock
-		ModuleData::Type::CORE_PRIMARY,		// Engine
-		ModuleData::Type::CORE_SECONDARY,	// Input
-		ModuleData::Type::GL,				// AABB
-		ModuleData::Type::GL,				// Camera
-		ModuleData::Type::GL,				// Cubemap
-		ModuleData::Type::GL,				// Mesh
-		ModuleData::Type::GL,				// Object
-		ModuleData::Type::GL,				// Shader
-		ModuleData::Type::GL,				// Skybox
-		ModuleData::Type::GL,				// Sprite
-		ModuleData::Type::GL,				// Texture
-		ModuleData::Type::GL,				// Tilemap
-		ModuleData::Type::GL,				// Transform
-		ModuleData::Type::MANAGER,			// BlockManager
-		ModuleData::Type::MANAGER,			// ChunkManager
-		ModuleData::Type::MANAGER,			// EntityManager
-		ModuleData::Type::MANAGER,			// ShaderManager
-		ModuleData::Type::PLAYER,			// Raycast
-		ModuleData::Type::VIEW,				// Camera2D
-		ModuleData::Type::VIEW,				// Camera3D
-		ModuleData::Type::VIEW,				// CameraPlayer
-		ModuleData::Type::VIEW,				// Renderer
-		ModuleData::Type::WORLD,			// Block
-		ModuleData::Type::WORLD,			// Chunk
-		ModuleData::Type::WORLD,			// Entity
-		ModuleData::Type::WORLD,			// World
+		ModuleData::Type::LOGGER,         // Logger
+		ModuleData::Type::CORE_PRIMARY,   // Application
+		ModuleData::Type::CORE_SECONDARY, // Clock
+		ModuleData::Type::CORE_PRIMARY,   // Engine
+		ModuleData::Type::CORE_SECONDARY, // Input
+		ModuleData::Type::GL,             // AABB
+		ModuleData::Type::GL,             // Camera
+		ModuleData::Type::GL,             // Cubemap
+		ModuleData::Type::GL,             // Mesh
+		ModuleData::Type::GL,             // Object
+		ModuleData::Type::GL,             // Shader
+		ModuleData::Type::GL,             // Skybox
+		ModuleData::Type::GL,             // Sprite
+		ModuleData::Type::GL,             // Texture
+		ModuleData::Type::GL,             // Tilemap
+		ModuleData::Type::GL,             // Transform
+		ModuleData::Type::MANAGER,        // BlockManager
+		ModuleData::Type::MANAGER,        // ChunkManager
+		ModuleData::Type::MANAGER,        // EntityManager
+		ModuleData::Type::MANAGER,        // ShaderManager
+		ModuleData::Type::PLAYER,         // Raycast
+		ModuleData::Type::VIEW,           // Camera2D
+		ModuleData::Type::VIEW,           // Camera3D
+		ModuleData::Type::VIEW,           // CameraPlayer
+		ModuleData::Type::VIEW,           // Renderer
+		ModuleData::Type::WORLD,          // Biome
+		ModuleData::Type::WORLD,          // Block
+		ModuleData::Type::WORLD,          // Chunk
+		ModuleData::Type::WORLD,          // Entity
+		ModuleData::Type::WORLD,          // World
 	};
 };
 

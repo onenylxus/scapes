@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "Input.h"
@@ -66,12 +66,12 @@ void Input::Update()
 	Input::scrollStates[0] = 0;
 	Input::scrollStates[1] = 0;
 
-	for (int i = 0; i < GLFW_MOUSE_BUTTON_LAST; i++)
+	for (int i = 0; i < GLFW_MOUSE_BUTTON_LAST; ++i)
 	{
 		Input::buttonPreviousStates[i] = Input::buttonCurrentStates[i];
 	}
 
-	for (int i = 0; i < GLFW_KEY_LAST; i++)
+	for (int i = 0; i < GLFW_KEY_LAST; ++i)
 	{
 		Input::keyPreviousStates[i] = Input::keyCurrentStates[i];
 	}

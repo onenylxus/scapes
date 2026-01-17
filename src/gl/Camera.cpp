@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 // Scapes v0.1.0
 // Voxel-based role-playing game
-// Nicholas Ng, 2022-2025 MIT License
+// Nicholas Ng, 2022-2026 MIT License
 ////////////////////////////////////////////////////////////////
 
 #include "Camera.h"
@@ -89,7 +89,7 @@ void Camera::UpdateFrustum()
 	this->frustum[(int)Camera::Frustum::FAR] = glm::vec4(pv[0][3] - pv[0][2], pv[1][3] - pv[1][2], pv[2][3] - pv[2][2], pv[3][3] - pv[3][2]);
 
 	// Normalize frustum planes
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; ++i)
 	{
 		this->frustum[i] /= glm::length(glm::vec3(this->frustum[i]));
 	}
@@ -142,7 +142,7 @@ bool Camera::IsPointInFrustum(const glm::vec3 &point)
 	}
 
 	// Check each frustum plane
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; ++i)
 	{
 		if (glm::dot(glm::vec3(this->frustum[i]), point) + this->frustum[i].w < 0.0f)
 		{
@@ -164,10 +164,10 @@ bool Camera::IsAABBInFrustum(const AABB &aabb)
 	}
 
 	// Check each frustum plane
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; ++i)
 	{
 		// Check each bounding box vertex
-		for (int j = 0; j < 8; j++)
+		for (int j = 0; j < 8; ++j)
 		{
 			if (glm::dot(glm::vec3(this->frustum[i]), aabb.GetVertex(j)) + this->frustum[i].w >= 0.0f)
 			{
