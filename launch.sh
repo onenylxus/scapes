@@ -1,8 +1,4 @@
 #!/bin/bash
-################################################################
-# Scapes Launch Script
-# Interactive CLI menu for launching Scapes with options
-################################################################
 
 # Default values
 PRIORITY="debug"
@@ -27,9 +23,9 @@ trap 'tput cnorm; exit' INT TERM EXIT
 # Clear screen function
 clear_screen() {
 	clear
-	echo -e "${BLUE}${BOLD}╔════════════════════════════════════════╗${NC}"
-	echo -e "${BLUE}${BOLD}║         SCAPES LAUNCHER v0.1.0         ║${NC}"
-	echo -e "${BLUE}${BOLD}╚════════════════════════════════════════╝${NC}"
+	echo -e "${BLUE}${BOLD}.----------------------------------------.${NC}"
+	echo -e "${BLUE}${BOLD}|         SCAPES LAUNCHER v0.1.0         |${NC}"
+	echo -e "${BLUE}${BOLD}'----------------------------------------'${NC}"
 	echo ""
 }
 
@@ -45,9 +41,9 @@ draw_menu() {
 
 	for i in "${!options[@]}"; do
 		if [ $i -eq $selected ]; then
-			echo -e "${GREEN}${BOLD} ► ${options[$i]}${NC}"
+			echo -e "${GREEN}${BOLD}> ${options[$i]}${NC}"
 		else
-			echo -e "	${options[$i]}"
+			echo -e "  ${options[$i]}"
 		fi
 	done
 	echo ""
@@ -166,9 +162,9 @@ confirm_launch() {
 
 		for i in "${!options[@]}"; do
 			if [ $i -eq $selected_index ]; then
-				echo -e "${GREEN}${BOLD} ► ${options[$i]}${NC}"
+				echo -e "${GREEN}${BOLD}> ${options[$i]}${NC}"
 			else
-				echo -e "	${options[$i]}"
+				echo -e "  ${options[$i]}"
 			fi
 		done
 		echo ""
@@ -220,7 +216,7 @@ while true; do
 		clear_screen
 		echo -e "${GREEN}${BOLD}Launching Scapes...${NC}"
 		echo -e "${CYAN}Priority: $PRIORITY | Write Logs: $WRITE${NC}"
-		echo -e "${BLUE}════════════════════════════════════════${NC}"
+		echo -e "${BLUE}----------------------------------------${NC}"
 		echo ""
 		tput cnorm
 
@@ -241,7 +237,7 @@ while true; do
 
 		# Display exit status
 		echo ""
-		echo -e "${BLUE}════════════════════════════════════════${NC}"
+		echo -e "${BLUE}----------------------------------------${NC}"
 		if [ $exit_code -eq 0 ]; then
 			echo -e "${GREEN}Scapes exited successfully (code: $exit_code)${NC}"
 		else
