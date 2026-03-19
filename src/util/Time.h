@@ -54,7 +54,7 @@ public:
 		tp -= s;
 
 		auto date = Time::GetDate(d.count());
-		std::printf("[%04u-%02u-%02u %02lu:%02lu:%02llu.%03llu]", std::get<0>(date), std::get<1>(date), std::get<2>(date), h.count(), m.count(), s.count(), tp / std::chrono::milliseconds(1));
+		std::printf("[%04u-%02u-%02u %02lu:%02lu:%02lu.%03lu]", std::get<0>(date), std::get<1>(date), std::get<2>(date), h.count(), m.count(), s.count(), (long)( tp / std::chrono::milliseconds(1)));
 	}
 
 	template <typename Duration = std::chrono::hours>
@@ -77,7 +77,7 @@ public:
 		tp -= s;
 
 		auto date = Time::GetDate(d.count());
-		std::fprintf(file, "[%04u-%02u-%02u %02lu:%02lu:%02llu.%03llu |", std::get<0>(date), std::get<1>(date), std::get<2>(date), h.count(), m.count(), s.count(), tp / std::chrono::milliseconds(1));
+		std::fprintf(file, "[%04u-%02u-%02u %02lu:%02lu:%02lu.%03lu |", std::get<0>(date), std::get<1>(date), std::get<2>(date), h.count(), m.count(), s.count(), (long)(tp / std::chrono::milliseconds(1)));
 	}
 };
 

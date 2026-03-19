@@ -10,7 +10,7 @@
 #include <chrono>
 #include <queue>
 #include <glad/glad.h>
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 #include "../gl/AABB.h"
 #include "../gl/Shader.h"
 #include "../manager/BlockManager.h"
