@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-ROOT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 printf '\033[36mModifying files in vendor folder...\033[0m\n'
 printf '\033[36m[1/2] Sync git submodules...\033[0m\n'

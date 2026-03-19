@@ -3,8 +3,11 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BUILD_DIR="${BUILD_DIR:-${SCRIPT_DIR}/build}"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+BUILD_DIR="${BUILD_DIR:-${ROOT_DIR}/build}"
 BUILD_CONFIG="${BUILD_CONFIG:-Release}"
+OS_NAME="$(uname -s)"
+PAUSE_ON_SUCCESS="${PAUSE_ON_SUCCESS:-0}"
 
 if command -v cmake >/dev/null 2>&1; then
 	CMAKE_BIN="cmake"
@@ -20,10 +23,15 @@ if ! command -v bash >/dev/null 2>&1; then
 	exit 127
 fi
 
-cd "$SCRIPT_DIR"
+cd "$ROOT_DIR"
 
 CMAKE_CONFIGURE_ARGS=()
-if [[ "$(uname -s)" == "Linux" ]]; then
+if [[ "$OS_NAME" == MINGW* || "$OS_NAME" == MSYS* || "$OS_NAME" == CYGWIN* ]]; then
+	# Prefer Ninja on Windows shells to avoid generator mismatches with Makefiles.
+	if [[ -z "${CMAKE_GENERATOR:-}" ]] && command -v ninja >/dev/null 2>&1; then
+		CMAKE_CONFIGURE_ARGS+=("-G" "Ninja")
+	fi
+elif [[ "$OS_NAME" == "Linux" ]]; then
 	has_wayland_scanner=false
 	has_wayland_pkg=false
 	has_x11=false
@@ -77,20 +85,20 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 fi
 
 # Sync vendor/assets metadata before configuring.
-bash ./res/vendor/modify.sh
-bash ./res/assets.sh
+bash ./scripts/modify.sh
+bash ./scripts/assets.sh
 
 mkdir -p ./log
 
 echo "Configuring project in: $BUILD_DIR"
-"$CMAKE_BIN" -S "$SCRIPT_DIR" -B "$BUILD_DIR" "${CMAKE_CONFIGURE_ARGS[@]}" \
-	-DCMAKE_RUNTIME_OUTPUT_DIRECTORY="$SCRIPT_DIR"
+"$CMAKE_BIN" -S "$ROOT_DIR" -B "$BUILD_DIR" "${CMAKE_CONFIGURE_ARGS[@]}" \
+	-DCMAKE_RUNTIME_OUTPUT_DIRECTORY="$ROOT_DIR"
 
 echo "Building project (config: $BUILD_CONFIG)"
 "$CMAKE_BIN" --build "$BUILD_DIR" --config "$BUILD_CONFIG"
 
-# Only pause in an interactive terminal.
-if [ -t 0 ]; then
+# Pause only when explicitly requested.
+if [[ "$PAUSE_ON_SUCCESS" == "1" ]] && [ -t 0 ]; then
 	printf "\n"
 	read -r -n 1 -s -p "Build complete. Press any key to continue"
 	printf "\n"

@@ -1,9 +1,49 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 # Default values
 PRIORITY="debug"
 WRITE="false"
-EXECUTABLE="./scapes.exe"
+EXECUTABLE="${EXECUTABLE:-}"
+INTERACTIVE=false
+
+cd "$ROOT_DIR"
+
+# Resolve executable path from explicit input or default executable names only.
+resolve_executable() {
+	local candidates=("$ROOT_DIR/scapes" "$ROOT_DIR/scapes.exe")
+
+	if [ -n "$EXECUTABLE" ]; then
+		if [ -f "$EXECUTABLE" ]; then
+			return 0
+		fi
+		return 1
+	fi
+
+	for candidate in "${candidates[@]}"; do
+		if [ -f "$candidate" ]; then
+			EXECUTABLE="$candidate"
+			return 0
+		fi
+	done
+
+	return 1
+}
+
+launch_game() {
+	# Run executable with proper TTY handling for shell environments.
+	if command -v winpty >/dev/null 2>&1; then
+		winpty "$EXECUTABLE" --priority="$PRIORITY" --write="$WRITE"
+	else
+		if command -v script >/dev/null 2>&1; then
+			script -q -c "$EXECUTABLE --priority=\"$PRIORITY\" --write=\"$WRITE\"" /dev/null
+		else
+			"$EXECUTABLE" --priority="$PRIORITY" --write="$WRITE"
+		fi
+	fi
+}
 
 # Colors for output
 RED='\033[0;31m'
@@ -14,15 +54,35 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
 
-# Hide cursor
-tput civis
+# Enable interactive UI only when stdin/stdout are terminals.
+if [ -t 0 ] && [ -t 1 ]; then
+	INTERACTIVE=true
+fi
+
+# Terminal helper wrappers to avoid errors in non-interactive shells.
+hide_cursor() {
+	if $INTERACTIVE && command -v tput >/dev/null 2>&1; then
+		tput civis
+	fi
+}
+
+show_cursor() {
+	if command -v tput >/dev/null 2>&1; then
+		tput cnorm
+	fi
+}
 
 # Show cursor on exit
-trap 'tput cnorm; exit' INT TERM EXIT
+trap 'show_cursor; exit' INT TERM EXIT
+
+# Hide cursor while interactive menus are visible.
+hide_cursor
 
 # Clear screen function
 clear_screen() {
-	clear
+	if $INTERACTIVE; then
+		clear
+	fi
 	echo -e "${BLUE}${BOLD}.----------------------------------------.${NC}"
 	echo -e "${BLUE}${BOLD}|         SCAPES LAUNCHER v0.1.0         |${NC}"
 	echo -e "${BLUE}${BOLD}'----------------------------------------'${NC}"
@@ -196,12 +256,27 @@ confirm_launch() {
 }
 
 # Check if executable exists
-if [ ! -f "$EXECUTABLE" ]; then
+if ! resolve_executable; then
 	clear_screen
-	echo -e "${RED}Error: Executable not found at '$EXECUTABLE'${NC}"
-	echo "Build the project first or specify the correct path."
-	tput cnorm
+	echo -e "${RED}Error: Could not find a Scapes executable.${NC}"
+	echo "Accepted options:"
+	echo "  1) Set EXECUTABLE to a valid file path"
+	echo "  2) Keep default and use ./scapes or ./scapes.exe in project root"
+	echo "Build first with ./scripts/make.sh if needed."
+	show_cursor
 	exit 1
+fi
+
+if ! $INTERACTIVE; then
+	clear_screen
+	echo -e "${GREEN}${BOLD}Launching Scapes (non-interactive mode)...${NC}"
+	echo -e "${CYAN}Priority: $PRIORITY | Write Logs: $WRITE${NC}"
+	echo -e "${YELLOW}Executable: $EXECUTABLE${NC}"
+	echo -e "${BLUE}----------------------------------------${NC}"
+	echo ""
+	show_cursor
+	launch_game
+	exit $?
 fi
 
 # Main menu loop
@@ -218,21 +293,8 @@ while true; do
 		echo -e "${CYAN}Priority: $PRIORITY | Write Logs: $WRITE${NC}"
 		echo -e "${BLUE}----------------------------------------${NC}"
 		echo ""
-		tput cnorm
-
-		# Run executable with proper TTY handling for Windows
-		# Try winpty first for Windows, fallback to direct execution
-		if command -v winpty &> /dev/null; then
-			winpty "$EXECUTABLE" --priority="$PRIORITY" --write="$WRITE"
-		else
-			# Use script to force pseudo-terminal and unbuffered output
-			if command -v script &> /dev/null; then
-				script -q -c "$EXECUTABLE --priority=\"$PRIORITY\" --write=\"$WRITE\"" /dev/null
-			else
-				# Direct execution as fallback
-				"$EXECUTABLE" --priority="$PRIORITY" --write="$WRITE"
-			fi
-		fi
+		show_cursor
+		launch_game
 		exit_code=$?
 
 		# Display exit status
@@ -248,7 +310,7 @@ while true; do
 		# Exit
 		clear_screen
 		echo -e "${YELLOW}Launch cancelled.${NC}"
-		tput cnorm
+		show_cursor
 		exit 0
 	fi
 	# If result is 1, loop continues to reconfigure

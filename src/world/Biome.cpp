@@ -6,6 +6,7 @@
 
 #include "Biome.h"
 
+// Get generation data
 const Biome::GenerationData &Biome::GetGenerationData() const
 {
 	Logger::LogTrace(ModuleData::Name::BIOME, "const Biome::GenerationData &Biome::GetGenerationData() const");
@@ -13,6 +14,7 @@ const Biome::GenerationData &Biome::GetGenerationData() const
 	return this->generationData;
 }
 
+// Get height map
 void Biome::GetHeightMap(std::array<float, Chunk::chunkArea> &heightMap, const Chunk &chunk)
 {
 	Logger::LogTrace(ModuleData::Name::BIOME, "Biome::GetHeightMap(std::array<float, Chunk::chunkArea> &heightMap, const Chunk &chunk)");
@@ -55,6 +57,7 @@ void Biome::GetHeightMap(std::array<float, Chunk::chunkArea> &heightMap, const C
 	heightMapCoords = chunk.globalCoords;
 }
 
+// Get height at specific coordinates
 float Biome::GetHeightAt(const int &x, const int &z)
 {
 	Logger::LogTrace(ModuleData::Name::BIOME, "Biome::GetHeightAt(const int &x, const int &z)");
