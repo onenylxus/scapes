@@ -24,7 +24,7 @@ void main()
 {
 	mat4 model = mat4(1);
 	model[3] = vec4(uPosition, 1);
-	glPosition = uProjectionView * model * vec4(vPosition, 1);
+	gl_Position = uProjectionView * model * vec4(vPosition, 1);
 
 	fTexCoord = vTexCoord;
 	fNormal = vNormal;
