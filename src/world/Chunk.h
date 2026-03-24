@@ -21,6 +21,7 @@ class Chunk
 {
 public:
 	friend class ChunkManager;
+	friend class WorldGeneration;
 
 private:
 	enum class Neighbor
@@ -45,18 +46,28 @@ public:
 	static const unsigned int chunkHeight = 128;
 	static const unsigned int chunkVolume = Chunk::chunkArea * Chunk::chunkHeight;
 
+private:
+	glm::ivec2 neighborOffset[8] = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
+
 public:
 	glm::ivec2 localCoords;
 	glm::vec3 globalCoords;
 	bool isDirty;
+	bool hasData;
 	int maxHeight;
 	BlockID blocks[Chunk::chunkVolume];
 	ChunkManager *manager;
 	Chunk *neighbors[8];
 	AABB *aabb;
 
+public:
+	BlockID GetBlock(const glm::ivec3 &position) const;
+
+public:
+	void SetBlock(const glm::ivec3 &position, const BlockID &blockID);
+
 private:
-	glm::ivec2 neighborOffset[8] = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
+	void SetDirty();
 
 public:
 	void RenderSolid(Shader &solidShader);

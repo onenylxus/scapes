@@ -13,6 +13,7 @@ World::World()
 
 	BlockManager::Init();
 	this->skybox = new Skybox("res/skybox/");
+	this->chunkManager = new ChunkManager();
 
 	Logger::LogInfo(ModuleData::Name::WORLD, "World created");
 }
@@ -23,6 +24,7 @@ World::~World()
 	Logger::LogTrace(ModuleData::Name::WORLD, "~World()");
 
 	delete this->skybox;
+	delete this->chunkManager;
 	BlockManager::Destroy();
 
 	Logger::LogInfo(ModuleData::Name::WORLD, "World deleted");
@@ -34,6 +36,7 @@ void World::Update()
 	Logger::LogTrace(ModuleData::Name::WORLD, "void Update()");
 
 	this->skybox->GetShader()->SetFloat("uTime", Clock::GetTotal());
+	this->chunkManager->Update();
 	EntityManager::Update();
 }
 
@@ -44,6 +47,7 @@ void World::Render()
 
 	Camera3D *camera = new Camera3D(glm::vec3(0));
 	this->skybox->Render(*camera);
+	this->chunkManager->Render(*camera);
 	EntityManager::Render(*camera);
 }
 

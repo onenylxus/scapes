@@ -15,6 +15,9 @@
 enum class BlockID
 {
 	AIR,
+	GRASS,
+	DIRT,
+	STONE,
 
 	// Add new block IDs above this line
 	_VALUE_SIZE,

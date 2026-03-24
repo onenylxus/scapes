@@ -8,6 +8,7 @@
 
 #include "../gl/Skybox.h"
 #include "../manager/BlockManager.h"
+#include "../manager/ChunkManager.h"
 #include "../manager/EntityManager.h"
 #include "../view/Camera3D.h"
 #include "Entity.h"
@@ -20,6 +21,7 @@ public:
 
 private:
 	Skybox *skybox;
+	ChunkManager *chunkManager;
 
 public:
 	void Update();

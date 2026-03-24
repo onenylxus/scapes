@@ -34,6 +34,39 @@ Chunk::~Chunk()
 	}
 }
 
+// Get block
+BlockID Chunk::GetBlock(const glm::ivec3 &position) const
+{
+	Logger::LogTrace(ModuleData::Name::CHUNK, "BlockID GetBlock(const glm::ivec3 &position) const");
+
+	if (position.x < 0 || position.x >= Chunk::chunkSize || position.y < 0 || position.y >= Chunk::chunkHeight || position.z < 0 || position.z >= Chunk::chunkSize)
+	{
+		return BlockID::AIR;
+	}
+	return this->blocks[position.y * Chunk::chunkArea + position.z * Chunk::chunkSize + position.x];
+}
+
+// Set block
+void Chunk::SetBlock(const glm::ivec3 &position, const BlockID &blockID)
+{
+	Logger::LogTrace(ModuleData::Name::CHUNK, "void SetBlock(const glm::ivec3 &position, const BlockID &blockID)");
+
+	if (position.x < 0 || position.x >= Chunk::chunkSize || position.y < 0 || position.y >= Chunk::chunkHeight || position.z < 0 || position.z >= Chunk::chunkSize)
+	{
+		return;
+	}
+	this->blocks[position.y * Chunk::chunkArea + position.z * Chunk::chunkSize + position.x] = blockID;
+	this->SetDirty();
+}
+
+// Set dirty
+void Chunk::SetDirty()
+{
+	Logger::LogTrace(ModuleData::Name::CHUNK, "void SetDirty()");
+
+	this->isDirty = true;
+}
+
 // Render with solid shader
 void Chunk::RenderSolid(Shader &solidShader)
 {
