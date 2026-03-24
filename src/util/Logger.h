@@ -194,7 +194,7 @@ private:
     std::scoped_lock lock(Logger::mutex);
 
     // Timestamp
-    std::printf("\033[%i;1m", Logger::colors[type]);
+    std::printf("\033[%i;1m", (int)Logger::colors[type]);
     Time::Print();
     if (Logger::isWriteEnabled)
     {
@@ -209,13 +209,17 @@ private:
     }
 
     // Priority
-    std::printf("\033[0m \033[%im[%s] ", Logger::colors[type], Logger::priorities[(int)priority]);
+    std::printf("\033[0m \033[%im[%s] ", (int)Logger::colors[type], Logger::priorities[(int)priority]);
     if (Logger::isWriteEnabled)
     {
       std::fprintf(Logger::file, " %s] ", Logger::priorities[(int)priority]);
     }
 
     // Message
+    // Directly passing arguments to (f)printf gives a format security warning,
+    // but LogPriority is intended to mimic (f)printf's behavior.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
     std::printf(message, args...);
     std::printf("\033[0m\n");
     if (Logger::isWriteEnabled)
@@ -223,6 +227,7 @@ private:
       std::fprintf(Logger::file, message, args...);
       std::fprintf(Logger::file, "\n");
     }
+#pragma GCC diagnostic pop
   }
 
 public:
